@@ -1,0 +1,468 @@
+<!-- booking.page.html - Fixed Icon Names -->
+<ion-header class="ion-no-border">
+  <ion-toolbar class="custom-toolbar">
+    <div class="nav-container">
+      <!-- Logo -->
+      <div class="logo" (click)="navigateToHome()" style="cursor: pointer;">
+        <div class="logo-symbol">SJ</div>
+        <div>
+          SHESHA &amp; JOBELA
+          <small>DIGITAL</small>
+        </div>
+      </div>
+
+      <!-- Desktop Nav -->
+      <div class="nav-menu">
+        <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <ion-icon name="home-outline"></ion-icon> Home
+        </a>
+        <a routerLink="/services" routerLinkActive="active">
+          <ion-icon name="grid-outline"></ion-icon> Services
+        </a>
+        <a routerLink="/booking" routerLinkActive="active">
+          <ion-icon name="calendar-outline"></ion-icon> Book Now
+        </a>
+        <a routerLink="/contact" routerLinkActive="active">
+          <ion-icon name="call-outline"></ion-icon> Contact
+        </a>
+      </div>
+
+      <!-- WhatsApp Call Button -->
+      <a class="call-btn whatsapp-btn" href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank">
+        <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp Us
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <ion-button class="menu-btn" fill="clear" (click)="toggleMenu()">
+        <ion-icon name="menu-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)" scrollEvents="true">
+  <!-- ===== BOOKING HERO ===== -->
+  <section class="booking-hero">
+    <div class="booking-hero-overlay"></div>
+    <div class="booking-hero-bg"></div>
+    <div class="booking-hero-content">
+      <span class="hero-badge animate-fade-in">
+        <ion-icon name="calendar-outline"></ion-icon>
+        BOOK NOW
+      </span>
+      <h1 class="animate-slide-up">Book Your <span>Service</span></h1>
+      <p class="animate-slide-up-delay">
+        Fill in the form below and we'll get back to you within 24 hours.
+        Or send us a message directly on WhatsApp.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING FORM ===== -->
+  <section class="booking-form-section scroll-animate">
+    <div class="booking-form-container">
+      <div class="form-card scroll-animate-child">
+        <div class="form-header">
+          <h2>Request a <span>Quote</span></h2>
+          <p>Fill in your details and we'll get back to you promptly</p>
+        </div>
+
+        <form #bookingForm="ngForm" (ngSubmit)="submitBooking()" class="booking-form">
+          <!-- Full Name -->
+          <div class="form-group">
+            <label for="fullName">
+              <ion-icon name="person-outline"></ion-icon>
+              Full Name <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="fullName" 
+              name="fullName"
+              [(ngModel)]="bookingData.fullName"
+              placeholder="Enter your full name"
+              required
+              #fullName="ngModel"
+              [class.error]="fullName.invalid && fullName.touched"
+            >
+            <small class="error-message" *ngIf="fullName.invalid && fullName.touched">
+              Please enter your full name
+            </small>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-group">
+            <label for="phone">
+              <ion-icon name="call-outline"></ion-icon>
+              Phone Number <span class="required">*</span>
+            </label>
+            <input 
+              type="tel" 
+              id="phone" 
+              name="phone"
+              [(ngModel)]="bookingData.phone"
+              placeholder="e.g. 067 068 0043"
+              required
+              #phone="ngModel"
+              [class.error]="phone.invalid && phone.touched"
+            >
+            <small class="error-message" *ngIf="phone.invalid && phone.touched">
+              Please enter your phone number
+            </small>
+          </div>
+
+          <!-- Email Address -->
+          <div class="form-group">
+            <label for="email">
+              <ion-icon name="mail-outline"></ion-icon>
+              Email Address
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email"
+              [(ngModel)]="bookingData.email"
+              placeholder="your@email.com"
+              #email="ngModel"
+              [class.error]="email.invalid && email.touched"
+            >
+            <small class="error-message" *ngIf="email.invalid && email.touched">
+              Please enter a valid email address
+            </small>
+          </div>
+
+          <!-- Service Dropdown -->
+          <div class="form-group">
+            <label for="service">
+              <ion-icon name="construct-outline"></ion-icon>
+              Select Service <span class="required">*</span>
+            </label>
+            <select 
+              id="service" 
+              name="service"
+              [(ngModel)]="bookingData.service"
+              required
+              #service="ngModel"
+              [class.error]="service.invalid && service.touched"
+            >
+              <option value="" disabled selected>-- Select a service --</option>
+              <option *ngFor="let service of servicesList" [value]="service.value">
+                {{ service.label }}
+              </option>
+            </select>
+            <small class="error-message" *ngIf="service.invalid && service.touched">
+              Please select a service
+            </small>
+          </div>
+
+          <!-- Preferred Date -->
+          <div class="form-group">
+            <label for="date">
+              <ion-icon name="calendar-outline"></ion-icon>
+              Preferred Date <span class="required">*</span>
+            </label>
+            <input 
+              type="date" 
+              id="date" 
+              name="date"
+              [(ngModel)]="bookingData.date"
+              required
+              [min]="minDate"
+              #date="ngModel"
+              [class.error]="date.invalid && date.touched"
+            >
+            <small class="error-message" *ngIf="date.invalid && date.touched">
+              Please select a preferred date
+            </small>
+          </div>
+
+          <!-- Preferred Time -->
+          <div class="form-group">
+            <label for="time">
+              <ion-icon name="time-outline"></ion-icon>
+              Preferred Time
+            </label>
+            <select id="time" name="time" [(ngModel)]="bookingData.time">
+              <option value="" disabled selected>-- Select a time --</option>
+              <option value="8:00 AM - 9:00 AM">8:00 AM - 9:00 AM</option>
+              <option value="9:00 AM - 10:00 AM">9:00 AM - 10:00 AM</option>
+              <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+              <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+              <option value="12:00 PM - 1:00 PM">12:00 PM - 1:00 PM</option>
+              <option value="1:00 PM - 2:00 PM">1:00 PM - 2:00 PM</option>
+              <option value="2:00 PM - 3:00 PM">2:00 PM - 3:00 PM</option>
+              <option value="3:00 PM - 4:00 PM">3:00 PM - 4:00 PM</option>
+              <option value="4:00 PM - 5:00 PM">4:00 PM - 5:00 PM</option>
+              <option value="5:00 PM - 6:00 PM">5:00 PM - 6:00 PM</option>
+            </select>
+          </div>
+
+          <!-- Location -->
+          <div class="form-group">
+            <label for="location">
+              <ion-icon name="location-outline"></ion-icon>
+              Location / Address <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="location" 
+              name="location"
+              [(ngModel)]="bookingData.location"
+              placeholder="e.g. PMB, Pietermaritzburg"
+              required
+              #location="ngModel"
+              [class.error]="location.invalid && location.touched"
+            >
+            <small class="error-message" *ngIf="location.invalid && location.touched">
+              Please enter your location
+            </small>
+          </div>
+
+          <!-- Message -->
+          <div class="form-group">
+            <label for="message">
+              <ion-icon name="chatbubble-outline"></ion-icon>
+              Additional Details
+            </label>
+            <textarea 
+              id="message" 
+              name="message"
+              [(ngModel)]="bookingData.message"
+              placeholder="Tell us more about your needs, specific requirements, or any questions..."
+              rows="4"
+            ></textarea>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-gold btn-block" [disabled]="bookingForm.invalid || isSubmitting">
+              <ion-icon name="send-outline"></ion-icon>
+              {{ isSubmitting ? 'Sending...' : 'Send Booking Request' }}
+            </button>
+            
+            <!-- WhatsApp Divider -->
+            <div class="whatsapp-divider">
+              <span class="divider-line"></span>
+              <span class="divider-text">
+                <ion-icon name="logo-whatsapp" class="whatsapp-icon"></ion-icon>
+                OR BOOK VIA WHATSAPP
+              </span>
+              <span class="divider-line"></span>
+            </div>
+            
+            <!-- WhatsApp Button -->
+            <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%3A%0A%0AName%3A%20%5BYour%20Name%5D%0AService%3A%20%5BService%20Name%5D%0ADate%3A%20%5BPreferred%20Date%5D%0ALocation%3A%20%5BYour%20Location%5D" 
+               target="_blank" 
+               class="btn btn-whatsapp btn-block pulse-animation">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+              <span>Book Now on WhatsApp</span>
+              <span class="badge">Fast & Easy</span>
+            </a>
+
+            <div class="whatsapp-features">
+              <div class="feature-chip">
+                <ion-icon name="checkmark-circle"></ion-icon>
+                <span>Instant Response</span>
+              </div>
+              <div class="feature-chip">
+                <ion-icon name="checkmark-circle"></ion-icon>
+                <span>No Forms</span>
+              </div>
+              <div class="feature-chip">
+                <ion-icon name="checkmark-circle"></ion-icon>
+                <span>24/7 Available</span>
+              </div>
+            </div>
+
+            <!-- FIXED: Changed to alert-circle-outline -->
+            <p class="form-note">
+              <ion-icon name="alert-circle-outline"></ion-icon>
+              We'll respond within 24 hours. For urgent requests, call us directly.
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Sidebar Info -->
+      <div class="booking-info-sidebar scroll-animate-child">
+        <!-- WhatsApp Card -->
+        <div class="info-card whatsapp-card">
+          <div class="whatsapp-card-header">
+            <ion-icon name="logo-whatsapp" class="whatsapp-big-icon"></ion-icon>
+            <h4>Chat with us on WhatsApp</h4>
+          </div>
+          <p class="whatsapp-card-text">
+            Get instant responses to your questions and book services faster.
+          </p>
+          <div class="whatsapp-card-actions">
+            <a href="https://wa.me/27670680043" target="_blank" class="btn-whatsapp-small">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+              Start Chat
+            </a>
+            <span class="online-status">
+              <span class="status-dot"></span>
+              Online Now
+            </span>
+          </div>
+          <div class="whatsapp-card-footer">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>Average response time: &lt; 5 minutes</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h4><ion-icon name="time-outline"></ion-icon> Working Hours</h4>
+          <div class="info-item">
+            <span>Monday - Friday</span>
+            <span>8:00 AM - 6:00 PM</span>
+          </div>
+          <div class="info-item">
+            <span>Saturday</span>
+            <span>9:00 AM - 4:00 PM</span>
+          </div>
+          <div class="info-item">
+            <span>Sunday</span>
+            <span>Closed (Emergency Only)</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h4><ion-icon name="call-outline"></ion-icon> Contact Us</h4>
+          <div class="info-item">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <div>
+              <span>WhatsApp</span>
+              <a href="https://wa.me/27670680043" target="_blank">067 068 0043</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <ion-icon name="call-outline"></ion-icon>
+            <div>
+              <span>Phone</span>
+              <a href="tel:0670680043">067 068 0043</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <ion-icon name="mail-outline"></ion-icon>
+            <div>
+              <span>Email</span>
+              <a href="mailto:manpzikode@gmail.com">manpzikode@gmail.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h4><ion-icon name="shield-checkmark-outline"></ion-icon> Why Book With Us</h4>
+          <div class="info-item">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            <span>Free consultation &amp; quote</span>
+          </div>
+          <div class="info-item">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            <span>Professional &amp; reliable service</span>
+          </div>
+          <div class="info-item">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            <span>Quality equipment &amp; installation</span>
+          </div>
+          <div class="info-item">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            <span>After-sales support &amp; warranty</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-bg"></div>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo" (click)="navigateToHome()" style="cursor: pointer;">
+          <h3>SHESHA &amp; <span>JOBELA</span></h3>
+          <small>DIGITAL</small>
+        </div>
+        <p class="footer-tagline">Smart Solutions. Reliable Service.</p>
+        <p class="footer-description">
+          Your trusted partner for CCTV, vehicle sound, WiFi installation, 
+          event sound, and transportation services.
+        </p>
+        <div class="footer-social">
+          <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+          <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+          <a href="https://wa.me/27670680043" target="_blank"><ion-icon name="logo-whatsapp"></ion-icon></a>
+          <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+          <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
+          <li><a routerLink="/estimator" routerLinkActive="active">Estimator</a></li>
+          <li><a routerLink="/booking" routerLinkActive="active">Book Now</a></li>
+          <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Our Services</h4>
+        <ul>
+          <li><a (click)="navigateToCCTV()">CCTV Installation</a></li>
+          <li><a (click)="navigateToVehicleSound()">Vehicle Sound</a></li>
+          <li><a (click)="navigateToWiFi()">WiFi Installation</a></li>
+          <li><a (click)="navigateToEventSound()">Event Sound</a></li>
+          <li><a (click)="navigateToTransportation()">Transportation</a></li>
+          <li><a (click)="navigateToSystemHire()">System Hire</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <div class="footer-contact-item">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+          <div>
+            <p>WhatsApp</p>
+            <a href="https://wa.me/27670680043" target="_blank">067 068 0043</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="call-outline"></ion-icon>
+          <div>
+            <p>Phone</p>
+            <a href="tel:0670680043">067 068 0043</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="mail-outline"></ion-icon>
+          <div>
+            <p>Email</p>
+            <a href="mailto:manpzikode@gmail.com">manpzikode@gmail.com</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="location-outline"></ion-icon>
+          <div>
+            <p>Location</p>
+            <span>Based in PMB</span>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="time-outline"></ion-icon>
+          <div>
+            <p>Working Hours</p>
+            <span>Mon-Fri: 8AM-6PM | Sat: 9AM-4PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p>&copy; 2026 SHESHA &amp; JOBELA DIGITAL. All Rights Reserved.</p>
+        <p>Built with <ion-icon name="heart-outline"></ion-icon> in PMB</p>
+      </div>
+    </div>
+  </footer>
+</ion-content>

@@ -1,0 +1,400 @@
+<!-- contact.page.html - Complete Contact Page -->
+<ion-header class="ion-no-border">
+  <ion-toolbar class="custom-toolbar">
+    <div class="nav-container">
+      <!-- Logo -->
+      <div class="logo" (click)="navigateToHome()" style="cursor: pointer;">
+        <div class="logo-symbol">SJ</div>
+        <div>
+          SHESHA &amp; JOBELA
+          <small>DIGITAL</small>
+        </div>
+      </div>
+
+      <!-- Desktop Nav with RouterLink -->
+      <div class="nav-menu">
+        <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <ion-icon name="home-outline"></ion-icon> Home
+        </a>
+        <a routerLink="/services" routerLinkActive="active">
+          <ion-icon name="grid-outline"></ion-icon> Services
+        </a>
+        <a routerLink="/booking" routerLinkActive="active">
+          <ion-icon name="calendar-outline"></ion-icon> Book Now
+        </a>
+        <a routerLink="/contact" routerLinkActive="active">
+          <ion-icon name="call-outline"></ion-icon> Contact
+        </a>
+      </div>
+
+      <!-- Call Button -->
+      <a class="call-btn" href="tel:0670680043">
+        <ion-icon name="call-outline"></ion-icon> 067 068 0043
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <ion-button class="menu-btn" fill="clear" (click)="toggleMenu()">
+        <ion-icon name="menu-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)" scrollEvents="true">
+  
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" *ngIf="isLoading">
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <p>Loading contact page...</p>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading">
+    <!-- ===== HERO SECTION ===== -->
+    <section class="contact-hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="breadcrumb animate-fade-in">
+          <a routerLink="/home">Home</a>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+          <span>Contact Us</span>
+        </div>
+        <div class="hero-badge animate-slide-up">
+          <ion-icon name="chatbubbles-outline"></ion-icon>
+          GET IN TOUCH
+        </div>
+        <h1 class="animate-slide-up-delay">Contact <span>Us</span></h1>
+        <p class="hero-description animate-slide-up-delay-2">
+          We're here to help! Reach out to us for any inquiries, quotes, or support.
+          Our team is ready to assist you.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT INFO SECTION ===== -->
+    <section class="contact-info-section scroll-animate">
+      <div class="contact-info-container">
+        <div class="contact-info-grid">
+          <div class="contact-info-card scroll-animate-child" *ngFor="let info of contactInfo; let i = index" [style.transition-delay]="i * 0.1 + 's'">
+            <div class="contact-info-icon" [style.background]="info.gradient">
+              <ion-icon [name]="info.icon"></ion-icon>
+            </div>
+            <h4>{{ info.title }}</h4>
+            <a *ngIf="info.link" [href]="info.link" [target]="info.target || '_self'">{{ info.value }}</a>
+            <span *ngIf="!info.link">{{ info.value }}</span>
+            <p>{{ info.sub }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT FORM & MAP SECTION ===== -->
+    <section class="contact-form-section scroll-animate">
+      <div class="contact-form-container">
+        <div class="contact-form-wrapper">
+          <div class="contact-form-header">
+            <span class="section-label scroll-animate-child">SEND US A MESSAGE</span>
+            <h2 class="scroll-animate-child">We'd Love to <span>Hear From You</span></h2>
+            <p class="scroll-animate-child">Fill in the form below and we'll get back to you as soon as possible</p>
+          </div>
+
+          <div class="contact-form-grid">
+            <div class="contact-form scroll-animate-child">
+              <form (ngSubmit)="submitContactForm()" #contactForm="ngForm">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>
+                      <ion-icon name="person-outline"></ion-icon>
+                      Full Name <span class="required">*</span>
+                    </label>
+                    <input type="text" [(ngModel)]="contactData.name" name="name" placeholder="Enter your full name" required>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <ion-icon name="call-outline"></ion-icon>
+                      Phone Number <span class="required">*</span>
+                    </label>
+                    <input type="tel" [(ngModel)]="contactData.phone" name="phone" placeholder="Enter your phone number" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>
+                      <ion-icon name="mail-outline"></ion-icon>
+                      Email Address
+                    </label>
+                    <input type="email" [(ngModel)]="contactData.email" name="email" placeholder="Enter your email address">
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <ion-icon name="construct-outline"></ion-icon>
+                      Service Interested In
+                    </label>
+                    <select [(ngModel)]="contactData.service" name="service">
+                      <option value="">Select a service...</option>
+                      <option value="cctv">CCTV Installation</option>
+                      <option value="vehicle-sound">Vehicle Sound</option>
+                      <option value="wifi">WiFi Installation</option>
+                      <option value="event-sound">Event Sound</option>
+                      <option value="transportation">Transportation</option>
+                      <option value="system-hire">System Hire</option>
+                      <option value="general">General Inquiry</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>
+                    <ion-icon name="chatbubble-outline"></ion-icon>
+                    Your Message <span class="required">*</span>
+                  </label>
+                  <textarea [(ngModel)]="contactData.message" name="message" rows="5" 
+                    placeholder="Tell us how we can help you..." required></textarea>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-gold btn-block" [disabled]="!contactForm.valid || isSubmitting">
+                    <ion-icon name="send-outline"></ion-icon>
+                    {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+                  </button>
+                  
+                  <!-- WhatsApp Divider -->
+                  <div class="whatsapp-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-text">
+                      <ion-icon name="logo-whatsapp" class="whatsapp-icon"></ion-icon>
+                      OR CHAT ON WHATSAPP
+                    </span>
+                    <span class="divider-line"></span>
+                  </div>
+
+                  <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." 
+                     target="_blank" 
+                     class="btn btn-whatsapp btn-block pulse-animation">
+                    <ion-icon name="logo-whatsapp"></ion-icon>
+                    <span>Chat on WhatsApp</span>
+                    <span class="badge">Fast Response</span>
+                  </a>
+
+                  <div class="whatsapp-features">
+                    <div class="feature-chip">
+                      <ion-icon name="checkmark-circle"></ion-icon>
+                      <span>Instant Response</span>
+                    </div>
+                    <div class="feature-chip">
+                      <ion-icon name="checkmark-circle"></ion-icon>
+                      <span>No Forms</span>
+                    </div>
+                    <div class="feature-chip">
+                      <ion-icon name="checkmark-circle"></ion-icon>
+                      <span>24/7 Available</span>
+                    </div>
+                  </div>
+
+                  <p class="form-note">
+                    <ion-icon name="alert-circle-outline"></ion-icon>
+                    We'll respond within 24 hours. For urgent requests, call us directly.
+                  </p>
+                </div>
+              </form>
+            </div>
+
+            <div class="contact-map scroll-animate-child">
+              <div class="map-placeholder">
+                <ion-icon name="map-outline"></ion-icon>
+                <h3>Find Us in PMB</h3>
+                <p>Pietermaritzburg, South Africa</p>
+                <div class="map-image">
+                  <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=600&q=80" alt="Map Location">
+                </div>
+                <a href="https://maps.google.com" target="_blank" class="btn btn-outline">
+                  <ion-icon name="navigate-outline"></ion-icon> Get Directions
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EMERGENCY CONTACT SECTION ===== -->
+    <section class="emergency-section scroll-animate">
+      <div class="emergency-container">
+        <div class="emergency-content">
+          <ion-icon name="alert-circle-outline"></ion-icon>
+          <h2 class="scroll-animate-child">Need <span>Emergency</span> Assistance?</h2>
+          <p class="scroll-animate-child">For urgent support, call us directly. We're available 24/7 for emergencies.</p>
+          <a href="tel:0670680043" class="btn btn-gold scroll-animate-child">
+            <ion-icon name="call-outline"></ion-icon> Call Now: 067 068 0043
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOCIAL MEDIA SECTION ===== -->
+    <section class="social-section scroll-animate">
+      <div class="section-header">
+        <span class="section-label scroll-animate-child">CONNECT WITH US</span>
+        <h2 class="scroll-animate-child">Follow Us on <span>Social Media</span></h2>
+        <p class="scroll-animate-child">Stay updated with our latest news and services</p>
+      </div>
+
+      <div class="social-grid">
+        <a href="#" class="social-card facebook scroll-animate-child">
+          <ion-icon name="logo-facebook"></ion-icon>
+          <span>Facebook</span>
+          <p>Follow us on Facebook</p>
+        </a>
+        <a href="#" class="social-card instagram scroll-animate-child">
+          <ion-icon name="logo-instagram"></ion-icon>
+          <span>Instagram</span>
+          <p>Follow us on Instagram</p>
+        </a>
+        <a href="https://wa.me/27670680043" target="_blank" class="social-card whatsapp scroll-animate-child">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+          <span>WhatsApp</span>
+          <p>Chat with us on WhatsApp</p>
+        </a>
+        <a href="#" class="social-card youtube scroll-animate-child">
+          <ion-icon name="logo-youtube"></ion-icon>
+          <span>YouTube</span>
+          <p>Watch our videos on YouTube</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== FAQ SECTION ===== -->
+    <section class="faq-section scroll-animate">
+      <div class="section-header">
+        <span class="section-label scroll-animate-child">FAQ</span>
+        <h2 class="scroll-animate-child">Frequently Asked <span>Questions</span></h2>
+        <p class="scroll-animate-child">Answers to common questions about our services</p>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-item scroll-animate-child" *ngFor="let faq of faqs; let i = index" [class.active]="faq.open" (click)="toggleFaq(i)">
+          <div class="faq-question">
+            <h4>{{ faq.question }}</h4>
+            <ion-icon [name]="faq.open ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+          </div>
+          <div class="faq-answer" [class.show]="faq.open">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <span class="section-label" style="color: var(--accent);">GET STARTED</span>
+        <h2>Ready to Work <span>With Us?</span></h2>
+        <p>Contact us today for a free consultation and quote. We're based in PMB and ready to serve you.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-gold" (click)="$event.preventDefault(); scrollToForm()">
+            <ion-icon name="chatbubble-outline"></ion-icon> Send a Message
+          </a>
+          <a href="tel:0670680043" class="btn btn-outline-white">
+            <ion-icon name="call-outline"></ion-icon> Call Now
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-bg"></div>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo" (click)="navigateToHome()" style="cursor: pointer;">
+          <h3>SHESHA &amp; <span>JOBELA</span></h3>
+          <small>DIGITAL</small>
+        </div>
+        <p class="footer-tagline">Smart Solutions. Reliable Service.</p>
+        <p class="footer-description">
+          Your trusted partner for CCTV, vehicle sound, WiFi installation, 
+          event sound, and transportation services.
+        </p>
+        <div class="footer-social">
+          <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+          <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+          <a href="https://wa.me/27670680043" target="_blank"><ion-icon name="logo-whatsapp"></ion-icon></a>
+          <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a routerLink="/home">Home</a></li>
+          <li><a routerLink="/services">Services</a></li>
+          <li><a routerLink="/estimator">Estimator</a></li>
+          <li><a routerLink="/booking">Book Now</a></li>
+          <li><a routerLink="/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Our Services</h4>
+        <ul>
+          <li><a (click)="navigateToCCTV()">CCTV Installation</a></li>
+          <li><a (click)="navigateToVehicleSound()">Vehicle Sound</a></li>
+          <li><a (click)="navigateToWiFi()">WiFi Installation</a></li>
+          <li><a (click)="navigateToEventSound()">Event Sound</a></li>
+          <li><a (click)="navigateToTransportation()">Transportation</a></li>
+          <li><a (click)="navigateToSystemHire()">System Hire</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <div class="footer-contact-item">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+          <div>
+            <p>WhatsApp</p>
+            <a href="https://wa.me/27670680043" target="_blank">067 068 0043</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="call-outline"></ion-icon>
+          <div>
+            <p>Phone</p>
+            <a href="tel:0670680043">067 068 0043</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="mail-outline"></ion-icon>
+          <div>
+            <p>Email</p>
+            <a href="mailto:manpzikode@gmail.com">manpzikode@gmail.com</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="location-outline"></ion-icon>
+          <div>
+            <p>Location</p>
+            <span>Based in PMB</span>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="time-outline"></ion-icon>
+          <div>
+            <p>Working Hours</p>
+            <span>Mon-Fri: 8AM-6PM | Sat: 9AM-4PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p>&copy; 2026 SHESHA &amp; JOBELA DIGITAL. All Rights Reserved.</p>
+        <p>Built with <ion-icon name="heart-outline"></ion-icon> in PMB</p>
+      </div>
+    </div>
+  </footer>
+</ion-content>

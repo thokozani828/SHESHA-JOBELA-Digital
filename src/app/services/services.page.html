@@ -1,0 +1,321 @@
+<!-- services.page.html - With Service Details Modal & Images -->
+<ion-header class="ion-no-border">
+  <ion-toolbar class="custom-toolbar">
+    <div class="nav-container">
+      <!-- Logo -->
+      <div class="logo" (click)="navigateToHome()" style="cursor: pointer;">
+        <div class="logo-symbol">SJ</div>
+        <div>
+          SHESHA &amp; JOBELA
+          <small>DIGITAL</small>
+        </div>
+      </div>
+
+      <!-- Desktop Nav -->
+      <div class="nav-menu">
+        <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <ion-icon name="home-outline"></ion-icon> Home
+        </a>
+        <a routerLink="/services" routerLinkActive="active">
+          <ion-icon name="grid-outline"></ion-icon> Services
+        </a>
+        <a routerLink="/booking" routerLinkActive="active">
+          <ion-icon name="calendar-outline"></ion-icon> Book Now
+        </a>
+        <a routerLink="/contact" routerLinkActive="active">
+          <ion-icon name="call-outline"></ion-icon> Contact
+        </a>
+      </div>
+
+      <!-- WhatsApp Button -->
+      <a class="call-btn whatsapp-btn" href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank">
+        <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp Us
+      </a>
+
+      <!-- Mobile Menu -->
+      <ion-button class="menu-btn" fill="clear" (click)="toggleMenu()">
+        <ion-icon name="menu-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)" scrollEvents="true">
+  
+  <!-- ===== HERO SECTION ===== -->
+  <section class="services-hero">
+    <div class="services-hero-bg"></div>
+    <div class="services-hero-overlay"></div>
+    <div class="particles-container">
+      <div class="particle" *ngFor="let p of particles"></div>
+    </div>
+    <div class="services-hero-content">
+      <span class="hero-badge animate-fade-in">
+        <ion-icon name="grid-outline"></ion-icon>
+        OUR SERVICES
+      </span>
+      <h1 class="animate-slide-up">What We <span>Offer</span></h1>
+      <p class="animate-slide-up-delay">
+        Comprehensive solutions for all your digital, security, and vehicle needs.
+        Delivered with excellence across PMB and beyond.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES GRID ===== -->
+  <section class="all-services-section scroll-animate">
+    <div class="section-header">
+      <span class="section-label scroll-animate-child">OUR EXPERTISE</span>
+      <h2 class="scroll-animate-child">Explore Our <span>Services</span></h2>
+      <p class="scroll-animate-child">Click any card to view full details</p>
+    </div>
+
+    <div class="services-container">
+      <div class="service-card scroll-animate-child" *ngFor="let service of servicesData; let i = index" 
+           [style.transition-delay]="i * 0.08 + 's'"
+           (click)="openServiceDetails(service)">
+        
+        <div class="service-click-hint">
+          <ion-icon name="hand-left-outline"></ion-icon>
+          <span>Click to explore</span>
+        </div>
+        
+        <div class="service-icon" [style.background]="service.gradient || 'var(--gradient-gold)'">
+          <ion-icon [name]="service.icon"></ion-icon>
+        </div>
+        
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+        
+        <div class="service-meta" *ngIf="service.price">
+          <span class="service-price">From {{ service.price }}</span>
+        </div>
+        
+        <div class="service-actions">
+          <span class="learn-more">
+            View Details <ion-icon name="arrow-forward-outline"></ion-icon>
+          </span>
+        </div>
+        
+        <div class="service-hover-overlay">
+          <ion-icon name="eye-outline"></ion-icon>
+          <span>View Details</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WhatsApp CTA -->
+    <div class="whatsapp-cta-container scroll-animate-child">
+      <div class="whatsapp-cta-card">
+        <div class="whatsapp-cta-content">
+          <ion-icon name="logo-whatsapp" class="whatsapp-big-icon"></ion-icon>
+          <div class="whatsapp-cta-text">
+            <h3>Need Help Choosing?</h3>
+            <p>Chat with us on WhatsApp and we'll recommend the best solution for you.</p>
+          </div>
+          <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20need%20help%20choosing%20a%20service.%20Please%20assist." 
+             target="_blank" 
+             class="btn btn-whatsapp pulse-animation">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            Chat Now
+            <span class="badge">Free</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="features-section scroll-animate">
+    <div class="section-header">
+      <span class="section-label scroll-animate-child">WHY US</span>
+      <h2 class="scroll-animate-child">Built on <span>Trust</span> &amp; <span>Quality</span></h2>
+      <p class="scroll-animate-child">What makes us your first choice</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item scroll-animate-child" *ngFor="let feature of featuresData; let i = index" [style.transition-delay]="i * 0.1 + 's'">
+        <div class="feature-icon-wrapper">
+          <ion-icon [name]="feature.icon"></ion-icon>
+        </div>
+        <h4>{{ feature.title }}</h4>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICE DETAILS MODAL WITH IMAGES ===== -->
+  <div class="service-modal" [class.active]="showServiceModal" (click)="closeServiceDetails()">
+    <div class="service-modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeServiceDetails()">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+      
+      <!-- Service Image -->
+      <div class="modal-image-wrapper" *ngIf="selectedService?.image">
+        <img [src]="selectedService?.image" [alt]="selectedService?.title">
+        <div class="modal-image-badge" *ngIf="selectedService?.badge">
+          <span>{{ selectedService?.badge }}</span>
+        </div>
+      </div>
+      
+      <div class="modal-icon" [style.background]="selectedService?.gradient || 'var(--gradient-gold)'">
+        <ion-icon [name]="selectedService?.icon"></ion-icon>
+      </div>
+      
+      <h2>{{ selectedService?.title }}</h2>
+      <p class="modal-description">{{ selectedService?.detailedDescription || selectedService?.description }}</p>
+      
+      <!-- Service Gallery Images -->
+      <div class="modal-gallery" *ngIf="selectedService?.gallery && selectedService?.gallery.length > 0">
+        <h4>Service Gallery</h4>
+        <div class="gallery-grid">
+          <div class="gallery-item" *ngFor="let img of selectedService?.gallery">
+            <img [src]="img" [alt]="selectedService?.title">
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-features" *ngIf="selectedService?.features">
+        <h4>What's Included:</h4>
+        <ul>
+          <li *ngFor="let feature of selectedService?.features">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            {{ feature }}
+          </li>
+        </ul>
+      </div>
+      
+      <div class="modal-price" *ngIf="selectedService?.price">
+        <span class="price-label">Starting from</span>
+        <span class="price-amount">{{ selectedService?.price }}</span>
+      </div>
+      
+      <div class="modal-actions">
+        <a href="#" class="btn btn-gold" (click)="$event.preventDefault(); navigateToBook()">
+          <ion-icon name="calendar-outline"></ion-icon> Book Now
+        </a>
+        <a [href]="'https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20' + (selectedService?.title || 'your%20services')" target="_blank" class="btn btn-whatsapp-modal">
+          <ion-icon name="logo-whatsapp"></ion-icon> Inquire on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <span class="section-label" style="color: var(--accent);">GET STARTED</span>
+      <h2>Ready to Get <span>Started?</span></h2>
+      <p>Contact us today for a free consultation and quote.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn btn-gold" (click)="$event.preventDefault(); navigateToBook()">
+          <ion-icon name="calendar-outline"></ion-icon> Book Now
+        </a>
+        <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="btn btn-whatsapp-cta">
+          <ion-icon name="logo-whatsapp"></ion-icon> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FLOATING WHATSAPP ===== -->
+  <div class="floating-whatsapp">
+    <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20need%20assistance%20with%20your%20services." target="_blank" class="whatsapp-float">
+      <ion-icon name="logo-whatsapp"></ion-icon>
+      <span class="tooltip">Chat with us!</span>
+    </a>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-bg"></div>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo" (click)="navigateToHome()" style="cursor: pointer;">
+          <h3>SHESHA &amp; <span>JOBELA</span></h3>
+          <small>DIGITAL</small>
+        </div>
+        <p class="footer-tagline">Smart Solutions. Reliable Service.</p>
+        <p class="footer-description">
+          Your trusted partner for CCTV, vehicle sound, WiFi installation, 
+          event sound, and transportation services.
+        </p>
+        <div class="footer-social">
+          <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+          <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+          <a href="https://wa.me/27670680043" target="_blank"><ion-icon name="logo-whatsapp"></ion-icon></a>
+          <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a routerLink="/home">Home</a></li>
+          <li><a routerLink="/services">Services</a></li>
+          <li><a routerLink="/estimator">Estimator</a></li>
+          <li><a routerLink="/booking">Book Now</a></li>
+          <li><a routerLink="/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Our Services</h4>
+        <ul>
+          <li><a (click)="navigateToCCTV()">CCTV Installation</a></li>
+          <li><a (click)="navigateToVehicleSound()">Vehicle Sound</a></li>
+          <li><a (click)="navigateToWiFi()">WiFi Installation</a></li>
+          <li><a (click)="navigateToEventSound()">Event Sound</a></li>
+          <li><a (click)="navigateToTransportation()">Transportation</a></li>
+          <li><a (click)="navigateToSystemHire()">System Hire</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <div class="footer-contact-item">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+          <div>
+            <p>WhatsApp</p>
+            <a href="https://wa.me/27670680043" target="_blank">067 068 0043</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="call-outline"></ion-icon>
+          <div>
+            <p>Phone</p>
+            <a href="tel:0670680043">067 068 0043</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="mail-outline"></ion-icon>
+          <div>
+            <p>Email</p>
+            <a href="mailto:manpzikode@gmail.com">manpzikode@gmail.com</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="location-outline"></ion-icon>
+          <div>
+            <p>Location</p>
+            <span>Based in PMB</span>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="time-outline"></ion-icon>
+          <div>
+            <p>Working Hours</p>
+            <span>Mon-Fri: 8AM-6PM | Sat: 9AM-4PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p>&copy; 2026 SHESHA &amp; JOBELA DIGITAL. All Rights Reserved.</p>
+        <p>Built with <ion-icon name="heart-outline"></ion-icon> in PMB</p>
+      </div>
+    </div>
+  </footer>
+</ion-content>
