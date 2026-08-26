@@ -1,17 +1,17 @@
-<!-- home.page.html - Complete Mobile-Friendly HTML -->
+<!-- home.page.html - Complete Updated File with Navigation Highlighting & WhatsApp Integration -->
 <ion-header class="ion-no-border">
   <ion-toolbar class="custom-toolbar">
     <div class="nav-container">
       <!-- Logo -->
       <div class="logo" (click)="navigateToHome()" style="cursor: pointer;">
         <div class="logo-symbol">SJ</div>
-        <div class="logo-text">
+        <div>
           SHESHA &amp; JOBELA
           <small>DIGITAL</small>
         </div>
       </div>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop Nav with RouterLink -->
       <div class="nav-menu">
         <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <ion-icon name="home-outline"></ion-icon> Home
@@ -60,17 +60,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" (ionScroll)="onScroll($event)" scrollEvents="true">
-  <!-- ===== HERO SECTION ===== -->
+  <!-- ===== HERO SECTION WITH ZOOM BACKGROUND ===== -->
   <section class="hero">
     <div class="hero-overlay"></div>
     <div class="particles-container">
       <div class="particle" *ngFor="let p of particles"></div>
     </div>
+    <!-- Hero Background with Zoom Animation -->
     <div class="hero-bg"></div>
     <div class="hero-content">
       <div class="hero-badge animate-fade-in">
         <ion-icon name="shield-checkmark-outline"></ion-icon>
-        SMART SOLUTIONS
+        SMART SOLUTIONS. RELIABLE SERVICE
       </div>
       <h1 class="animate-slide-up">
         SHESHA &amp; <span>JOBELA</span>
@@ -82,20 +83,21 @@
       </p>
       <div class="hero-buttons animate-slide-up-delay-3">
         <a class="btn btn-gold" (click)="navigateToCCTV()">
-          <ion-icon name="videocam-outline"></ion-icon> CCTV
+          <ion-icon name="videocam-outline"></ion-icon> CCTV Installation
         </a>
+        <!-- WhatsApp Book Now Button -->
         <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-success">
-          <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp
+          <ion-icon name="logo-whatsapp"></ion-icon> Book on WhatsApp
         </a>
       </div>
       <div class="hero-stats animate-slide-up-delay-4">
         <div class="stat-item">
           <span class="stat-number">10+</span>
-          <span class="stat-label">Years</span>
+          <span class="stat-label">Years Experience</span>
         </div>
         <div class="stat-item">
           <span class="stat-number">500+</span>
-          <span class="stat-label">Clients</span>
+          <span class="stat-label">Happy Clients</span>
         </div>
         <div class="stat-item">
           <span class="stat-number">24/7</span>
@@ -106,15 +108,15 @@
     <div class="floating-badges">
       <div class="badge">
         <ion-icon name="checkmark-circle"></ion-icon>
-        <span>Certified</span>
+        <span>Certified Installers</span>
       </div>
       <div class="badge">
         <ion-icon name="checkmark-circle"></ion-icon>
-        <span>Guaranteed</span>
+        <span>Quality Guaranteed</span>
       </div>
       <div class="badge">
         <ion-icon name="checkmark-circle"></ion-icon>
-        <span>Same-Day</span>
+        <span>Same-Day Service</span>
       </div>
     </div>
   </section>
@@ -141,6 +143,7 @@
         </div>
         
         <div class="hours-cta scroll-animate-child">
+          <!-- WhatsApp Booking Button -->
           <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-success">
             <ion-icon name="logo-whatsapp"></ion-icon> Book on WhatsApp
           </a>
@@ -152,7 +155,7 @@
     </div>
   </section>
 
-  <!-- ===== ABOUT SECTION ===== -->
+  <!-- ===== ABOUT / TRUST SECTION ===== -->
   <section class="about-section scroll-animate">
     <div class="about-container">
       <div class="about-image-wrapper scroll-animate-child" [style.transition-delay]="'0.1s'">
@@ -178,8 +181,9 @@
             <span>{{ feature }}</span>
           </div>
         </div>
+        <!-- WhatsApp Contact Button -->
         <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="btn btn-success">
-          <ion-icon name="logo-whatsapp"></ion-icon> Chat on WhatsApp
+          <ion-icon name="logo-whatsapp"></ion-icon> Chat with Us on WhatsApp
         </a>
       </div>
     </div>
@@ -253,7 +257,7 @@
     </a>
   </div>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- ===== FOOTER WITH ZOOM BACKGROUND ===== -->
   <footer class="footer">
     <div class="footer-bg"></div>
     
@@ -281,6 +285,7 @@
         <ul>
           <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
           <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
+          <li><a routerLink="/estimator" routerLinkActive="active">Estimator</a></li>
           <li><a routerLink="/booking" routerLinkActive="active">Book Now</a></li>
           <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
         </ul>
@@ -294,6 +299,7 @@
           <li><a (click)="navigateToWiFi()">WiFi Installation</a></li>
           <li><a (click)="navigateToEventSound()">Event Sound</a></li>
           <li><a (click)="navigateToTransportation()">Transportation</a></li>
+          <li><a (click)="navigateToSystemHire()">System Hire</a></li>
         </ul>
       </div>
 
@@ -325,6 +331,13 @@
           <div>
             <p>Location</p>
             <span>Based in PMB</span>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="time-outline"></ion-icon>
+          <div>
+            <p>Working Hours</p>
+            <span>Mon-Fri: 8AM-6PM | Sat: 9AM-4PM</span>
           </div>
         </div>
       </div>
