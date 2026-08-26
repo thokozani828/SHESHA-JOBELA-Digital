@@ -41,6 +41,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/SHESHA-JOBELA-Digital/",
               "budgets": [
                 {
                   "type": "initial",
