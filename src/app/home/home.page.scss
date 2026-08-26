@@ -1,4 +1,4 @@
-/* home.page.scss - Complete Mobile-Friendly Styles with Verdana Font */
+/* home.page.scss - Complete File with Verdana Font & Mobile Menu */
 :host {
   --primary: #1a1a2e;
   --secondary: #16213e;
@@ -56,22 +56,11 @@ ion-content {
   align-items: center;
   gap: 10px;
   color: var(--white);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.1;
   font-family: var(--font-primary);
   cursor: pointer;
-}
-
-.logo-text {
-  display: block;
-}
-.logo-text small {
-  font-size: 8px;
-  letter-spacing: 3px;
-  color: var(--accent);
-  display: block;
-  font-weight: 400;
 }
 
 .logo-symbol {
@@ -85,17 +74,24 @@ ion-content {
   color: var(--primary);
   font-weight: 800;
   font-size: 14px;
-  flex-shrink: 0;
+}
+
+.logo small {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--accent);
+  display: block;
+  font-weight: 400;
 }
 
 .nav-menu {
   display: flex;
-  gap: 25px;
+  gap: 35px;
 }
 
 .nav-menu a {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 13px;
+  font-size: 14px;
   transition: 0.3s;
   text-decoration: none;
   font-weight: 500;
@@ -158,6 +154,7 @@ ion-content {
   box-shadow: 0 8px 25px rgba(212, 160, 43, 0.4);
 }
 
+/* WhatsApp Button Styles */
 .whatsapp-btn {
   background: #25D366;
   color: white;
@@ -186,7 +183,9 @@ ion-content {
   font-size: 24px;
 }
 
-/* Mobile Menu */
+/* =====================================
+   MOBILE MENU
+===================================== */
 .mobile-menu {
   position: absolute;
   top: 75px;
@@ -196,9 +195,10 @@ ion-content {
   padding: 20px;
   display: none;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
   border-bottom: 1px solid rgba(255, 215, 0, 0.1);
   z-index: 100;
+  backdrop-filter: blur(12px);
 }
 
 .mobile-menu.active {
@@ -214,6 +214,7 @@ ion-content {
   align-items: center;
   gap: 12px;
   transition: 0.3s;
+  text-decoration: none;
   font-family: var(--font-primary);
 }
 
@@ -223,15 +224,31 @@ ion-content {
   color: var(--accent);
 }
 
+.mobile-menu a ion-icon {
+  font-size: 20px;
+  color: var(--accent);
+}
+
 .mobile-menu a.mobile-whatsapp {
   background: #25D366;
   color: white;
   justify-content: center;
   border-radius: 8px;
+  margin-top: 5px;
+}
+
+.mobile-menu a.mobile-whatsapp ion-icon {
+  color: white;
+}
+
+.mobile-menu a.mobile-whatsapp:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
 }
 
 /* =====================================
-   HERO SECTION
+   HERO SECTION WITH ZOOM BACKGROUND
 ===================================== */
 .hero {
   min-height: 100vh;
@@ -306,184 +323,65 @@ ion-content {
   z-index: 2;
   width: 90%;
   max-width: 900px;
-  padding: 20px 0;
+  padding-top: 20px;
 }
 
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(212, 160, 43, 0.15);
-  color: var(--accent);
-  padding: 8px 20px;
-  border-radius: 50px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  border: 1px solid rgba(212, 160, 43, 0.2);
-  margin-bottom: 20px;
-  font-family: var(--font-primary);
-}
-
-.hero h1 {
-  color: white;
-  font-size: clamp(40px, 8vw, 85px);
-  font-weight: 800;
-  letter-spacing: 2px;
-  margin-bottom: 5px;
-  line-height: 1.05;
-  font-family: var(--font-primary);
-}
-
-.hero h1 span {
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-subtitle {
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: clamp(14px, 3vw, 20px);
-  letter-spacing: 6px;
-  font-weight: 500;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  font-family: var(--font-primary);
-}
-
-.hero-description {
-  max-width: 650px;
-  margin: 0 auto;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: clamp(14px, 1.5vw, 16px);
-  line-height: 1.8;
-  font-family: var(--font-primary);
-}
-
-.hero-buttons {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-size: clamp(12px, 1.2vw, 14px);
-  font-weight: 600;
-  transition: 0.4s;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  font-family: var(--font-primary);
-}
-
-.btn-gold {
-  background: var(--gradient-gold);
-  color: var(--primary);
-}
-
-.btn-gold:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(212, 160, 43, 0.4);
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--accent);
-  border: 2px solid var(--accent);
-}
-
-.btn-outline:hover {
-  background: var(--gradient-gold);
-  color: var(--primary);
-  border-color: var(--accent);
-  transform: translateY(-3px);
-}
-
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 40px;
-  padding-top: 25px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.stat-number {
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: clamp(28px, 5vw, 38px);
-  font-weight: 700;
-  font-family: var(--font-primary);
-}
-
-.stat-label {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: clamp(11px, 1.2vw, 13px);
-  font-weight: 400;
-  letter-spacing: 1px;
-  font-family: var(--font-primary);
+.hero-content h1,
+.hero-content p,
+.hero-content .hero-badge,
+.hero-content .hero-buttons,
+.hero-content .hero-stats {
+  will-change: transform;
+  transition: transform 0.3s ease-out;
 }
 
 .floating-badges {
   position: absolute;
-  right: 20px;
+  right: 40px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
 }
 
 .floating-badges .badge {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
-  padding: 10px 14px;
+  padding: 12px 18px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: white;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   animation: float-badge 3s ease-in-out infinite;
   transition: all 0.3s ease;
   font-family: var(--font-primary);
 }
 
+.floating-badges .badge:hover {
+  transform: translateX(-5px) scale(1.05);
+  background: rgba(212, 160, 43, 0.25);
+}
+
 .floating-badges .badge ion-icon {
   color: var(--accent);
-  font-size: 16px;
+  font-size: 18px;
 }
+
+.floating-badges .badge:nth-child(2) { animation-delay: 0.5s; }
+.floating-badges .badge:nth-child(3) { animation-delay: 1s; }
 
 @keyframes float-badge {
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(-10px); }
 }
 
-/* Animations */
+/* Hero Content Animations */
 .animate-fade-in {
   animation: fadeInUp 0.8s ease forwards;
 }
@@ -522,11 +420,166 @@ ion-content {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212, 160, 43, 0.15);
+  color: var(--accent);
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border: 1px solid rgba(212, 160, 43, 0.2);
+  margin-bottom: 25px;
+  font-family: var(--font-primary);
+}
+
+.hero h1 {
+  color: white;
+  font-size: clamp(50px, 7vw, 85px);
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 5px;
+  line-height: 1.05;
+  font-family: var(--font-primary);
+}
+
+.hero h1 span {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 20px;
+  letter-spacing: 8px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-family: var(--font-primary);
+}
+
+.hero-description {
+  max-width: 650px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  line-height: 1.8;
+  font-family: var(--font-primary);
+}
+
+.hero-buttons {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.4s;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-primary);
+}
+
+.btn-gold {
+  background: var(--gradient-gold);
+  color: var(--primary);
+}
+
+.btn-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(212, 160, 43, 0.4);
+}
+
+.btn-white {
+  background: white;
+  color: var(--primary);
+}
+
+.btn-white:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.btn-outline:hover {
+  background: var(--gradient-gold);
+  color: var(--primary);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 38px;
+  font-weight: 700;
+  font-family: var(--font-primary);
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.stat-number.animated {
+  animation: countUp 1.5s ease forwards;
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-family: var(--font-primary);
+}
+
 /* =====================================
    WORKING HOURS SECTION
 ===================================== */
 .hours-section {
-  padding: 60px 0;
+  padding: 80px 0;
   background: white;
 }
 
@@ -540,17 +593,8 @@ ion-content {
   text-align: center;
 }
 
-.section-label {
-  color: var(--accent);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  font-family: var(--font-primary);
-}
-
 .hours-content h2 {
-  font-size: clamp(28px, 5vw, 38px);
+  font-size: 38px;
   font-weight: 700;
   color: var(--text-dark);
   margin: 15px 0 10px;
@@ -566,22 +610,22 @@ ion-content {
 
 .hours-content > p {
   color: var(--text-gray);
-  font-size: 15px;
-  margin-bottom: 30px;
+  font-size: 16px;
+  margin-bottom: 40px;
   font-family: var(--font-primary);
 }
 
 .hours-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   max-width: 900px;
-  margin: 0 auto 30px;
+  margin: 0 auto 40px;
 }
 
 .hours-item {
   background: var(--light-bg);
-  padding: 20px;
+  padding: 25px 20px;
   border-radius: 12px;
   text-align: center;
   transition: all 0.4s ease;
@@ -593,21 +637,30 @@ ion-content {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
+.hours-item.emergency {
+  background: linear-gradient(135deg, rgba(212, 160, 43, 0.08), rgba(212, 160, 43, 0.02));
+  border-color: var(--accent);
+}
+
+.hours-item.emergency:hover {
+  background: rgba(212, 160, 43, 0.1);
+}
+
 .hours-day {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-dark);
   font-family: var(--font-primary);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .hours-day ion-icon {
   color: var(--accent);
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .hours-time {
@@ -615,20 +668,20 @@ ion-content {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-gray);
   font-family: var(--font-primary);
 }
 
 .hours-time ion-icon {
   color: var(--accent);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .hours-cta {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 15px;
   flex-wrap: wrap;
 }
 
@@ -636,7 +689,7 @@ ion-content {
    ABOUT SECTION
 ===================================== */
 .about-section {
-  padding: 60px 0;
+  padding: 80px 0;
   background: var(--light-bg);
 }
 
@@ -646,7 +699,7 @@ ion-content {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 60px;
   align-items: center;
 }
 
@@ -658,7 +711,7 @@ ion-content {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  height: 300px;
+  height: 400px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
@@ -667,6 +720,10 @@ ion-content {
   height: 100%;
   object-fit: cover;
   transition: transform 0.8s ease;
+}
+
+.about-image.visible img {
+  transform: scale(1.05);
 }
 
 .about-image-overlay {
@@ -682,10 +739,14 @@ ion-content {
   backdrop-filter: blur(2px);
 }
 
+.about-image-overlay:hover {
+  background: rgba(26, 26, 46, 0.3);
+}
+
 .about-image-overlay ion-icon {
-  font-size: 40px;
+  font-size: 60px;
   color: var(--accent);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   animation: pulse-icon 2s ease-in-out infinite;
 }
 
@@ -695,7 +756,7 @@ ion-content {
 }
 
 .about-image-overlay span {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   font-family: var(--font-primary);
   letter-spacing: 2px;
@@ -703,7 +764,7 @@ ion-content {
 }
 
 .about-content h2 {
-  font-size: clamp(28px, 4vw, 38px);
+  font-size: 38px;
   line-height: 1.2;
   margin: 15px 0 20px;
   color: var(--text-dark);
@@ -719,49 +780,53 @@ ion-content {
 
 .about-content p {
   color: var(--text-gray);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.8;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-family: var(--font-primary);
 }
 
 .about-features {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 25px;
+  gap: 12px;
+  margin-bottom: 30px;
 }
 
 .about-feature {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-dark);
   font-family: var(--font-primary);
 }
 
 .about-feature ion-icon {
   color: var(--accent);
-  font-size: 18px;
+  font-size: 20px;
   flex-shrink: 0;
 }
 
 /* =====================================
    SERVICES SECTION
 ===================================== */
-.services-section {
-  padding: 60px 0;
-  background: white;
-}
-
 .section-header {
   text-align: center;
-  padding: 0 20px 30px;
+  padding: 70px 20px 40px;
+}
+
+.section-label {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-family: var(--font-primary);
 }
 
 .section-header h2 {
-  font-size: clamp(28px, 5vw, 42px);
+  font-size: 42px;
   font-weight: 700;
   color: var(--text-dark);
   margin: 12px 0 10px;
@@ -777,7 +842,7 @@ ion-content {
 
 .section-header p {
   color: var(--text-gray);
-  font-size: 15px;
+  font-size: 16px;
   font-family: var(--font-primary);
 }
 
@@ -786,13 +851,14 @@ ion-content {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding-bottom: 80px;
 }
 
 .service-card {
   background: white;
-  padding: 30px 20px;
+  padding: 40px 30px;
   text-align: center;
   border-radius: 12px;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.04);
@@ -824,8 +890,8 @@ ion-content {
 }
 
 .service-icon {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -833,7 +899,7 @@ ion-content {
   background: linear-gradient(135deg, rgba(212, 160, 43, 0.08), rgba(212, 160, 43, 0.02));
   border-radius: 50%;
   color: var(--accent);
-  font-size: 28px;
+  font-size: 32px;
   transition: 0.3s;
 }
 
@@ -845,16 +911,16 @@ ion-content {
 
 .service-card h3 {
   color: var(--text-dark);
-  font-size: 18px;
-  margin: 15px 0 10px;
+  font-size: 20px;
+  margin: 20px 0 12px;
   font-family: var(--font-primary);
 }
 
 .service-card p {
   color: var(--text-gray);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.7;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-family: var(--font-primary);
 }
 
@@ -862,33 +928,32 @@ ion-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 15px;
   flex-wrap: wrap;
 }
 
 .learn-more {
   color: var(--accent);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   text-decoration: none;
   transition: 0.3s;
   font-family: var(--font-primary);
-  cursor: pointer;
 }
 
 .learn-more:hover {
-  gap: 12px;
+  gap: 14px;
 }
 
 .book-btn {
   background: var(--gradient-gold);
   color: var(--primary);
-  padding: 6px 16px;
+  padding: 8px 18px;
   border-radius: 6px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
@@ -907,8 +972,8 @@ ion-content {
    TESTIMONIALS SECTION
 ===================================== */
 .testimonials-section {
-  background: var(--light-bg);
-  padding: 60px 0;
+  background: white;
+  padding-bottom: 80px;
 }
 
 .testimonials-container {
@@ -916,13 +981,13 @@ ion-content {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
 }
 
 .testimonial-card {
-  background: white;
-  padding: 25px;
+  background: var(--light-bg);
+  padding: 35px;
   border-radius: 12px;
   transition: all 0.4s ease;
   border: 1px solid rgba(0, 0, 0, 0.04);
@@ -936,20 +1001,20 @@ ion-content {
 .testimonial-stars {
   display: flex;
   gap: 4px;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .testimonial-stars ion-icon {
   color: var(--accent);
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .testimonial-card p {
   color: var(--text-gray);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.7;
   font-style: italic;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-family: var(--font-primary);
 }
 
@@ -960,13 +1025,13 @@ ion-content {
 
 .testimonial-author strong {
   color: var(--text-dark);
-  font-size: 14px;
+  font-size: 15px;
   font-family: var(--font-primary);
 }
 
 .testimonial-author span {
   color: var(--text-gray);
-  font-size: 12px;
+  font-size: 13px;
   font-family: var(--font-primary);
 }
 
@@ -974,22 +1039,22 @@ ion-content {
    FEATURES SECTION
 ===================================== */
 .features-section {
-  padding: 60px 20px;
-  background: white;
+  padding: 70px 20px;
+  background: var(--light-bg);
 }
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
 .feature-item {
   text-align: center;
-  padding: 25px 15px;
-  background: var(--light-bg);
+  padding: 30px 20px;
+  background: white;
   border-radius: 12px;
   transition: all 0.4s ease;
   border: 1px solid rgba(0, 0, 0, 0.04);
@@ -1001,9 +1066,9 @@ ion-content {
 }
 
 .feature-icon-wrapper {
-  width: 50px;
-  height: 50px;
-  margin: 0 auto 12px;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
   background: linear-gradient(135deg, rgba(212, 160, 43, 0.1), rgba(212, 160, 43, 0.02));
   border-radius: 50%;
   display: flex;
@@ -1012,20 +1077,20 @@ ion-content {
 }
 
 .feature-icon-wrapper ion-icon {
-  font-size: 24px;
+  font-size: 30px;
   color: var(--accent);
 }
 
 .feature-item h4 {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-dark);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-family: var(--font-primary);
 }
 
 .feature-item p {
   color: var(--text-gray);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   font-family: var(--font-primary);
 }
@@ -1035,8 +1100,8 @@ ion-content {
 ===================================== */
 .floating-whatsapp {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 30px;
+  right: 30px;
   z-index: 999;
 }
 
@@ -1044,12 +1109,12 @@ ion-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   background: #25D366;
   color: white;
   border-radius: 50%;
-  font-size: 28px;
+  font-size: 32px;
   box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
   transition: all 0.3s ease;
   text-decoration: none;
@@ -1067,9 +1132,9 @@ ion-content {
   right: 70px;
   background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 8px;
-  font-size: 13px;
+  font-size: 14px;
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
@@ -1095,12 +1160,12 @@ ion-content {
 }
 
 /* =====================================
-   FOOTER
+   FOOTER WITH ZOOM BACKGROUND
 ===================================== */
 .footer {
   background: #0f0f1a;
   color: white;
-  padding: 50px 0 0;
+  padding: 60px 0 0;
   position: relative;
   overflow: hidden;
 }
@@ -1114,7 +1179,7 @@ ion-content {
   background-image: url('https://images.unsplash.com/photo-1582139329536-e7284fece509?w=1600&q=80');
   background-size: cover;
   background-position: center;
-  opacity: 0.06;
+  opacity: 0.08;
   animation: zoomIn 20s ease-in-out infinite;
   transform: scale(1);
   will-change: transform;
@@ -1124,6 +1189,15 @@ ion-content {
   0% { transform: scale(1); }
   50% { transform: scale(1.15); }
   100% { transform: scale(1); }
+}
+
+@keyframes zoomInOnce {
+  0% { transform: scale(1.1); opacity: 0.05; }
+  100% { transform: scale(1); opacity: 0.08; }
+}
+
+.footer-bg.loaded {
+  animation: zoomInOnce 3s ease-out forwards;
 }
 
 .footer::before {
@@ -1146,13 +1220,21 @@ ion-content {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: 40px;
-  padding-bottom: 40px;
+  gap: 50px;
+  padding-bottom: 50px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.footer-brand,
+.footer-links,
+.footer-contact,
+.footer-bottom-content {
+  position: relative;
+  z-index: 1;
+}
+
 .footer-brand .footer-logo h3 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   font-family: var(--font-primary);
   cursor: pointer;
@@ -1168,14 +1250,14 @@ ion-content {
 .footer-brand .footer-logo small {
   color: var(--accent);
   letter-spacing: 4px;
-  font-size: 9px;
+  font-size: 10px;
   display: block;
   font-weight: 400;
 }
 
 .footer-tagline {
   color: var(--accent);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   margin-top: 10px;
   font-family: var(--font-primary);
@@ -1183,7 +1265,7 @@ ion-content {
 
 .footer-description {
   color: #94a3b8;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.7;
   margin: 12px 0 20px;
   max-width: 300px;
@@ -1192,12 +1274,12 @@ ion-content {
 
 .footer-social {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .footer-social a {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
@@ -1217,9 +1299,9 @@ ion-content {
 .footer-links h4,
 .footer-contact h4 {
   color: white;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-family: var(--font-primary);
 }
 
@@ -1229,13 +1311,13 @@ ion-content {
 }
 
 .footer-links ul li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .footer-links ul li a {
   color: #94a3b8;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
   transition: 0.3s;
   font-family: var(--font-primary);
   cursor: pointer;
@@ -1248,20 +1330,20 @@ ion-content {
 
 .footer-contact-item {
   display: flex;
-  gap: 12px;
-  margin-bottom: 15px;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
 .footer-contact-item ion-icon {
   color: var(--accent);
-  font-size: 18px;
+  font-size: 20px;
   margin-top: 2px;
   flex-shrink: 0;
 }
 
 .footer-contact-item p {
   color: #94a3b8;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   margin: 0 0 2px;
   font-family: var(--font-primary);
@@ -1271,7 +1353,7 @@ ion-content {
 .footer-contact-item span {
   color: white;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
   transition: 0.3s;
   font-family: var(--font-primary);
 }
@@ -1281,7 +1363,7 @@ ion-content {
 }
 
 .footer-bottom {
-  padding: 15px 0;
+  padding: 20px 0;
   background: rgba(0, 0, 0, 0.3);
 }
 
@@ -1293,7 +1375,7 @@ ion-content {
   justify-content: space-between;
   align-items: center;
   color: #64748b;
-  font-size: 12px;
+  font-size: 13px;
   font-family: var(--font-primary);
 }
 
@@ -1326,19 +1408,51 @@ ion-content {
   transform: translateY(0);
 }
 
+.scroll-animate-child:nth-child(1) { transition-delay: 0.05s; }
+.scroll-animate-child:nth-child(2) { transition-delay: 0.1s; }
+.scroll-animate-child:nth-child(3) { transition-delay: 0.15s; }
+.scroll-animate-child:nth-child(4) { transition-delay: 0.2s; }
+.scroll-animate-child:nth-child(5) { transition-delay: 0.25s; }
+.scroll-animate-child:nth-child(6) { transition-delay: 0.3s; }
+
+.service-card.visible,
+.hours-item.visible,
+.feature-item.visible,
+.testimonial-card.visible,
+.info-item.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
 /* =====================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE
 ===================================== */
 @media (max-width: 1024px) {
-  .footer-content {
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+  .services-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .testimonials-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .about-image {
+    height: 350px;
   }
   
   .floating-badges {
     display: none;
   }
-  
+
   .hours-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1354,19 +1468,47 @@ ion-content {
     display: block;
   }
   
-  .about-container {
-    grid-template-columns: 1fr;
-    gap: 30px;
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
   }
   
-  .about-image {
-    height: 250px;
+  .hero-stats {
+    gap: 30px;
+    flex-wrap: wrap;
   }
 }
 
 @media (max-width: 768px) {
+  .services-container {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+  }
+  
+  .testimonials-container {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .about-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-image {
+    height: 300px;
+  }
+  
   .hero h1 {
-    font-size: 36px;
+    font-size: 38px;
+  }
+  
+  .section-header h2 {
+    font-size: 32px;
   }
   
   .hero-stats {
@@ -1374,31 +1516,12 @@ ion-content {
   }
   
   .stat-number {
-    font-size: 26px;
-  }
-  
-  .hours-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .services-container {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-  }
-  
-  .testimonials-container {
-    grid-template-columns: 1fr;
-    max-width: 400px;
+    font-size: 28px;
   }
   
   .features-grid {
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-  }
-  
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 25px;
   }
   
   .footer-bottom-content {
@@ -1407,79 +1530,92 @@ ion-content {
     text-align: center;
   }
   
-  .about-features {
+  .floating-badges {
+    display: none;
+  }
+  
+  .hours-grid {
     grid-template-columns: 1fr;
   }
   
+  .hours-content h2 {
+    font-size: 32px;
+  }
+
   .floating-whatsapp {
-    bottom: 15px;
-    right: 15px;
+    bottom: 20px;
+    right: 20px;
   }
   
   .whatsapp-float {
     width: 50px;
     height: 50px;
-    font-size: 24px;
+    font-size: 26px;
   }
   
   .whatsapp-float .tooltip {
     display: none;
+  }
+
+  /* Mobile Menu adjustments */
+  .mobile-menu {
+    padding: 15px;
+  }
+  
+  .mobile-menu a {
+    font-size: 15px;
+    padding: 10px 12px;
   }
 }
 
 @media (max-width: 480px) {
   .hero-buttons .btn {
     width: 100%;
-    max-width: 220px;
+    max-width: 260px;
   }
   
   .hero-badge {
-    font-size: 10px;
-    padding: 6px 14px;
+    font-size: 11px;
+    padding: 6px 16px;
   }
   
   .hero-subtitle {
-    font-size: 12px;
-    letter-spacing: 3px;
-  }
-  
-  .hero h1 {
-    font-size: 30px;
+    font-size: 14px;
+    letter-spacing: 4px;
   }
   
   .features-grid {
     grid-template-columns: 1fr;
   }
   
+  .about-image {
+    height: 250px;
+  }
+
+  .service-actions {
+    flex-direction: column;
+  }
+
   .hours-cta {
     flex-direction: column;
     align-items: center;
   }
-  
-  .hours-cta .btn {
-    width: 100%;
-    max-width: 250px;
+
+  .hero-bg {
+    width: 150%;
+    height: 150%;
+    top: -25%;
+    left: -25%;
+    animation: heroZoom 18s ease-in-out infinite;
+  }
+
+  /* Mobile Menu further adjustments */
+  .mobile-menu {
+    padding: 12px;
   }
   
-  .about-image {
-    height: 200px;
-  }
-  
-  .service-actions {
-    flex-direction: column;
-  }
-  
-  .section-header h2 {
-    font-size: 26px;
-  }
-  
-  .logo-text {
-    font-size: 12px;
-  }
-  
-  .logo-symbol {
-    width: 34px;
-    height: 34px;
-    font-size: 12px;
+  .mobile-menu a {
+    font-size: 14px;
+    padding: 10px;
   }
 }
