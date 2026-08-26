@@ -15,7 +15,7 @@ import { filter } from 'rxjs/operators';
     CommonModule,
     IonicModule,
     FormsModule,
-    RouterModule  // IMPORTANT: Add this for routerLink to work
+    RouterModule
   ]
 })
 export class HomePage implements AfterViewInit, OnDestroy, OnInit {
@@ -26,6 +26,7 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   slideWidth: number = 0;
   autoplayInterval: any;
   particles: number[] = [];
+  mobileMenuOpen: boolean = false;
 
   // Current page tracking for navigation highlighting
   currentPage: string = 'home';
@@ -43,10 +44,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     event: 'Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20need%20event%20sound%20equipment%20hire.%20Please%20assist.',
     transport: 'Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20need%20transportation%20services.%20Please%20assist.'
   };
-
-  // Video Modal Properties
-  showVideoModal: boolean = false;
-  selectedVideo: any = null;
 
   // Data Arrays for ngFor
   hoursData = [
@@ -102,56 +99,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     }
   ];
 
-  bookingInfo = [
-    { title: 'Quick Response', description: 'We respond to all inquiries within 24 hours' },
-    { title: 'Free Consultation', description: 'Initial assessment and quote at no cost' },
-    { title: 'Flexible Scheduling', description: 'We work around your availability' },
-    { title: 'Quality Guaranteed', description: '100% satisfaction guarantee on all services' }
-  ];
-
-  videos = [
-    {
-      title: '🏠 Residential CCTV Installation',
-      description: 'Complete home security system with 8 cameras and 24/7 monitoring.',
-      poster: 'https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80',
-      src: 'https://www.w3schools.com/html/mov_bbb.mp4',
-      duration: '03:45',
-      tags: [{ name: 'CCTV', route: 'cctv' }, { name: 'Security', route: 'cctv' }, { name: 'Installation', route: 'cctv' }]
-    },
-    {
-      title: '🚗 Vehicle Sound System Installation',
-      description: 'Premium audio upgrade with subwoofer and amplifier installation.',
-      poster: 'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=800&q=80',
-      src: 'https://www.w3schools.com/html/mov_bbb.mp4',
-      duration: '02:30',
-      tags: [{ name: 'Car Audio', route: 'vehicle-sound' }, { name: 'Sound System', route: 'vehicle-sound' }, { name: 'Upgrade', route: 'vehicle-sound' }]
-    },
-    {
-      title: '📶 Commercial WiFi Network Setup',
-      description: 'Full coverage mesh WiFi installation for office building.',
-      poster: 'https://images.unsplash.com/photo-1558618666-fcd25c85f2e3?w=800&q=80',
-      src: 'https://www.w3schools.com/html/mov_bbb.mp4',
-      duration: '04:15',
-      tags: [{ name: 'WiFi', route: 'wifi' }, { name: 'Network', route: 'wifi' }, { name: 'Commercial', route: 'wifi' }]
-    },
-    {
-      title: '🎤 Event Sound Equipment Hire',
-      description: 'Professional sound system for wedding and corporate events.',
-      poster: 'https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80',
-      src: 'https://www.w3schools.com/html/mov_bbb.mp4',
-      duration: '03:20',
-      tags: [{ name: 'Event Sound', route: 'event-sound' }, { name: 'Hire', route: 'event-sound' }, { name: 'Equipment', route: 'event-sound' }]
-    },
-    {
-      title: '🚚 Transportation & Logistics',
-      description: 'Reliable vehicle rental and goods transportation services.',
-      poster: 'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=800&q=80',
-      src: 'https://www.w3schools.com/html/mov_bbb.mp4',
-      duration: '05:00',
-      tags: [{ name: 'Transport', route: 'transportation' }, { name: 'Logistics', route: 'transportation' }, { name: 'Rental', route: 'transportation' }]
-    }
-  ];
-
   testimonials = [
     { quote: 'The CCTV installation was done professionally and quickly. I feel so much safer now!', author: 'Thandi M.', role: 'Homeowner, PMB' },
     { quote: 'My car sound system sounds incredible! Great service and even better results.', author: 'Sipho K.', role: 'Car Enthusiast' },
@@ -164,39 +111,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     { title: 'Based in PMB', description: 'Local expertise with quality service', icon: 'location-outline' },
     { title: '24/7 Support', description: "We're always here to help", icon: 'headset-outline' }
   ];
-
-  // Estimator Properties
-  propertyType: string = 'residential';
-  numberOfCameras: number = 4;
-  propertySize: number = 200;
-  additionalServices = {
-    nvr: false,
-    monitoring: false,
-    remoteAccess: false
-  };
-
-  // Booking Properties
-  bookingData = {
-    name: '',
-    phone: '',
-    email: '',
-    location: '',
-    service: '',
-    date: '',
-    message: ''
-  };
-
-  // Pricing Constants
-  private readonly PRICES = {
-    residential: {
-      basePerCamera: 1200,
-      sizeMultiplier: 0.5
-    },
-    commercial: {
-      basePerCamera: 1800,
-      sizeMultiplier: 0.8
-    }
-  };
 
   // Flag to prevent multiple animation checks
   private animationCheckTimeout: any;
@@ -216,18 +130,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.currentPage = this.getCurrentPageFromUrl(event.urlAfterRedirects);
-      
-      // Check for scrollTo query param
-      const urlTree = this.router.parseUrl(event.urlAfterRedirects);
-      const scrollTo = urlTree.queryParams['scrollTo'];
-      if (scrollTo === 'book') {
-        setTimeout(() => {
-          const element = document.getElementById('book');
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 500);
-      }
     });
   }
 
@@ -265,10 +167,21 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   private getCurrentPageFromUrl(url: string): string {
     if (url.includes('/home') || url === '/') return 'home';
     if (url.includes('/services')) return 'services';
-    if (url.includes('/estimator')) return 'estimator';
     if (url.includes('/booking')) return 'booking';
     if (url.includes('/contact')) return 'contact';
     return 'home';
+  }
+
+  // ============================================
+  // MOBILE MENU
+  // ============================================
+  
+  toggleMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMenu() {
+    this.mobileMenuOpen = false;
   }
 
   // ============================================
@@ -310,103 +223,43 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   }
 
   // ============================================
-  // VIDEO MODAL METHODS
-  // ============================================
-  
-  playFeaturedVideo() {
-    const video = document.querySelector('.featured-video-wrapper video') as HTMLVideoElement;
-    if (video) {
-      const overlay = document.querySelector('.featured-video-overlay') as HTMLElement;
-      if (overlay) {
-        overlay.style.display = 'none';
-      }
-      video.play();
-    }
-  }
-
-  openVideoModal(index: number) {
-    this.selectedVideo = this.videos[index];
-    this.showVideoModal = true;
-    document.body.style.overflow = 'hidden';
-  }
-
-  closeVideoModal() {
-    this.showVideoModal = false;
-    this.selectedVideo = null;
-    document.body.style.overflow = '';
-  }
-
-  // ============================================
   // NAVIGATION METHODS
   // ============================================
   
   navigateToHome() {
     this.currentPage = 'home';
     this.router.navigate(['/home']);
+    this.closeMenu();
   }
 
   navigateToCCTV() {
     this.router.navigate(['/cctv-installation']);
+    this.closeMenu();
   }
 
   navigateToVehicleSound() {
     this.router.navigate(['/vehicle-sound']);
+    this.closeMenu();
   }
 
   navigateToWiFi() {
     this.router.navigate(['/wifi-installation']);
+    this.closeMenu();
   }
 
   navigateToEventSound() {
     this.router.navigate(['/event-sound']);
+    this.closeMenu();
   }
 
   navigateToTransportation() {
     this.router.navigate(['/transportation']);
+    this.closeMenu();
   }
 
   navigateToSystemHire() {
     this.router.navigate(['/system-hire']);
-  }
-
-  navigateToServices() {
-    this.currentPage = 'services';
-    this.router.navigate(['/services']);
-  }
-
-  navigateToEstimator() {
-    this.currentPage = 'estimator';
-    this.router.navigate(['/estimator']);
-  }
-
-  navigateToContact() {
-    this.currentPage = 'contact';
-    this.router.navigate(['/contact']);
-  }
-
-  navigateToBook() {
-    this.currentPage = 'booking';
-    
-    // Check if we're on the home page
-    if (this.router.url === '/home' || this.router.url === '/') {
-      const bookingSection = document.getElementById('book');
-      if (bookingSection) {
-        bookingSection.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        this.router.navigate(['/booking']);
-      }
-    } else {
-      this.router.navigate(['/booking']);
-    }
-  }
-
-  navigateToBookSection() {
-    const bookingSection = document.getElementById('book');
-    if (bookingSection) {
-      bookingSection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      this.router.navigate(['/booking']);
-    }
+    this.closeMenu();
   }
 
   navigateToService(route: string) {
@@ -419,53 +272,7 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
       'system-hire': '/system-hire'
     };
     this.router.navigate([routeMap[route] || '/']);
-  }
-
-  // ============================================
-  // BOOKING SUBMISSION
-  // ============================================
-  
-  submitBooking() {
-    console.log('Booking Data:', this.bookingData);
-    alert('Thank you for your booking request! We will contact you within 24 hours.');
-    
-    this.bookingData = {
-      name: '',
-      phone: '',
-      email: '',
-      location: '',
-      service: '',
-      date: '',
-      message: ''
-    };
-  }
-
-  // ============================================
-  // ESTIMATOR METHODS
-  // ============================================
-  
-  adjustCameras(amount: number) {
-    this.numberOfCameras = Math.max(1, Math.min(16, this.numberOfCameras + amount));
-  }
-
-  get baseCost(): number {
-    const price = this.propertyType === 'residential' 
-      ? this.PRICES.residential 
-      : this.PRICES.commercial;
-    
-    const cameraCost = price.basePerCamera * this.numberOfCameras;
-    const sizeCost = this.propertySize * price.sizeMultiplier;
-    return Math.round(cameraCost + sizeCost);
-  }
-
-  get estimatedCost(): number {
-    let total = this.baseCost;
-    
-    if (this.additionalServices.nvr) total += 2500;
-    if (this.additionalServices.monitoring) total += 1500;
-    if (this.additionalServices.remoteAccess) total += 800;
-    
-    return Math.round(total * 1.15);
+    this.closeMenu();
   }
 
   // ============================================
@@ -488,31 +295,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     }
   }
 
-  scrollLeft() {
-    this.currentVideoSlide = Math.max(0, this.currentVideoSlide - 1);
-    this.updateSlidePosition();
-    this.resetAutoplay();
-  }
-
-  scrollRight() {
-    this.currentVideoSlide = Math.min(this.totalVideoSlides - 1, this.currentVideoSlide + 1);
-    this.updateSlidePosition();
-    this.resetAutoplay();
-  }
-
-  goToVideoSlide(index: number) {
-    this.currentVideoSlide = index;
-    this.updateSlidePosition();
-    this.resetAutoplay();
-  }
-
-  updateSlidePosition() {
-    if (this.videoTrack) {
-      const offset = -this.currentVideoSlide * this.slideWidth;
-      this.videoTrack.nativeElement.style.transform = `translateX(${offset}px)`;
-    }
-  }
-
   startAutoplay() {
     this.autoplayInterval = setInterval(() => {
       if (this.currentVideoSlide < this.totalVideoSlides - 1) {
@@ -529,21 +311,11 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     this.startAutoplay();
   }
 
-  playVideo(index: number) {
-    const slides = this.videoTrack.nativeElement.querySelectorAll('.video-slide');
-    const video = slides[index]?.querySelector('video');
-    if (video) {
-      const overlay = slides[index]?.querySelector('.video-play-overlay') as HTMLElement;
-      if (overlay) {
-        overlay.style.display = 'none';
-      }
-      video.play();
+  updateSlidePosition() {
+    if (this.videoTrack) {
+      const offset = -this.currentVideoSlide * this.slideWidth;
+      this.videoTrack.nativeElement.style.transform = `translateX(${offset}px)`;
     }
-  }
-
-  toggleMenu() {
-    console.log('Menu toggled');
-    // Implement mobile menu logic here
   }
 
   ngOnDestroy() {

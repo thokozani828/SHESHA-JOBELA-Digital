@@ -7,7 +7,7 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
 // ============================================
-// ICON IMPORTS
+// ICON IMPORTS - ALL ICONS NEEDED
 // ============================================
 
 // Navigation & Actions
@@ -25,37 +25,15 @@ import {
   calendarOutline,
   closeOutline,
   handLeftOutline,
-  eyeOutline
-} from 'ionicons/icons';
-
-// Services
-import { 
-  businessOutline, 
-  peopleOutline, 
-  bedOutline, 
-  videocamOutline,
-  musicalNotesOutline,
-  wifiOutline,
-  megaphoneOutline,
-  carOutline,
-  constructOutline,
-  swapHorizontalOutline
-} from 'ionicons/icons';
-
-// Features & Info
-import { 
-  cubeOutline, 
-  locationOutline, 
-  mailOutline,
-  shieldCheckmarkOutline,
-  timeOutline,
-  headsetOutline,
-  heartOutline,
-  checkmarkCircle,
-  checkmarkCircleOutline,
-  closeCircle,
-  alertCircleOutline,
+  eyeOutline,
   homeOutline,
+  timeOutline,
+  locationOutline,
+  mailOutline,
+  heartOutline,
+  shieldCheckmarkOutline,
+  headsetOutline,
+  alertCircleOutline,
   resizeOutline,
   optionsOutline,
   hardwareChipOutline,
@@ -71,7 +49,22 @@ import {
   pinOutline,
   keyOutline,
   lockClosedOutline,
-  shieldOutline
+  shieldOutline,
+  swapHorizontalOutline,
+  cubeOutline,
+  peopleOutline,
+  bedOutline,
+  businessOutline
+} from 'ionicons/icons';
+
+// Services
+import { 
+  videocamOutline,
+  musicalNotesOutline,
+  wifiOutline,
+  megaphoneOutline,
+  carOutline,
+  constructOutline
 } from 'ionicons/icons';
 
 // Social Media
@@ -82,7 +75,7 @@ import {
   logoYoutube
 } from 'ionicons/icons';
 
-// Other - Filled Versions
+// Filled Versions
 import { 
   playCircle,
   calculatorOutline,
@@ -116,14 +109,15 @@ import {
   downloadOutline,
   arrowUpOutline,
   cloudUploadOutline,
-  cloudDownloadOutline
+  cloudDownloadOutline,
+  checkmarkCircle,
+  checkmarkCircleOutline,
+  closeCircle
 } from 'ionicons/icons';
 
 // Register all icons
 addIcons({
-  // ============================================
-  // NAVIGATION & ACTIONS
-  // ============================================
+  // Navigation & Actions
   'call-outline': callOutline,
   'menu-outline': menuOutline,
   'play-circle-outline': playCircleOutline,
@@ -138,36 +132,14 @@ addIcons({
   'close-outline': closeOutline,
   'hand-left-outline': handLeftOutline,
   'eye-outline': eyeOutline,
-  
-  // ============================================
-  // SERVICES
-  // ============================================
-  'business-outline': businessOutline,
-  'people-outline': peopleOutline,
-  'bed-outline': bedOutline,
-  'videocam-outline': videocamOutline,
-  'musical-notes-outline': musicalNotesOutline,
-  'wifi-outline': wifiOutline,
-  'megaphone-outline': megaphoneOutline,
-  'car-outline': carOutline,
-  'construct-outline': constructOutline,
-  'swap-horizontal-outline': swapHorizontalOutline,
-  
-  // ============================================
-  // FEATURES & INFO
-  // ============================================
-  'cube-outline': cubeOutline,
+  'home-outline': homeOutline,
+  'time-outline': timeOutline,
   'location-outline': locationOutline,
   'mail-outline': mailOutline,
-  'shield-checkmark-outline': shieldCheckmarkOutline,
-  'time-outline': timeOutline,
-  'headset-outline': headsetOutline,
   'heart-outline': heartOutline,
-  'checkmark-circle': checkmarkCircle,
-  'checkmark-circle-outline': checkmarkCircleOutline,
-  'close-circle': closeCircle,
+  'shield-checkmark-outline': shieldCheckmarkOutline,
+  'headset-outline': headsetOutline,
   'alert-circle-outline': alertCircleOutline,
-  'home-outline': homeOutline,
   'resize-outline': resizeOutline,
   'options-outline': optionsOutline,
   'hardware-chip-outline': hardwareChipOutline,
@@ -184,18 +156,27 @@ addIcons({
   'key-outline': keyOutline,
   'lock-closed-outline': lockClosedOutline,
   'shield-outline': shieldOutline,
+  'swap-horizontal-outline': swapHorizontalOutline,
+  'cube-outline': cubeOutline,
+  'people-outline': peopleOutline,
+  'bed-outline': bedOutline,
+  'business-outline': businessOutline,
   
-  // ============================================
-  // SOCIAL MEDIA
-  // ============================================
+  // Services
+  'videocam-outline': videocamOutline,
+  'musical-notes-outline': musicalNotesOutline,
+  'wifi-outline': wifiOutline,
+  'megaphone-outline': megaphoneOutline,
+  'car-outline': carOutline,
+  'construct-outline': constructOutline,
+  
+  // Social Media
   'logo-facebook': logoFacebook,
   'logo-instagram': logoInstagram,
   'logo-whatsapp': logoWhatsapp,
   'logo-youtube': logoYoutube,
   
-  // ============================================
-  // OTHER - FILLED VERSIONS
-  // ============================================
+  // Filled Versions
   'play-circle': playCircle,
   'calculator-outline': calculatorOutline,
   'person-outline': personOutline,
@@ -228,7 +209,10 @@ addIcons({
   'download-outline': downloadOutline,
   'arrow-up-outline': arrowUpOutline,
   'cloud-upload-outline': cloudUploadOutline,
-  'cloud-download-outline': cloudDownloadOutline
+  'cloud-download-outline': cloudDownloadOutline,
+  'checkmark-circle': checkmarkCircle,
+  'checkmark-circle-outline': checkmarkCircleOutline,
+  'close-circle': closeCircle
 });
 
 bootstrapApplication(AppComponent, {
