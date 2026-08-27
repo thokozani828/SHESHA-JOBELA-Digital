@@ -1,4 +1,4 @@
-<!-- home.page.html - Complete Updated File with Navigation Highlighting & WhatsApp Integration -->
+<!-- home.page.html - Fixed Scrolling Version -->
 <ion-header class="ion-no-border">
   <ion-toolbar class="custom-toolbar">
     <div class="nav-container">
@@ -40,269 +40,272 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)" scrollEvents="true">
-  <!-- ===== HERO SECTION WITH ZOOM BACKGROUND ===== -->
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="particles-container">
-      <div class="particle" *ngFor="let p of particles"></div>
-    </div>
-    <!-- Hero Background with Zoom Animation -->
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-badge animate-fade-in">
-        <ion-icon name="shield-checkmark-outline"></ion-icon>
-        SMART SOLUTIONS. RELIABLE SERVICE
+<!-- ===== FIXED ION-CONTENT WITH PROPER SCROLLING ===== -->
+<ion-content [scrollY]="true" class="main-content" (ionScroll)="onScroll($event)" scrollEvents="true">
+  <div class="content-wrapper">
+    <!-- ===== HERO SECTION WITH ZOOM BACKGROUND ===== -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="particles-container">
+        <div class="particle" *ngFor="let p of particles"></div>
       </div>
-      <h1 class="animate-slide-up">
-        SHESHA &amp; <span>JOBELA</span>
-      </h1>
-      <p class="hero-subtitle animate-slide-up-delay">DIGITAL</p>
-      <p class="hero-description animate-slide-up-delay-2">
-        Your one-stop destination for CCTV installation, vehicle sound systems,
-        WiFi solutions, event sound, and transportation services across PMB.
-      </p>
-      <div class="hero-buttons animate-slide-up-delay-3">
-        <a class="btn btn-gold" (click)="navigateToCCTV()">
-          <ion-icon name="videocam-outline"></ion-icon> CCTV Installation
-        </a>
-        <!-- WhatsApp Book Now Button -->
-        <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-success">
-          <ion-icon name="logo-whatsapp"></ion-icon> Book on WhatsApp
-        </a>
-      </div>
-      <div class="hero-stats animate-slide-up-delay-4">
-        <div class="stat-item">
-          <span class="stat-number">10+</span>
-          <span class="stat-label">Years Experience</span>
+      <!-- Hero Background with Zoom Animation -->
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="hero-badge animate-fade-in">
+          <ion-icon name="shield-checkmark-outline"></ion-icon>
+          SMART SOLUTIONS. RELIABLE SERVICE
         </div>
-        <div class="stat-item">
-          <span class="stat-number">500+</span>
-          <span class="stat-label">Happy Clients</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">24/7</span>
-          <span class="stat-label">Support</span>
-        </div>
-      </div>
-    </div>
-    <div class="floating-badges">
-      <div class="badge">
-        <ion-icon name="checkmark-circle"></ion-icon>
-        <span>Certified Installers</span>
-      </div>
-      <div class="badge">
-        <ion-icon name="checkmark-circle"></ion-icon>
-        <span>Quality Guaranteed</span>
-      </div>
-      <div class="badge">
-        <ion-icon name="checkmark-circle"></ion-icon>
-        <span>Same-Day Service</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== WORKING HOURS SECTION ===== -->
-  <section class="hours-section scroll-animate">
-    <div class="hours-container">
-      <div class="hours-content">
-        <span class="section-label scroll-animate-child">WORKING HOURS</span>
-        <h2 class="scroll-animate-child">We're Here When <span>You Need Us</span></h2>
-        <p class="scroll-animate-child">Flexible hours to accommodate your schedule</p>
-        
-        <div class="hours-grid">
-          <div class="hours-item scroll-animate-child" *ngFor="let hour of hoursData; let i = index" [style.transition-delay]="i * 0.1 + 's'">
-            <div class="hours-day">
-              <ion-icon [name]="hour.icon"></ion-icon>
-              <span>{{ hour.day }}</span>
-            </div>
-            <div class="hours-time">
-              <ion-icon name="time-outline"></ion-icon>
-              <span>{{ hour.time }}</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="hours-cta scroll-animate-child">
-          <!-- WhatsApp Booking Button -->
+        <h1 class="animate-slide-up">
+          SHESHA &amp; <span>JOBELA</span>
+        </h1>
+        <p class="hero-subtitle animate-slide-up-delay">DIGITAL</p>
+        <p class="hero-description animate-slide-up-delay-2">
+          Your one-stop destination for CCTV installation, vehicle sound systems,
+          WiFi solutions, event sound, and transportation services across PMB.
+        </p>
+        <div class="hero-buttons animate-slide-up-delay-3">
+          <a class="btn btn-gold" (click)="navigateToCCTV()">
+            <ion-icon name="videocam-outline"></ion-icon> CCTV Installation
+          </a>
+          <!-- WhatsApp Book Now Button -->
           <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-success">
             <ion-icon name="logo-whatsapp"></ion-icon> Book on WhatsApp
           </a>
-          <a href="tel:0670680043" class="btn btn-outline">
-            <ion-icon name="call-outline"></ion-icon> Call Now
+        </div>
+        <div class="hero-stats animate-slide-up-delay-4">
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Happy Clients</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Support</span>
+          </div>
+        </div>
+      </div>
+      <div class="floating-badges">
+        <div class="badge">
+          <ion-icon name="checkmark-circle"></ion-icon>
+          <span>Certified Installers</span>
+        </div>
+        <div class="badge">
+          <ion-icon name="checkmark-circle"></ion-icon>
+          <span>Quality Guaranteed</span>
+        </div>
+        <div class="badge">
+          <ion-icon name="checkmark-circle"></ion-icon>
+          <span>Same-Day Service</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WORKING HOURS SECTION ===== -->
+    <section class="hours-section scroll-animate">
+      <div class="hours-container">
+        <div class="hours-content">
+          <span class="section-label scroll-animate-child">WORKING HOURS</span>
+          <h2 class="scroll-animate-child">We're Here When <span>You Need Us</span></h2>
+          <p class="scroll-animate-child">Flexible hours to accommodate your schedule</p>
+          
+          <div class="hours-grid">
+            <div class="hours-item scroll-animate-child" *ngFor="let hour of hoursData; let i = index" [style.transition-delay]="i * 0.1 + 's'">
+              <div class="hours-day">
+                <ion-icon [name]="hour.icon"></ion-icon>
+                <span>{{ hour.day }}</span>
+              </div>
+              <div class="hours-time">
+                <ion-icon name="time-outline"></ion-icon>
+                <span>{{ hour.time }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hours-cta scroll-animate-child">
+            <!-- WhatsApp Booking Button -->
+            <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-success">
+              <ion-icon name="logo-whatsapp"></ion-icon> Book on WhatsApp
+            </a>
+            <a href="tel:0670680043" class="btn btn-outline">
+              <ion-icon name="call-outline"></ion-icon> Call Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT / TRUST SECTION ===== -->
+    <section class="about-section scroll-animate">
+      <div class="about-container">
+        <div class="about-image-wrapper scroll-animate-child" [style.transition-delay]="'0.1s'">
+          <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800&q=80" alt="CCTV Camera Installation">
+            <div class="about-image-overlay">
+              <ion-icon name="shield-checkmark"></ion-icon>
+              <span>Secure & Protected</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-content scroll-animate-child" [style.transition-delay]="'0.3s'">
+          <span class="section-label">ABOUT US</span>
+          <h2>Your Trusted <span>Security &amp; Sound</span> Partner</h2>
+          <p>
+            At Shesha &amp; Jobela Digital, we're passionate about making your 
+            home and business safer and more enjoyable. With over 10 years of 
+            experience, we've helped hundreds of clients across PMB.
+          </p>
+          <div class="about-features">
+            <div class="about-feature" *ngFor="let feature of aboutFeatures; let i = index" [style.transition-delay]="(i + 1) * 0.1 + 's'">
+              <ion-icon name="checkmark-circle"></ion-icon>
+              <span>{{ feature }}</span>
+            </div>
+          </div>
+          <!-- WhatsApp Contact Button -->
+          <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="btn btn-success">
+            <ion-icon name="logo-whatsapp"></ion-icon> Chat with Us on WhatsApp
           </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== ABOUT / TRUST SECTION ===== -->
-  <section class="about-section scroll-animate">
-    <div class="about-container">
-      <div class="about-image-wrapper scroll-animate-child" [style.transition-delay]="'0.1s'">
-        <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800&q=80" alt="CCTV Camera Installation">
-          <div class="about-image-overlay">
-            <ion-icon name="shield-checkmark"></ion-icon>
-            <span>Secure & Protected</span>
+    <!-- ===== TESTIMONIALS SECTION ===== -->
+    <section class="testimonials-section scroll-animate">
+      <div class="section-header">
+        <span class="section-label scroll-animate-child">TESTIMONIALS</span>
+        <h2 class="scroll-animate-child">What Our <span>Clients Say</span></h2>
+        <p class="scroll-animate-child">Real stories from real people we've served</p>
+      </div>
+      <div class="testimonials-container">
+        <div class="testimonial-card scroll-animate-child" *ngFor="let testimonial of testimonials; let i = index" [style.transition-delay]="i * 0.1 + 's'">
+          <div class="testimonial-stars">
+            <ion-icon name="star" *ngFor="let star of [0,1,2,3,4]"></ion-icon>
+          </div>
+          <p>"{{ testimonial.quote }}"</p>
+          <div class="testimonial-author">
+            <strong>{{ testimonial.author }}</strong>
+            <span>{{ testimonial.role }}</span>
           </div>
         </div>
       </div>
-      <div class="about-content scroll-animate-child" [style.transition-delay]="'0.3s'">
-        <span class="section-label">ABOUT US</span>
-        <h2>Your Trusted <span>Security &amp; Sound</span> Partner</h2>
-        <p>
-          At Shesha &amp; Jobela Digital, we're passionate about making your 
-          home and business safer and more enjoyable. With over 10 years of 
-          experience, we've helped hundreds of clients across PMB.
-        </p>
-        <div class="about-features">
-          <div class="about-feature" *ngFor="let feature of aboutFeatures; let i = index" [style.transition-delay]="(i + 1) * 0.1 + 's'">
-            <ion-icon name="checkmark-circle"></ion-icon>
-            <span>{{ feature }}</span>
+    </section>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="features-section scroll-animate">
+      <div class="features-grid">
+        <div class="feature-item scroll-animate-child" *ngFor="let feature of featuresData; let i = index" [style.transition-delay]="i * 0.1 + 's'">
+          <div class="feature-icon-wrapper">
+            <ion-icon [name]="feature.icon"></ion-icon>
+          </div>
+          <h4>{{ feature.title }}</h4>
+          <p>{{ feature.description }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FLOATING WHATSAPP BUTTON ===== -->
+    <div class="floating-whatsapp">
+      <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20need%20assistance%20with%20your%20services." target="_blank" class="whatsapp-float">
+        <ion-icon name="logo-whatsapp"></ion-icon>
+        <span class="tooltip">Chat with us!</span>
+      </a>
+    </div>
+
+    <!-- ===== FOOTER WITH ZOOM BACKGROUND ===== -->
+    <footer class="footer">
+      <div class="footer-bg"></div>
+      
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo" (click)="navigateToHome()" style="cursor: pointer;">
+            <h3>SHESHA &amp; <span>JOBELA</span></h3>
+            <small>DIGITAL</small>
+          </div>
+          <p class="footer-tagline">Smart Solutions. Reliable Service.</p>
+          <p class="footer-description">
+            Your trusted partner for CCTV, vehicle sound, WiFi installation, 
+            event sound, and transportation services.
+          </p>
+          <div class="footer-social">
+            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://wa.me/27670680043" target="_blank"><ion-icon name="logo-whatsapp"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
           </div>
         </div>
-        <!-- WhatsApp Contact Button -->
-        <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="btn btn-success">
-          <ion-icon name="logo-whatsapp"></ion-icon> Chat with Us on WhatsApp
-        </a>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== NEW TESTIMONIALS SECTION ===== -->
-  <section class="testimonials-section scroll-animate">
-    <div class="section-header">
-      <span class="section-label scroll-animate-child">TESTIMONIALS</span>
-      <h2 class="scroll-animate-child">What Our <span>Clients Say</span></h2>
-      <p class="scroll-animate-child">Real stories from real people we've served</p>
-    </div>
-    <div class="testimonials-container">
-      <div class="testimonial-card scroll-animate-child" *ngFor="let testimonial of testimonials; let i = index" [style.transition-delay]="i * 0.1 + 's'">
-        <div class="testimonial-stars">
-          <ion-icon name="star" *ngFor="let star of [0,1,2,3,4]"></ion-icon>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+            <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
+            <li><a routerLink="/estimator" routerLinkActive="active">Estimator</a></li>
+            <li><a routerLink="/booking" routerLinkActive="active">Book Now</a></li>
+            <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+          </ul>
         </div>
-        <p>"{{ testimonial.quote }}"</p>
-        <div class="testimonial-author">
-          <strong>{{ testimonial.author }}</strong>
-          <span>{{ testimonial.role }}</span>
+
+        <div class="footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a (click)="navigateToCCTV()">CCTV Installation</a></li>
+            <li><a (click)="navigateToVehicleSound()">Vehicle Sound</a></li>
+            <li><a (click)="navigateToWiFi()">WiFi Installation</a></li>
+            <li><a (click)="navigateToEventSound()">Event Sound</a></li>
+            <li><a (click)="navigateToTransportation()">Transportation</a></li>
+            <li><a (click)="navigateToSystemHire()">System Hire</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact Info</h4>
+          <div class="footer-contact-item">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <div>
+              <p>WhatsApp</p>
+              <a href="https://wa.me/27670680043" target="_blank">067 068 0043</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <ion-icon name="call-outline"></ion-icon>
+            <div>
+              <p>Phone</p>
+              <a href="tel:0670680043">067 068 0043</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <ion-icon name="mail-outline"></ion-icon>
+            <div>
+              <p>Email</p>
+              <a href="mailto:manpzikode@gmail.com">manpzikode@gmail.com</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <ion-icon name="location-outline"></ion-icon>
+            <div>
+              <p>Location</p>
+              <span>Based in PMB</span>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <div>
+              <p>Working Hours</p>
+              <span>Mon-Fri: 8AM-6PM | Sat: 9AM-4PM</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ===== WHY CHOOSE US ===== -->
-  <section class="features-section scroll-animate">
-    <div class="features-grid">
-      <div class="feature-item scroll-animate-child" *ngFor="let feature of featuresData; let i = index" [style.transition-delay]="i * 0.1 + 's'">
-        <div class="feature-icon-wrapper">
-          <ion-icon [name]="feature.icon"></ion-icon>
+      <div class="footer-bottom">
+        <div class="footer-bottom-content">
+          <p>&copy; 2026 SHESHA &amp; JOBELA DIGITAL. All Rights Reserved.</p>
+          <p>Built with <ion-icon name="heart-outline"></ion-icon> in PMB</p>
         </div>
-        <h4>{{ feature.title }}</h4>
-        <p>{{ feature.description }}</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== FLOATING WHATSAPP BUTTON ===== -->
-  <div class="floating-whatsapp">
-    <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20need%20assistance%20with%20your%20services." target="_blank" class="whatsapp-float">
-      <ion-icon name="logo-whatsapp"></ion-icon>
-      <span class="tooltip">Chat with us!</span>
-    </a>
+    </footer>
   </div>
-
-  <!-- ===== FOOTER WITH ZOOM BACKGROUND ===== -->
-  <footer class="footer">
-    <div class="footer-bg"></div>
-    
-    <div class="footer-content">
-      <div class="footer-brand">
-        <div class="footer-logo" (click)="navigateToHome()" style="cursor: pointer;">
-          <h3>SHESHA &amp; <span>JOBELA</span></h3>
-          <small>DIGITAL</small>
-        </div>
-        <p class="footer-tagline">Smart Solutions. Reliable Service.</p>
-        <p class="footer-description">
-          Your trusted partner for CCTV, vehicle sound, WiFi installation, 
-          event sound, and transportation services.
-        </p>
-        <div class="footer-social">
-          <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
-          <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
-          <a href="https://wa.me/27670680043" target="_blank"><ion-icon name="logo-whatsapp"></ion-icon></a>
-          <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
-        </div>
-      </div>
-
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-          <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
-          <li><a routerLink="/estimator" routerLinkActive="active">Estimator</a></li>
-          <li><a routerLink="/booking" routerLinkActive="active">Book Now</a></li>
-          <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-links">
-        <h4>Our Services</h4>
-        <ul>
-          <li><a (click)="navigateToCCTV()">CCTV Installation</a></li>
-          <li><a (click)="navigateToVehicleSound()">Vehicle Sound</a></li>
-          <li><a (click)="navigateToWiFi()">WiFi Installation</a></li>
-          <li><a (click)="navigateToEventSound()">Event Sound</a></li>
-          <li><a (click)="navigateToTransportation()">Transportation</a></li>
-          <li><a (click)="navigateToSystemHire()">System Hire</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-contact">
-        <h4>Contact Info</h4>
-        <div class="footer-contact-item">
-          <ion-icon name="logo-whatsapp"></ion-icon>
-          <div>
-            <p>WhatsApp</p>
-            <a href="https://wa.me/27670680043" target="_blank">067 068 0043</a>
-          </div>
-        </div>
-        <div class="footer-contact-item">
-          <ion-icon name="call-outline"></ion-icon>
-          <div>
-            <p>Phone</p>
-            <a href="tel:0670680043">067 068 0043</a>
-          </div>
-        </div>
-        <div class="footer-contact-item">
-          <ion-icon name="mail-outline"></ion-icon>
-          <div>
-            <p>Email</p>
-            <a href="mailto:manpzikode@gmail.com">manpzikode@gmail.com</a>
-          </div>
-        </div>
-        <div class="footer-contact-item">
-          <ion-icon name="location-outline"></ion-icon>
-          <div>
-            <p>Location</p>
-            <span>Based in PMB</span>
-          </div>
-        </div>
-        <div class="footer-contact-item">
-          <ion-icon name="time-outline"></ion-icon>
-          <div>
-            <p>Working Hours</p>
-            <span>Mon-Fri: 8AM-6PM | Sat: 9AM-4PM</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="footer-bottom-content">
-        <p>&copy; 2026 SHESHA &amp; JOBELA DIGITAL. All Rights Reserved.</p>
-        <p>Built with <ion-icon name="heart-outline"></ion-icon> in PMB</p>
-      </div>
-    </div>
-  </footer>
 </ion-content>

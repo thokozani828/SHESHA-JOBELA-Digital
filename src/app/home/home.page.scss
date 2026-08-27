@@ -1,4 +1,4 @@
-/* home.page.scss - Complete File with Verdana Font & Mobile Menu */
+/* home.page.scss - Fixed Scrolling Version */
 :host {
   --primary: #1a1a2e;
   --secondary: #16213e;
@@ -23,13 +23,36 @@
   box-sizing: border-box;
 }
 
+/* ===== FIXED ION-CONTENT SCROLLING ===== */
+.main-content {
+  --background: #ffffff;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  --overflow: auto;
+  --scroll-background: #ffffff;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.content-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  background: #ffffff;
+}
+
+/* Ensure all content is visible */
 ion-content {
   --background: #ffffff;
-  font-family: var(--font-primary);
+  --overflow: auto;
+  height: 100%;
 }
 
 /* =====================================
-   NAVBAR
+   NAVBAR - Keep as is
 ===================================== */
 .custom-toolbar {
   --background: rgba(26, 26, 46, 0.97);
@@ -39,6 +62,7 @@ ion-content {
   padding: 0;
   backdrop-filter: blur(12px);
   position: relative;
+  z-index: 100;
 }
 
 .nav-container {
@@ -154,7 +178,6 @@ ion-content {
   box-shadow: 0 8px 25px rgba(212, 160, 43, 0.4);
 }
 
-/* WhatsApp Button Styles */
 .whatsapp-btn {
   background: #25D366;
   color: white;
@@ -258,6 +281,7 @@ ion-content {
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  width: 100%;
 }
 
 .hero-bg {
@@ -323,7 +347,7 @@ ion-content {
   z-index: 2;
   width: 90%;
   max-width: 900px;
-  padding-top: 20px;
+  padding: 40px 0;
 }
 
 .hero-content h1,
@@ -809,7 +833,7 @@ ion-content {
 }
 
 /* =====================================
-   SERVICES SECTION
+   TESTIMONIALS SECTION
 ===================================== */
 .section-header {
   text-align: center;
@@ -846,131 +870,6 @@ ion-content {
   font-family: var(--font-primary);
 }
 
-.services-container {
-  width: 92%;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  padding-bottom: 80px;
-}
-
-.service-card {
-  background: white;
-  padding: 40px 30px;
-  text-align: center;
-  border-radius: 12px;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.04);
-  transition: all 0.4s ease;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  position: relative;
-  overflow: hidden;
-}
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--gradient-gold);
-  transform: scaleX(0);
-  transition: 0.4s;
-}
-
-.service-card:hover::before {
-  transform: scaleX(1);
-}
-
-.service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-}
-
-.service-icon {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, rgba(212, 160, 43, 0.08), rgba(212, 160, 43, 0.02));
-  border-radius: 50%;
-  color: var(--accent);
-  font-size: 32px;
-  transition: 0.3s;
-}
-
-.service-card:hover .service-icon {
-  background: var(--gradient-gold);
-  color: white;
-  transform: scale(1.05);
-}
-
-.service-card h3 {
-  color: var(--text-dark);
-  font-size: 20px;
-  margin: 20px 0 12px;
-  font-family: var(--font-primary);
-}
-
-.service-card p {
-  color: var(--text-gray);
-  font-size: 14px;
-  line-height: 1.7;
-  margin-bottom: 20px;
-  font-family: var(--font-primary);
-}
-
-.service-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.learn-more {
-  color: var(--accent);
-  font-size: 14px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  transition: 0.3s;
-  font-family: var(--font-primary);
-}
-
-.learn-more:hover {
-  gap: 14px;
-}
-
-.book-btn {
-  background: var(--gradient-gold);
-  color: var(--primary);
-  padding: 8px 18px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  transition: 0.3s;
-  font-family: var(--font-primary);
-}
-
-.book-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(212, 160, 43, 0.3);
-}
-
-/* =====================================
-   TESTIMONIALS SECTION
-===================================== */
 .testimonials-section {
   background: white;
   padding-bottom: 80px;
@@ -1557,7 +1456,6 @@ ion-content {
     display: none;
   }
 
-  /* Mobile Menu adjustments */
   .mobile-menu {
     padding: 15px;
   }
@@ -1609,7 +1507,6 @@ ion-content {
     animation: heroZoom 18s ease-in-out infinite;
   }
 
-  /* Mobile Menu further adjustments */
   .mobile-menu {
     padding: 12px;
   }
