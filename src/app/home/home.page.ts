@@ -1,10 +1,20 @@
-// home.page.ts - Complete with RouterModule Import & Mobile Menu Support
+// home.page.ts - FINAL CORRECTED STANDALONE IMPORTS
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
+
+// Import ONLY the components actually used in home.page.html
+// IMPORTANT: Use the '/standalone' path for standalone components!
+import { 
+  IonContent, 
+  IonHeader, 
+  IonToolbar, 
+  IonIcon, 
+  IonButton, 
+  IonMenu
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +23,15 @@ import { filter } from 'rxjs/operators';
   standalone: true,
   imports: [
     CommonModule,
-    IonicModule,
     FormsModule,
-    RouterModule  // IMPORTANT: Add this for routerLink to work
+    RouterModule,
+    // Only the components used in the template
+    IonContent, 
+    IonHeader, 
+    IonToolbar, 
+    IonIcon, 
+    IonButton, 
+    IonMenu
   ]
 })
 export class HomePage implements AfterViewInit, OnDestroy, OnInit {
@@ -26,15 +42,11 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   slideWidth: number = 0;
   autoplayInterval: any;
   particles: number[] = [];
-  mobileMenuOpen: boolean = false; // Mobile menu state
+  mobileMenuOpen: boolean = false;
 
-  // Current page tracking for navigation highlighting
   currentPage: string = 'home';
-
-  // WhatsApp number (South African format)
   whatsappNumber: string = '27670680043';
   
-  // Pre-filled WhatsApp messages
   whatsappMessages = {
     booking: 'Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist.',
     inquiry: 'Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services.',
@@ -45,11 +57,9 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     transport: 'Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20need%20transportation%20services.%20Please%20assist.'
   };
 
-  // Video Modal Properties
   showVideoModal: boolean = false;
   selectedVideo: any = null;
 
-  // Data Arrays for ngFor
   hoursData = [
     { day: 'Monday - Friday', time: '8:00 AM - 6:00 PM', icon: 'calendar-outline' },
     { day: 'Saturday', time: '9:00 AM - 4:00 PM', icon: 'calendar-outline' },
@@ -64,50 +74,17 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     'Affordable Pricing'
   ];
 
-  servicesData = [
-    {
-      title: 'CCTV Installation',
-      description: 'Professional security camera installation for homes and businesses with 24/7 monitoring.',
-      icon: 'videocam-outline',
-      route: 'cctv'
-    },
-    {
-      title: 'Vehicle Sound',
-      description: 'Premium sound system installation for your vehicle. Experience crystal clear audio on the road.',
-      icon: 'musical-notes-outline',
-      route: 'vehicle-sound'
-    },
-    {
-      title: 'WiFi Installation',
-      description: 'Reliable WiFi network setup for homes and businesses with full coverage solutions.',
-      icon: 'wifi-outline',
-      route: 'wifi'
-    },
-    {
-      title: 'Event Sound',
-      description: 'Professional sound equipment hire and installation for weddings, parties, and corporate events.',
-      icon: 'megaphone-outline',
-      route: 'event-sound'
-    },
-    {
-      title: 'Transportation',
-      description: 'Reliable vehicle rental and transportation services for goods and passengers across PMB.',
-      icon: 'car-outline',
-      route: 'transportation'
-    },
-    {
-      title: 'System Hire',
-      description: 'Hire professional sound and security systems for your events and installations.',
-      icon: 'construct-outline',
-      route: 'system-hire'
-    }
+  testimonials = [
+    { quote: 'The CCTV installation was done professionally and quickly. I feel so much safer now!', author: 'Thandi M.', role: 'Homeowner, PMB' },
+    { quote: 'My car sound system sounds incredible! Great service and even better results.', author: 'Sipho K.', role: 'Car Enthusiast' },
+    { quote: 'Our office WiFi is now blazing fast. The team was professional and efficient.', author: 'Zanele D.', role: 'Business Owner' }
   ];
 
-  bookingInfo = [
-    { title: 'Quick Response', description: 'We respond to all inquiries within 24 hours' },
-    { title: 'Free Consultation', description: 'Initial assessment and quote at no cost' },
-    { title: 'Flexible Scheduling', description: 'We work around your availability' },
-    { title: 'Quality Guaranteed', description: '100% satisfaction guarantee on all services' }
+  featuresData = [
+    { title: 'Smart Solutions', description: 'Innovative technology tailored to your needs', icon: 'shield-checkmark-outline' },
+    { title: 'Reliable Service', description: 'Punctual, professional, and trustworthy', icon: 'time-outline' },
+    { title: 'Based in PMB', description: 'Local expertise with quality service', icon: 'location-outline' },
+    { title: '24/7 Support', description: "We're always here to help", icon: 'headset-outline' }
   ];
 
   videos = [
@@ -153,20 +130,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     }
   ];
 
-  testimonials = [
-    { quote: 'The CCTV installation was done professionally and quickly. I feel so much safer now!', author: 'Thandi M.', role: 'Homeowner, PMB' },
-    { quote: 'My car sound system sounds incredible! Great service and even better results.', author: 'Sipho K.', role: 'Car Enthusiast' },
-    { quote: 'Our office WiFi is now blazing fast. The team was professional and efficient.', author: 'Zanele D.', role: 'Business Owner' }
-  ];
-
-  featuresData = [
-    { title: 'Smart Solutions', description: 'Innovative technology tailored to your needs', icon: 'shield-checkmark-outline' },
-    { title: 'Reliable Service', description: 'Punctual, professional, and trustworthy', icon: 'time-outline' },
-    { title: 'Based in PMB', description: 'Local expertise with quality service', icon: 'location-outline' },
-    { title: '24/7 Support', description: "We're always here to help", icon: 'headset-outline' }
-  ];
-
-  // Estimator Properties
   propertyType: string = 'residential';
   numberOfCameras: number = 4;
   propertySize: number = 200;
@@ -176,7 +139,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     remoteAccess: false
   };
 
-  // Booking Properties
   bookingData = {
     name: '',
     phone: '',
@@ -187,7 +149,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     message: ''
   };
 
-  // Pricing Constants
   private readonly PRICES = {
     residential: {
       basePerCamera: 1200,
@@ -199,7 +160,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     }
   };
 
-  // Flag to prevent multiple animation checks
   private animationCheckTimeout: any;
 
   constructor(
@@ -208,17 +168,13 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
 
   ngOnInit() {
     this.particles = Array.from({ length: 30 }, (_, i) => i);
-    
-    // Set current page based on URL
     this.currentPage = this.getCurrentPage();
     
-    // Listen for navigation events to update current page
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.currentPage = this.getCurrentPageFromUrl(event.urlAfterRedirects);
       
-      // Check for scrollTo query param
       const urlTree = this.router.parseUrl(event.urlAfterRedirects);
       const scrollTo = urlTree.queryParams['scrollTo'];
       if (scrollTo === 'book') {
@@ -237,19 +193,42 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     this.startAutoplay();
     window.addEventListener('resize', () => this.updateSlideWidth());
     
-    // Check animations after view is fully loaded
     setTimeout(() => {
       this.checkScrollAnimations();
     }, 300);
+
+    // Fix scrolling
+    this.fixScrolling();
   }
 
-  // ============================================
-  // MOBILE MENU METHODS
-  // ============================================
-  
+  // ===== SCROLLING FIX =====
+  fixScrolling() {
+    // Force ion-content to scroll
+    setTimeout(() => {
+      const content = document.querySelector('ion-content');
+      if (content) {
+        (content as any).style.setProperty('--overflow', 'auto', 'important');
+        (content as any).style.setProperty('overflow-y', 'auto', 'important');
+        (content as any).style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+        (content as any).style.setProperty('height', '100%', 'important');
+        (content as any).style.setProperty('display', 'block', 'important');
+      }
+
+      // Find and fix scroll content
+      const scrollContent = document.querySelector('.scroll-content');
+      if (scrollContent) {
+        (scrollContent as HTMLElement).style.setProperty('overflow-y', 'auto', 'important');
+        (scrollContent as HTMLElement).style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+        (scrollContent as HTMLElement).style.setProperty('height', '100%', 'important');
+      }
+
+      // Force reflow
+      window.dispatchEvent(new Event('resize'));
+    }, 100);
+  }
+
   toggleMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
-    // Prevent body scroll when menu is open
     if (this.mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -262,10 +241,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     document.body.style.overflow = '';
   }
 
-  // ============================================
-  // WHATSAPP METHODS
-  // ============================================
-  
   getWhatsAppLink(message: string): string {
     return `https://wa.me/${this.whatsappNumber}?text=${message}`;
   }
@@ -274,10 +249,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     window.open(this.getWhatsAppLink(message), '_blank');
   }
 
-  // ============================================
-  // CURRENT PAGE TRACKING
-  // ============================================
-  
   private getCurrentPage(): string {
     return this.getCurrentPageFromUrl(this.router.url);
   }
@@ -291,22 +262,15 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     return 'home';
   }
 
-  // ============================================
-  // SCROLL ANIMATION HANDLER
-  // ============================================
-  
   onScroll(event: any) {
     const scrollTop = event.detail.scrollTop;
-    const windowHeight = window.innerHeight;
-
-    // Parallax effect on hero
+    
     const heroContent = document.querySelector('.hero-content') as HTMLElement;
     if (heroContent) {
       const offset = scrollTop * 0.3;
       heroContent.style.transform = `translateY(${offset * 0.1}px)`;
     }
 
-    // Use requestAnimationFrame for better performance
     if (!this.animationCheckTimeout) {
       this.animationCheckTimeout = setTimeout(() => {
         this.checkScrollAnimations();
@@ -329,10 +293,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     });
   }
 
-  // ============================================
-  // VIDEO MODAL METHODS
-  // ============================================
-  
   playFeaturedVideo() {
     const video = document.querySelector('.featured-video-wrapper video') as HTMLVideoElement;
     if (video) {
@@ -356,10 +316,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     document.body.style.overflow = '';
   }
 
-  // ============================================
-  // NAVIGATION METHODS
-  // ============================================
-  
   navigateToHome() {
     this.currentPage = 'home';
     this.router.navigate(['/home']);
@@ -418,7 +374,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     this.currentPage = 'booking';
     this.closeMenu();
     
-    // Check if we're on the home page
     if (this.router.url === '/home' || this.router.url === '/') {
       const bookingSection = document.getElementById('book');
       if (bookingSection) {
@@ -453,10 +408,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     this.closeMenu();
   }
 
-  // ============================================
-  // BOOKING SUBMISSION
-  // ============================================
-  
   submitBooking() {
     console.log('Booking Data:', this.bookingData);
     alert('Thank you for your booking request! We will contact you within 24 hours.');
@@ -472,10 +423,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     };
   }
 
-  // ============================================
-  // ESTIMATOR METHODS
-  // ============================================
-  
   adjustCameras(amount: number) {
     this.numberOfCameras = Math.max(1, Math.min(16, this.numberOfCameras + amount));
   }
@@ -500,10 +447,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     return Math.round(total * 1.15);
   }
 
-  // ============================================
-  // VIDEO CAROUSEL METHODS
-  // ============================================
-  
   updateSlideWidth() {
     if (this.videoTrack) {
       const container = this.videoTrack.nativeElement.parentElement;

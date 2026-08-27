@@ -1,9 +1,15 @@
-// booking.page.ts - Complete with proper initialization
+// booking.page.ts - Complete with proper initialization and Standalone Imports
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+
+// Import ONLY the standalone Ionic components used in the booking page
+import { 
+  IonContent, IonHeader, IonTitle, IonToolbar, IonButton, 
+  IonInput, IonSelect, IonSelectOption, IonTextarea, IonItem, 
+  IonLabel, IonList, IonIcon, IonGrid, IonRow, IonCol 
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-booking',
@@ -12,9 +18,12 @@ import { Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule,
-    IonicModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    // Add all Ionic components here
+    IonContent, IonHeader, IonTitle, IonToolbar, IonButton, 
+    IonInput, IonSelect, IonSelectOption, IonTextarea, IonItem, 
+    IonLabel, IonList, IonIcon, IonGrid, IonRow, IonCol
   ]
 })
 export class BookingPage implements OnInit, AfterViewInit {

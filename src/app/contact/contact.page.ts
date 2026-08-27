@@ -1,16 +1,27 @@
-/* contact.page.ts - Complete Contact Page with WhatsApp Integration */
+/* contact.page.ts - Complete Contact Page with WhatsApp Integration (Standalone) */
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+
+// Import ONLY the standalone Ionic components used in the contact page
+import { 
+  IonContent, IonHeader, IonTitle, IonToolbar, IonButton, 
+  IonInput, IonTextarea, IonItem, IonLabel, IonIcon, 
+  IonList, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol 
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-contact',
   templateUrl: 'contact.page.html',
   styleUrls: ['contact.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, FormsModule, RouterModule]
+  imports: [
+    CommonModule, FormsModule, RouterModule,
+    IonContent, IonHeader, IonTitle, IonToolbar, IonButton, 
+    IonInput, IonTextarea, IonItem, IonLabel, IonIcon, 
+    IonList, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol
+  ]
 })
 export class ContactPage implements OnInit, AfterViewInit {
   

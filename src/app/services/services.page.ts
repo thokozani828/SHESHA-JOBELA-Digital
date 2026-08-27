@@ -1,15 +1,58 @@
-// services.page.ts - Complete Services Page with Images
+// services.page.ts - FINAL FIXED WITH STANDALONE IMPORTS
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
+
+// Import ONLY from @ionic/angular/standalone
+import { 
+  IonContent, 
+  IonHeader, 
+  IonTitle, 
+  IonToolbar, 
+  IonIcon, 
+  IonButton, 
+  IonCard, 
+  IonCardContent, 
+  IonCardHeader, 
+  IonCardTitle, 
+  IonModal, 
+  IonGrid, 
+  IonRow, 
+  IonCol, 
+  IonBadge, 
+  IonList, 
+  IonItem, 
+  IonLabel 
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-services',
   templateUrl: './services.page.html',
   styleUrls: ['./services.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, RouterModule]
+  imports: [
+    CommonModule, 
+    RouterModule,
+    // All standalone components here
+    IonContent, 
+    IonHeader, 
+    IonTitle, 
+    IonToolbar, 
+    IonIcon, 
+    IonButton, 
+    IonCard, 
+    IonCardContent, 
+    IonCardHeader, 
+    IonCardTitle, 
+    IonModal, 
+    IonGrid, 
+    IonRow, 
+    IonCol, 
+    IonBadge, 
+    IonList, 
+    IonItem, 
+    IonLabel 
+  ]
 })
 export class ServicesPage implements OnInit, AfterViewInit {
   
