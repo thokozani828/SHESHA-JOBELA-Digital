@@ -30,7 +30,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Build Angular/Ionic app
-        run: npm run build -- --configuration production --base-href "/SHESHA-JOBELA-Digital/"
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
