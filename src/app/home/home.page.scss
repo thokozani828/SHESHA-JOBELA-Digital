@@ -1,4 +1,4 @@
-/* home.page.scss - Fixed Scrolling Version */
+/* home.page.scss - DEFINITIVE SCROLLING FIX */
 :host {
   --primary: #1a1a2e;
   --secondary: #16213e;
@@ -23,36 +23,43 @@
   box-sizing: border-box;
 }
 
-/* ===== FIXED ION-CONTENT SCROLLING ===== */
-.main-content {
+/* ===== CRITICAL SCROLLING FIXES ===== */
+ion-content.scrolling-content {
   --background: #ffffff;
+  --overflow: auto !important;
   --padding-top: 0;
   --padding-bottom: 0;
   --padding-start: 0;
   --padding-end: 0;
-  --overflow: auto;
-  --scroll-background: #ffffff;
-  position: relative;
   height: 100%;
   width: 100%;
+  position: relative;
+  display: block;
 }
 
-.content-wrapper {
-  position: relative;
+ion-content.scrolling-content .scroll-content {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  height: 100%;
+  contain: none;
+}
+
+.content-scroll-container {
+  display: block;
   width: 100%;
   min-height: 100%;
   background: #ffffff;
+  position: relative;
 }
 
-/* Ensure all content is visible */
-ion-content {
-  --background: #ffffff;
-  --overflow: auto;
-  height: 100%;
+/* Ensure content flows naturally */
+section {
+  display: block;
+  width: 100%;
 }
 
 /* =====================================
-   NAVBAR - Keep as is
+   NAVBAR
 ===================================== */
 .custom-toolbar {
   --background: rgba(26, 26, 46, 0.97);
@@ -206,9 +213,7 @@ ion-content {
   font-size: 24px;
 }
 
-/* =====================================
-   MOBILE MENU
-===================================== */
+/* Mobile Menu */
 .mobile-menu {
   position: absolute;
   top: 75px;
@@ -271,7 +276,7 @@ ion-content {
 }
 
 /* =====================================
-   HERO SECTION WITH ZOOM BACKGROUND
+   HERO SECTION
 ===================================== */
 .hero {
   min-height: 100vh;
@@ -348,100 +353,6 @@ ion-content {
   width: 90%;
   max-width: 900px;
   padding: 40px 0;
-}
-
-.hero-content h1,
-.hero-content p,
-.hero-content .hero-badge,
-.hero-content .hero-buttons,
-.hero-content .hero-stats {
-  will-change: transform;
-  transition: transform 0.3s ease-out;
-}
-
-.floating-badges {
-  position: absolute;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.floating-badges .badge {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  padding: 12px 18px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
-  font-size: 12px;
-  font-weight: 500;
-  animation: float-badge 3s ease-in-out infinite;
-  transition: all 0.3s ease;
-  font-family: var(--font-primary);
-}
-
-.floating-badges .badge:hover {
-  transform: translateX(-5px) scale(1.05);
-  background: rgba(212, 160, 43, 0.25);
-}
-
-.floating-badges .badge ion-icon {
-  color: var(--accent);
-  font-size: 18px;
-}
-
-.floating-badges .badge:nth-child(2) { animation-delay: 0.5s; }
-.floating-badges .badge:nth-child(3) { animation-delay: 1s; }
-
-@keyframes float-badge {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(-10px); }
-}
-
-/* Hero Content Animations */
-.animate-fade-in {
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.8s ease forwards;
-}
-
-.animate-slide-up-delay {
-  animation: slideUp 0.8s ease 0.2s forwards;
-  opacity: 0;
-}
-
-.animate-slide-up-delay-2 {
-  animation: slideUp 0.8s ease 0.4s forwards;
-  opacity: 0;
-}
-
-.animate-slide-up-delay-3 {
-  animation: slideUp 0.8s ease 0.6s forwards;
-  opacity: 0;
-}
-
-.animate-slide-up-delay-4 {
-  animation: slideUp 0.8s ease 0.8s forwards;
-  opacity: 0;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .hero-badge {
@@ -533,16 +444,6 @@ ion-content {
   box-shadow: 0 12px 35px rgba(212, 160, 43, 0.4);
 }
 
-.btn-white {
-  background: white;
-  color: var(--primary);
-}
-
-.btn-white:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
-}
-
 .btn-outline {
   background: transparent;
   color: var(--accent);
@@ -578,17 +479,6 @@ ion-content {
   font-size: 38px;
   font-weight: 700;
   font-family: var(--font-primary);
-  display: inline-block;
-  transition: all 0.3s ease;
-}
-
-.stat-number.animated {
-  animation: countUp 1.5s ease forwards;
-}
-
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .stat-label {
@@ -599,8 +489,88 @@ ion-content {
   font-family: var(--font-primary);
 }
 
+.floating-badges {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.floating-badges .badge {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  animation: float-badge 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+  font-family: var(--font-primary);
+}
+
+.floating-badges .badge ion-icon {
+  color: var(--accent);
+  font-size: 18px;
+}
+
+.floating-badges .badge:nth-child(2) { animation-delay: 0.5s; }
+.floating-badges .badge:nth-child(3) { animation-delay: 1s; }
+
+@keyframes float-badge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-10px); }
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease forwards;
+}
+
+.animate-slide-up-delay {
+  animation: slideUp 0.8s ease 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-slide-up-delay-2 {
+  animation: slideUp 0.8s ease 0.4s forwards;
+  opacity: 0;
+}
+
+.animate-slide-up-delay-3 {
+  animation: slideUp 0.8s ease 0.6s forwards;
+  opacity: 0;
+}
+
+.animate-slide-up-delay-4 {
+  animation: slideUp 0.8s ease 0.8s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* =====================================
-   WORKING HOURS SECTION
+   WORKING HOURS
 ===================================== */
 .hours-section {
   padding: 80px 0;
@@ -661,15 +631,6 @@ ion-content {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
-.hours-item.emergency {
-  background: linear-gradient(135deg, rgba(212, 160, 43, 0.08), rgba(212, 160, 43, 0.02));
-  border-color: var(--accent);
-}
-
-.hours-item.emergency:hover {
-  background: rgba(212, 160, 43, 0.1);
-}
-
 .hours-day {
   display: flex;
   align-items: center;
@@ -710,7 +671,7 @@ ion-content {
 }
 
 /* =====================================
-   ABOUT SECTION
+   ABOUT
 ===================================== */
 .about-section {
   padding: 80px 0;
@@ -727,10 +688,6 @@ ion-content {
   align-items: center;
 }
 
-.about-image-wrapper {
-  position: relative;
-}
-
 .about-image {
   position: relative;
   border-radius: 16px;
@@ -743,11 +700,6 @@ ion-content {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s ease;
-}
-
-.about-image.visible img {
-  transform: scale(1.05);
 }
 
 .about-image-overlay {
@@ -759,24 +711,13 @@ ion-content {
   align-items: center;
   justify-content: center;
   color: white;
-  transition: 0.3s;
   backdrop-filter: blur(2px);
-}
-
-.about-image-overlay:hover {
-  background: rgba(26, 26, 46, 0.3);
 }
 
 .about-image-overlay ion-icon {
   font-size: 60px;
   color: var(--accent);
   margin-bottom: 12px;
-  animation: pulse-icon 2s ease-in-out infinite;
-}
-
-@keyframes pulse-icon {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
 }
 
 .about-image-overlay span {
@@ -833,7 +774,7 @@ ion-content {
 }
 
 /* =====================================
-   TESTIMONIALS SECTION
+   TESTIMONIALS
 ===================================== */
 .section-header {
   text-align: center;
@@ -935,7 +876,7 @@ ion-content {
 }
 
 /* =====================================
-   FEATURES SECTION
+   FEATURES
 ===================================== */
 .features-section {
   padding: 70px 20px;
@@ -995,7 +936,7 @@ ion-content {
 }
 
 /* =====================================
-   FLOATING WHATSAPP BUTTON
+   FLOATING WHATSAPP
 ===================================== */
 .floating-whatsapp {
   position: fixed;
@@ -1047,19 +988,13 @@ ion-content {
 }
 
 @keyframes pulse-whatsapp {
-  0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
 /* =====================================
-   FOOTER WITH ZOOM BACKGROUND
+   FOOTER
 ===================================== */
 .footer {
   background: #0f0f1a;
@@ -1090,15 +1025,6 @@ ion-content {
   100% { transform: scale(1); }
 }
 
-@keyframes zoomInOnce {
-  0% { transform: scale(1.1); opacity: 0.05; }
-  100% { transform: scale(1); opacity: 0.08; }
-}
-
-.footer-bg.loaded {
-  animation: zoomInOnce 3s ease-out forwards;
-}
-
 .footer::before {
   content: '';
   position: absolute;
@@ -1122,14 +1048,6 @@ ion-content {
   gap: 50px;
   padding-bottom: 50px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.footer-brand,
-.footer-links,
-.footer-contact,
-.footer-bottom-content {
-  position: relative;
-  z-index: 1;
 }
 
 .footer-brand .footer-logo h3 {
@@ -1307,30 +1225,10 @@ ion-content {
   transform: translateY(0);
 }
 
-.scroll-animate-child:nth-child(1) { transition-delay: 0.05s; }
-.scroll-animate-child:nth-child(2) { transition-delay: 0.1s; }
-.scroll-animate-child:nth-child(3) { transition-delay: 0.15s; }
-.scroll-animate-child:nth-child(4) { transition-delay: 0.2s; }
-.scroll-animate-child:nth-child(5) { transition-delay: 0.25s; }
-.scroll-animate-child:nth-child(6) { transition-delay: 0.3s; }
-
-.service-card.visible,
-.hours-item.visible,
-.feature-item.visible,
-.testimonial-card.visible,
-.info-item.visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
 /* =====================================
    RESPONSIVE
 ===================================== */
 @media (max-width: 1024px) {
-  .services-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1379,11 +1277,6 @@ ion-content {
 }
 
 @media (max-width: 768px) {
-  .services-container {
-    grid-template-columns: 1fr;
-    max-width: 450px;
-  }
-  
   .testimonials-container {
     grid-template-columns: 1fr;
     max-width: 450px;
@@ -1455,15 +1348,6 @@ ion-content {
   .whatsapp-float .tooltip {
     display: none;
   }
-
-  .mobile-menu {
-    padding: 15px;
-  }
-  
-  .mobile-menu a {
-    font-size: 15px;
-    padding: 10px 12px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1490,10 +1374,6 @@ ion-content {
     height: 250px;
   }
 
-  .service-actions {
-    flex-direction: column;
-  }
-
   .hours-cta {
     flex-direction: column;
     align-items: center;
@@ -1505,14 +1385,5 @@ ion-content {
     top: -25%;
     left: -25%;
     animation: heroZoom 18s ease-in-out infinite;
-  }
-
-  .mobile-menu {
-    padding: 12px;
-  }
-  
-  .mobile-menu a {
-    font-size: 14px;
-    padding: 10px;
   }
 }

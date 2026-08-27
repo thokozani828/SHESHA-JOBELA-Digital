@@ -32,6 +32,152 @@
  * https://ionicframework.com/docs/theming/dark-mode
  */
 
+/* IMPORTANT: Comment out or remove dark mode to fix scrolling issues */
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+/* @import '@ionic/angular/css/palettes/dark.system.css'; */  // <-- THIS IS CAUSING THE PROBLEM
+
+/* ============================================
+   GLOBAL SCROLLING FIXES
+   ============================================ */
+
+/* Force ion-content to scroll properly */
+ion-content {
+  --overflow: auto !important;
+  --background: #ffffff;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: block;
+}
+
+/* Ensure scroll content works */
+ion-content .scroll-content {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  height: 100%;
+  contain: none !important;
+}
+
+/* Fix for inner scrollable content */
+ion-content .inner-scroll {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Prevent any overflow clipping */
+ion-content.scrolling-content .scroll-content {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  height: 100%;
+  contain: none;
+}
+
+/* Fix for content wrapper */
+.content-scroll-container {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+  background: #ffffff;
+  position: relative;
+  padding-bottom: 1px; /* Prevents margin collapse */
+}
+
+/* Ensure all sections display properly */
+section {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+/* Fix for hero section height */
+.hero {
+  min-height: 100vh !important;
+  height: auto !important;
+}
+
+/* iOS specific scrolling fix */
+@supports (-webkit-overflow-scrolling: touch) {
+  ion-content .scroll-content {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-y: scroll !important;
+  }
+}
+
+/* Android specific fix */
+@supports not (-webkit-overflow-scrolling: touch) {
+  ion-content .scroll-content {
+    overflow-y: auto !important;
+  }
+}
+
+/* Fix for floating elements */
+.floating-whatsapp {
+  position: fixed !important;
+  z-index: 9999 !important;
+}
+
+/* Ensure modal doesn't break scrolling */
+ion-modal {
+  --height: auto;
+  --width: auto;
+}
+
+/* Scroll animation base */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease-out;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate-child {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease-out;
+}
+
+.scroll-animate-child.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reset any ionic default that might break scrolling */
+ion-app {
+  height: 100%;
+  display: block;
+}
+
+ion-router-outlet {
+  height: 100%;
+  display: block;
+}
+
+/* Ensure content flows naturally */
+ion-router-outlet > * {
+  height: 100%;
+  display: block;
+}
+
+/* Fix for toolbar */
+ion-header {
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+
+/* Prevent body from locking scroll */
+body {
+  overflow: auto !important;
+  height: 100%;
+  position: relative;
+}
+
+/* Ensure all content is visible */
+* {
+  box-sizing: border-box;
+}
