@@ -37,29 +37,10 @@
         <ion-icon name="menu-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </div>
-
-    <!-- Mobile Menu Dropdown -->
-    <div class="mobile-menu" [class.active]="mobileMenuOpen">
-      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">
-        <ion-icon name="home-outline"></ion-icon> Home
-      </a>
-      <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">
-        <ion-icon name="grid-outline"></ion-icon> Services
-      </a>
-      <a routerLink="/booking" routerLinkActive="active" (click)="closeMenu()">
-        <ion-icon name="calendar-outline"></ion-icon> Book Now
-      </a>
-      <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">
-        <ion-icon name="call-outline"></ion-icon> Contact
-      </a>
-      <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="mobile-whatsapp">
-        <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp Us
-      </a>
-    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)" scrollEvents="true" class="no-scrollbar">
+<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)" scrollEvents="true">
   <!-- ===== HERO SECTION WITH ZOOM BACKGROUND ===== -->
   <section class="hero">
     <div class="hero-overlay"></div>
@@ -189,33 +170,7 @@
     </div>
   </section>
 
-  <!-- ===== SERVICES SECTION ===== -->
-  <section class="services-section scroll-animate">
-    <div class="section-header">
-      <span class="section-label scroll-animate-child">OUR SERVICES</span>
-      <h2 class="scroll-animate-child">What <span>We Offer</span></h2>
-      <p class="scroll-animate-child">Professional solutions tailored to your needs</p>
-    </div>
-    <div class="services-container">
-      <div class="service-card scroll-animate-child" *ngFor="let service of servicesData; let i = index" [style.transition-delay]="i * 0.1 + 's'">
-        <div class="service-icon">
-          <ion-icon [name]="service.icon"></ion-icon>
-        </div>
-        <h3>{{ service.title }}</h3>
-        <p>{{ service.description }}</p>
-        <div class="service-actions">
-          <a class="learn-more" (click)="navigateToService(service.route)">
-            Learn More <ion-icon name="arrow-forward-outline"></ion-icon>
-          </a>
-          <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20need%20{{ service.title }}%20services.%20Please%20assist." target="_blank" class="book-btn">
-            <ion-icon name="logo-whatsapp"></ion-icon> Book
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TESTIMONIALS SECTION ===== -->
+  <!-- ===== NEW TESTIMONIALS SECTION ===== -->
   <section class="testimonials-section scroll-animate">
     <div class="section-header">
       <span class="section-label scroll-animate-child">TESTIMONIALS</span>
