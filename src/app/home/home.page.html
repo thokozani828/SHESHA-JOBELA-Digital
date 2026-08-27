@@ -1,4 +1,4 @@
-<!-- home.page.html - Fixed Scrolling Version -->
+<!-- home.page.html - Native Scrolling Fix -->
 <ion-header class="ion-no-border">
   <ion-toolbar class="custom-toolbar">
     <div class="nav-container">
@@ -40,272 +40,271 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- ===== FIXED ION-CONTENT WITH PROPER SCROLLING ===== -->
-<ion-content [scrollY]="true" class="main-content" (ionScroll)="onScroll($event)" scrollEvents="true">
-  <div class="content-wrapper">
-    <!-- ===== HERO SECTION WITH ZOOM BACKGROUND ===== -->
-    <section class="hero">
-      <div class="hero-overlay"></div>
-      <div class="particles-container">
-        <div class="particle" *ngFor="let p of particles"></div>
+<!-- ===== FIXED: REMOVED fullscreen AND ADDED proper scrolling ===== -->
+<ion-content class="ion-padding-horizontal" scrollY="true" style="--overflow: auto; --background: #ffffff;">
+
+  <!-- ===== HERO SECTION WITH ZOOM BACKGROUND ===== -->
+  <section class="hero" style="min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; width: 100%;">
+    <div class="hero-overlay" style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26, 26, 46, 0.85), rgba(22, 33, 62, 0.8)); z-index: 1;"></div>
+    <div class="particles-container" style="position: absolute; inset: 0; overflow: hidden; z-index: 1;">
+      <div class="particle" *ngFor="let p of particles" style="position: absolute; width: 4px; height: 4px; background: #d4a02b; border-radius: 50%; animation: float-particle linear infinite; opacity: 0.3;"></div>
+    </div>
+    <!-- Hero Background with Zoom Animation -->
+    <div class="hero-bg" style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80'); background-size: cover; background-position: center; animation: heroZoom 25s ease-in-out infinite; transform: scale(1); will-change: transform; z-index: 0;"></div>
+    <div class="hero-content" style="position: relative; z-index: 2; width: 90%; max-width: 900px; padding: 40px 0;">
+      <div class="hero-badge animate-fade-in" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(212, 160, 43, 0.15); color: #d4a02b; padding: 8px 24px; border-radius: 50px; font-size: 13px; font-weight: 600; letter-spacing: 2px; border: 1px solid rgba(212, 160, 43, 0.2); margin-bottom: 25px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+        SMART SOLUTIONS. RELIABLE SERVICE
       </div>
-      <!-- Hero Background with Zoom Animation -->
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <div class="hero-badge animate-fade-in">
-          <ion-icon name="shield-checkmark-outline"></ion-icon>
-          SMART SOLUTIONS. RELIABLE SERVICE
+      <h1 class="animate-slide-up" style="color: white; font-size: clamp(50px, 7vw, 85px); font-weight: 800; letter-spacing: 3px; margin-bottom: 5px; line-height: 1.05; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+        SHESHA &amp; <span style="background: linear-gradient(135deg, #d4a02b, #e8c34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">JOBELA</span>
+      </h1>
+      <p class="hero-subtitle animate-slide-up-delay" style="background: linear-gradient(135deg, #d4a02b, #e8c34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 20px; letter-spacing: 8px; font-weight: 500; margin-bottom: 20px; text-transform: uppercase; font-family: Verdana, Geneva, Tahoma, sans-serif;">DIGITAL</p>
+      <p class="hero-description animate-slide-up-delay-2" style="max-width: 650px; margin: 0 auto; color: rgba(255, 255, 255, 0.85); font-size: 16px; line-height: 1.8; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+        Your one-stop destination for CCTV installation, vehicle sound systems,
+        WiFi solutions, event sound, and transportation services across PMB.
+      </p>
+      <div class="hero-buttons animate-slide-up-delay-3" style="margin-top: 35px; display: flex; justify-content: center; gap: 18px; flex-wrap: wrap;">
+        <a class="btn btn-gold" (click)="navigateToCCTV()" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 32px; border-radius: 6px; font-size: 14px; font-weight: 600; transition: 0.4s; text-decoration: none; cursor: pointer; border: none; font-family: Verdana, Geneva, Tahoma, sans-serif; background: linear-gradient(135deg, #d4a02b, #e8c34a); color: #1a1a2e;">
+          <ion-icon name="videocam-outline"></ion-icon> CCTV Installation
+        </a>
+        <!-- WhatsApp Book Now Button -->
+        <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-success" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 32px; border-radius: 6px; font-size: 14px; font-weight: 600; transition: 0.4s; text-decoration: none; cursor: pointer; border: none; font-family: Verdana, Geneva, Tahoma, sans-serif; background: #25D366; color: white;">
+          <ion-icon name="logo-whatsapp"></ion-icon> Book on WhatsApp
+        </a>
+      </div>
+      <div class="hero-stats animate-slide-up-delay-4" style="display: flex; justify-content: center; gap: 60px; margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+        <div class="stat-item" style="display: flex; flex-direction: column;">
+          <span class="stat-number" style="background: linear-gradient(135deg, #d4a02b, #e8c34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 38px; font-weight: 700; font-family: Verdana, Geneva, Tahoma, sans-serif;">10+</span>
+          <span class="stat-label" style="color: rgba(255, 255, 255, 0.6); font-size: 13px; font-weight: 400; letter-spacing: 1px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Years Experience</span>
         </div>
-        <h1 class="animate-slide-up">
-          SHESHA &amp; <span>JOBELA</span>
-        </h1>
-        <p class="hero-subtitle animate-slide-up-delay">DIGITAL</p>
-        <p class="hero-description animate-slide-up-delay-2">
-          Your one-stop destination for CCTV installation, vehicle sound systems,
-          WiFi solutions, event sound, and transportation services across PMB.
-        </p>
-        <div class="hero-buttons animate-slide-up-delay-3">
-          <a class="btn btn-gold" (click)="navigateToCCTV()">
-            <ion-icon name="videocam-outline"></ion-icon> CCTV Installation
-          </a>
-          <!-- WhatsApp Book Now Button -->
-          <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-success">
+        <div class="stat-item" style="display: flex; flex-direction: column;">
+          <span class="stat-number" style="background: linear-gradient(135deg, #d4a02b, #e8c34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 38px; font-weight: 700; font-family: Verdana, Geneva, Tahoma, sans-serif;">500+</span>
+          <span class="stat-label" style="color: rgba(255, 255, 255, 0.6); font-size: 13px; font-weight: 400; letter-spacing: 1px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Happy Clients</span>
+        </div>
+        <div class="stat-item" style="display: flex; flex-direction: column;">
+          <span class="stat-number" style="background: linear-gradient(135deg, #d4a02b, #e8c34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 38px; font-weight: 700; font-family: Verdana, Geneva, Tahoma, sans-serif;">24/7</span>
+          <span class="stat-label" style="color: rgba(255, 255, 255, 0.6); font-size: 13px; font-weight: 400; letter-spacing: 1px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Support</span>
+        </div>
+      </div>
+    </div>
+    <div class="floating-badges" style="position: absolute; right: 40px; top: 50%; transform: translateY(-50%); z-index: 3; display: flex; flex-direction: column; gap: 15px;">
+      <div class="badge" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); padding: 12px 18px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 10px; color: white; font-size: 12px; font-weight: 500; animation: float-badge 3s ease-in-out infinite; transition: all 0.3s ease; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+        <ion-icon name="checkmark-circle" style="color: #d4a02b; font-size: 18px;"></ion-icon>
+        <span>Certified Installers</span>
+      </div>
+      <div class="badge" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); padding: 12px 18px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 10px; color: white; font-size: 12px; font-weight: 500; animation: float-badge 3s ease-in-out infinite; transition: all 0.3s ease; font-family: Verdana, Geneva, Tahoma, sans-serif; animation-delay: 0.5s;">
+        <ion-icon name="checkmark-circle" style="color: #d4a02b; font-size: 18px;"></ion-icon>
+        <span>Quality Guaranteed</span>
+      </div>
+      <div class="badge" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); padding: 12px 18px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 10px; color: white; font-size: 12px; font-weight: 500; animation: float-badge 3s ease-in-out infinite; transition: all 0.3s ease; font-family: Verdana, Geneva, Tahoma, sans-serif; animation-delay: 1s;">
+        <ion-icon name="checkmark-circle" style="color: #d4a02b; font-size: 18px;"></ion-icon>
+        <span>Same-Day Service</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORKING HOURS SECTION ===== -->
+  <section class="hours-section scroll-animate" style="padding: 80px 0; background: white;">
+    <div class="hours-container" style="width: 92%; max-width: 1200px; margin: 0 auto;">
+      <div class="hours-content" style="text-align: center;">
+        <span class="section-label scroll-animate-child" style="color: #d4a02b; font-size: 12px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; font-family: Verdana, Geneva, Tahoma, sans-serif;">WORKING HOURS</span>
+        <h2 class="scroll-animate-child" style="font-size: 38px; font-weight: 700; color: #1a1a2e; margin: 15px 0 10px; font-family: Verdana, Geneva, Tahoma, sans-serif;">We're Here When <span style="background: linear-gradient(135deg, #d4a02b, #e8c34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">You Need Us</span></h2>
+        <p class="scroll-animate-child" style="color: #6b7280; font-size: 16px; margin-bottom: 40px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Flexible hours to accommodate your schedule</p>
+        
+        <div class="hours-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 900px; margin: 0 auto 40px;">
+          <div class="hours-item scroll-animate-child" *ngFor="let hour of hoursData; let i = index" [style.transition-delay]="i * 0.1 + 's'" style="background: #f8f9fa; padding: 25px 20px; border-radius: 12px; text-align: center; transition: all 0.4s ease; border: 1px solid rgba(0, 0, 0, 0.04);">
+            <div class="hours-day" style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 600; color: #1a1a2e; font-family: Verdana, Geneva, Tahoma, sans-serif; margin-bottom: 8px;">
+              <ion-icon [name]="hour.icon" style="color: #d4a02b; font-size: 18px;"></ion-icon>
+              <span>{{ hour.day }}</span>
+            </div>
+            <div class="hours-time" style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: #6b7280; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+              <ion-icon name="time-outline" style="color: #d4a02b; font-size: 16px;"></ion-icon>
+              <span>{{ hour.time }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hours-cta scroll-animate-child" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <!-- WhatsApp Booking Button -->
+          <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-success" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 32px; border-radius: 6px; font-size: 14px; font-weight: 600; transition: 0.4s; text-decoration: none; cursor: pointer; border: none; font-family: Verdana, Geneva, Tahoma, sans-serif; background: #25D366; color: white;">
             <ion-icon name="logo-whatsapp"></ion-icon> Book on WhatsApp
           </a>
-        </div>
-        <div class="hero-stats animate-slide-up-delay-4">
-          <div class="stat-item">
-            <span class="stat-number">10+</span>
-            <span class="stat-label">Years Experience</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">500+</span>
-            <span class="stat-label">Happy Clients</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">24/7</span>
-            <span class="stat-label">Support</span>
-          </div>
-        </div>
-      </div>
-      <div class="floating-badges">
-        <div class="badge">
-          <ion-icon name="checkmark-circle"></ion-icon>
-          <span>Certified Installers</span>
-        </div>
-        <div class="badge">
-          <ion-icon name="checkmark-circle"></ion-icon>
-          <span>Quality Guaranteed</span>
-        </div>
-        <div class="badge">
-          <ion-icon name="checkmark-circle"></ion-icon>
-          <span>Same-Day Service</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== WORKING HOURS SECTION ===== -->
-    <section class="hours-section scroll-animate">
-      <div class="hours-container">
-        <div class="hours-content">
-          <span class="section-label scroll-animate-child">WORKING HOURS</span>
-          <h2 class="scroll-animate-child">We're Here When <span>You Need Us</span></h2>
-          <p class="scroll-animate-child">Flexible hours to accommodate your schedule</p>
-          
-          <div class="hours-grid">
-            <div class="hours-item scroll-animate-child" *ngFor="let hour of hoursData; let i = index" [style.transition-delay]="i * 0.1 + 's'">
-              <div class="hours-day">
-                <ion-icon [name]="hour.icon"></ion-icon>
-                <span>{{ hour.day }}</span>
-              </div>
-              <div class="hours-time">
-                <ion-icon name="time-outline"></ion-icon>
-                <span>{{ hour.time }}</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="hours-cta scroll-animate-child">
-            <!-- WhatsApp Booking Button -->
-            <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-success">
-              <ion-icon name="logo-whatsapp"></ion-icon> Book on WhatsApp
-            </a>
-            <a href="tel:0670680043" class="btn btn-outline">
-              <ion-icon name="call-outline"></ion-icon> Call Now
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== ABOUT / TRUST SECTION ===== -->
-    <section class="about-section scroll-animate">
-      <div class="about-container">
-        <div class="about-image-wrapper scroll-animate-child" [style.transition-delay]="'0.1s'">
-          <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800&q=80" alt="CCTV Camera Installation">
-            <div class="about-image-overlay">
-              <ion-icon name="shield-checkmark"></ion-icon>
-              <span>Secure & Protected</span>
-            </div>
-          </div>
-        </div>
-        <div class="about-content scroll-animate-child" [style.transition-delay]="'0.3s'">
-          <span class="section-label">ABOUT US</span>
-          <h2>Your Trusted <span>Security &amp; Sound</span> Partner</h2>
-          <p>
-            At Shesha &amp; Jobela Digital, we're passionate about making your 
-            home and business safer and more enjoyable. With over 10 years of 
-            experience, we've helped hundreds of clients across PMB.
-          </p>
-          <div class="about-features">
-            <div class="about-feature" *ngFor="let feature of aboutFeatures; let i = index" [style.transition-delay]="(i + 1) * 0.1 + 's'">
-              <ion-icon name="checkmark-circle"></ion-icon>
-              <span>{{ feature }}</span>
-            </div>
-          </div>
-          <!-- WhatsApp Contact Button -->
-          <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="btn btn-success">
-            <ion-icon name="logo-whatsapp"></ion-icon> Chat with Us on WhatsApp
+          <a href="tel:0670680043" class="btn btn-outline" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 32px; border-radius: 6px; font-size: 14px; font-weight: 600; transition: 0.4s; text-decoration: none; cursor: pointer; border: none; font-family: Verdana, Geneva, Tahoma, sans-serif; background: transparent; color: #d4a02b; border: 2px solid #d4a02b;">
+            <ion-icon name="call-outline"></ion-icon> Call Now
           </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ===== TESTIMONIALS SECTION ===== -->
-    <section class="testimonials-section scroll-animate">
-      <div class="section-header">
-        <span class="section-label scroll-animate-child">TESTIMONIALS</span>
-        <h2 class="scroll-animate-child">What Our <span>Clients Say</span></h2>
-        <p class="scroll-animate-child">Real stories from real people we've served</p>
-      </div>
-      <div class="testimonials-container">
-        <div class="testimonial-card scroll-animate-child" *ngFor="let testimonial of testimonials; let i = index" [style.transition-delay]="i * 0.1 + 's'">
-          <div class="testimonial-stars">
-            <ion-icon name="star" *ngFor="let star of [0,1,2,3,4]"></ion-icon>
-          </div>
-          <p>"{{ testimonial.quote }}"</p>
-          <div class="testimonial-author">
-            <strong>{{ testimonial.author }}</strong>
-            <span>{{ testimonial.role }}</span>
+  <!-- ===== ABOUT / TRUST SECTION ===== -->
+  <section class="about-section scroll-animate" style="padding: 80px 0; background: #f8f9fa;">
+    <div class="about-container" style="width: 92%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <div class="about-image-wrapper scroll-animate-child" [style.transition-delay]="'0.1s'" style="position: relative;">
+        <div class="about-image" style="position: relative; border-radius: 16px; overflow: hidden; height: 400px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
+          <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800&q=80" alt="CCTV Camera Installation" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;">
+          <div class="about-image-overlay" style="position: absolute; inset: 0; background: rgba(26, 26, 46, 0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; transition: 0.3s; backdrop-filter: blur(2px);">
+            <ion-icon name="shield-checkmark" style="font-size: 60px; color: #d4a02b; margin-bottom: 12px; animation: pulse-icon 2s ease-in-out infinite;"></ion-icon>
+            <span style="font-size: 18px; font-weight: 600; font-family: Verdana, Geneva, Tahoma, sans-serif; letter-spacing: 2px; text-transform: uppercase;">Secure & Protected</span>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- ===== WHY CHOOSE US ===== -->
-    <section class="features-section scroll-animate">
-      <div class="features-grid">
-        <div class="feature-item scroll-animate-child" *ngFor="let feature of featuresData; let i = index" [style.transition-delay]="i * 0.1 + 's'">
-          <div class="feature-icon-wrapper">
-            <ion-icon [name]="feature.icon"></ion-icon>
+      <div class="about-content scroll-animate-child" [style.transition-delay]="'0.3s'">
+        <span class="section-label" style="color: #d4a02b; font-size: 12px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; font-family: Verdana, Geneva, Tahoma, sans-serif;">ABOUT US</span>
+        <h2 style="font-size: 38px; line-height: 1.2; margin: 15px 0 20px; color: #1a1a2e; font-family: Verdana, Geneva, Tahoma, sans-serif;">Your Trusted <span style="background: linear-gradient(135deg, #d4a02b, #e8c34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Security &amp; Sound</span> Partner</h2>
+        <p style="color: #6b7280; font-size: 16px; line-height: 1.8; margin-bottom: 25px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+          At Shesha &amp; Jobela Digital, we're passionate about making your 
+          home and business safer and more enjoyable. With over 10 years of 
+          experience, we've helped hundreds of clients across PMB.
+        </p>
+        <div class="about-features" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 30px;">
+          <div class="about-feature" *ngFor="let feature of aboutFeatures; let i = index" [style.transition-delay]="(i + 1) * 0.1 + 's'" style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #1a1a2e; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+            <ion-icon name="checkmark-circle" style="color: #d4a02b; font-size: 20px; flex-shrink: 0;"></ion-icon>
+            <span>{{ feature }}</span>
           </div>
-          <h4>{{ feature.title }}</h4>
-          <p>{{ feature.description }}</p>
+        </div>
+        <!-- WhatsApp Contact Button -->
+        <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="btn btn-success" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 32px; border-radius: 6px; font-size: 14px; font-weight: 600; transition: 0.4s; text-decoration: none; cursor: pointer; border: none; font-family: Verdana, Geneva, Tahoma, sans-serif; background: #25D366; color: white;">
+          <ion-icon name="logo-whatsapp"></ion-icon> Chat with Us on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS SECTION ===== -->
+  <section class="testimonials-section scroll-animate" style="background: white; padding-bottom: 80px;">
+    <div class="section-header" style="text-align: center; padding: 70px 20px 40px;">
+      <span class="section-label scroll-animate-child" style="color: #d4a02b; font-size: 12px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; font-family: Verdana, Geneva, Tahoma, sans-serif;">TESTIMONIALS</span>
+      <h2 class="scroll-animate-child" style="font-size: 42px; font-weight: 700; color: #1a1a2e; margin: 12px 0 10px; font-family: Verdana, Geneva, Tahoma, sans-serif;">What Our <span style="background: linear-gradient(135deg, #d4a02b, #e8c34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Clients Say</span></h2>
+      <p class="scroll-animate-child" style="color: #6b7280; font-size: 16px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Real stories from real people we've served</p>
+    </div>
+    <div class="testimonials-container" style="width: 92%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
+      <div class="testimonial-card scroll-animate-child" *ngFor="let testimonial of testimonials; let i = index" [style.transition-delay]="i * 0.1 + 's'" style="background: #f8f9fa; padding: 35px; border-radius: 12px; transition: all 0.4s ease; border: 1px solid rgba(0, 0, 0, 0.04);">
+        <div class="testimonial-stars" style="display: flex; gap: 4px; margin-bottom: 15px;">
+          <ion-icon name="star" *ngFor="let star of [0,1,2,3,4]" style="color: #d4a02b; font-size: 18px;"></ion-icon>
+        </div>
+        <p style="color: #6b7280; font-size: 15px; line-height: 1.7; font-style: italic; margin-bottom: 20px; font-family: Verdana, Geneva, Tahoma, sans-serif;">"{{ testimonial.quote }}"</p>
+        <div class="testimonial-author" style="display: flex; flex-direction: column;">
+          <strong style="color: #1a1a2e; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">{{ testimonial.author }}</strong>
+          <span style="color: #6b7280; font-size: 13px; font-family: Verdana, Geneva, Tahoma, sans-serif;">{{ testimonial.role }}</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ===== FLOATING WHATSAPP BUTTON ===== -->
-    <div class="floating-whatsapp">
-      <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20need%20assistance%20with%20your%20services." target="_blank" class="whatsapp-float">
-        <ion-icon name="logo-whatsapp"></ion-icon>
-        <span class="tooltip">Chat with us!</span>
-      </a>
+  <!-- ===== WHY CHOOSE US ===== -->
+  <section class="features-section scroll-animate" style="padding: 70px 20px; background: #f8f9fa;">
+    <div class="features-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto;">
+      <div class="feature-item scroll-animate-child" *ngFor="let feature of featuresData; let i = index" [style.transition-delay]="i * 0.1 + 's'" style="text-align: center; padding: 30px 20px; background: white; border-radius: 12px; transition: all 0.4s ease; border: 1px solid rgba(0, 0, 0, 0.04);">
+        <div class="feature-icon-wrapper" style="width: 60px; height: 60px; margin: 0 auto 15px; background: linear-gradient(135deg, rgba(212, 160, 43, 0.1), rgba(212, 160, 43, 0.02)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <ion-icon [name]="feature.icon" style="font-size: 30px; color: #d4a02b;"></ion-icon>
+        </div>
+        <h4 style="font-size: 18px; color: #1a1a2e; margin-bottom: 8px; font-family: Verdana, Geneva, Tahoma, sans-serif;">{{ feature.title }}</h4>
+        <p style="color: #6b7280; font-size: 14px; line-height: 1.5; font-family: Verdana, Geneva, Tahoma, sans-serif;">{{ feature.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FLOATING WHATSAPP BUTTON ===== -->
+  <div class="floating-whatsapp" style="position: fixed; bottom: 30px; right: 30px; z-index: 999;">
+    <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20need%20assistance%20with%20your%20services." target="_blank" class="whatsapp-float" style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: #25D366; color: white; border-radius: 50%; font-size: 32px; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); transition: all 0.3s ease; text-decoration: none; animation: pulse-whatsapp 2s ease-in-out infinite;">
+      <ion-icon name="logo-whatsapp"></ion-icon>
+      <span class="tooltip" style="position: absolute; right: 70px; background: rgba(0, 0, 0, 0.8); color: white; padding: 8px 16px; border-radius: 8px; font-size: 14px; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s ease; font-family: Verdana, Geneva, Tahoma, sans-serif;">Chat with us!</span>
+    </a>
+  </div>
+
+  <!-- ===== FOOTER WITH ZOOM BACKGROUND ===== -->
+  <footer class="footer" style="background: #0f0f1a; color: white; padding: 60px 0 0; position: relative; overflow: hidden;">
+    <div class="footer-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.unsplash.com/photo-1582139329536-e7284fece509?w=1600&q=80'); background-size: cover; background-position: center; opacity: 0.08; animation: zoomIn 20s ease-in-out infinite; transform: scale(1); will-change: transform;"></div>
+    
+    <div class="footer-content" style="position: relative; z-index: 1; width: 92%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+      <div class="footer-brand" style="position: relative; z-index: 1;">
+        <div class="footer-logo" (click)="navigateToHome()" style="cursor: pointer;">
+          <h3 style="font-size: 22px; font-weight: 800; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">SHESHA &amp; <span style="background: linear-gradient(135deg, #d4a02b, #e8c34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">JOBELA</span></h3>
+          <small style="color: #d4a02b; letter-spacing: 4px; font-size: 10px; display: block; font-weight: 400;">DIGITAL</small>
+        </div>
+        <p class="footer-tagline" style="color: #d4a02b; font-size: 14px; font-weight: 600; margin-top: 10px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Smart Solutions. Reliable Service.</p>
+        <p class="footer-description" style="color: #94a3b8; font-size: 14px; line-height: 1.7; margin: 12px 0 20px; max-width: 300px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+          Your trusted partner for CCTV, vehicle sound, WiFi installation, 
+          event sound, and transportation services.
+        </p>
+        <div class="footer-social" style="display: flex; gap: 12px;">
+          <a href="#" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: center; color: #94a3b8; transition: 0.3s; text-decoration: none;"><ion-icon name="logo-facebook"></ion-icon></a>
+          <a href="#" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: center; color: #94a3b8; transition: 0.3s; text-decoration: none;"><ion-icon name="logo-instagram"></ion-icon></a>
+          <a href="https://wa.me/27670680043" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: center; color: #94a3b8; transition: 0.3s; text-decoration: none;"><ion-icon name="logo-whatsapp"></ion-icon></a>
+          <a href="#" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: center; color: #94a3b8; transition: 0.3s; text-decoration: none;"><ion-icon name="logo-youtube"></ion-icon></a>
+        </div>
+      </div>
+
+      <div class="footer-links" style="position: relative; z-index: 1;">
+        <h4 style="color: white; font-size: 16px; font-weight: 600; margin-bottom: 20px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Quick Links</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 12px;"><a routerLink="/home" routerLinkActive="active" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">Home</a></li>
+          <li style="margin-bottom: 12px;"><a routerLink="/services" routerLinkActive="active" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">Services</a></li>
+          <li style="margin-bottom: 12px;"><a routerLink="/estimator" routerLinkActive="active" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">Estimator</a></li>
+          <li style="margin-bottom: 12px;"><a routerLink="/booking" routerLinkActive="active" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">Book Now</a></li>
+          <li style="margin-bottom: 12px;"><a routerLink="/contact" routerLinkActive="active" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links" style="position: relative; z-index: 1;">
+        <h4 style="color: white; font-size: 16px; font-weight: 600; margin-bottom: 20px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Our Services</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 12px;"><a (click)="navigateToCCTV()" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">CCTV Installation</a></li>
+          <li style="margin-bottom: 12px;"><a (click)="navigateToVehicleSound()" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">Vehicle Sound</a></li>
+          <li style="margin-bottom: 12px;"><a (click)="navigateToWiFi()" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">WiFi Installation</a></li>
+          <li style="margin-bottom: 12px;"><a (click)="navigateToEventSound()" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">Event Sound</a></li>
+          <li style="margin-bottom: 12px;"><a (click)="navigateToTransportation()" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">Transportation</a></li>
+          <li style="margin-bottom: 12px;"><a (click)="navigateToSystemHire()" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif; cursor: pointer;">System Hire</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact" style="position: relative; z-index: 1;">
+        <h4 style="color: white; font-size: 16px; font-weight: 600; margin-bottom: 20px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Contact Info</h4>
+        <div class="footer-contact-item" style="display: flex; gap: 15px; margin-bottom: 20px;">
+          <ion-icon name="logo-whatsapp" style="color: #d4a02b; font-size: 20px; margin-top: 2px; flex-shrink: 0;"></ion-icon>
+          <div>
+            <p style="color: #94a3b8; font-size: 12px; font-weight: 400; margin: 0 0 2px; font-family: Verdana, Geneva, Tahoma, sans-serif;">WhatsApp</p>
+            <a href="https://wa.me/27670680043" target="_blank" style="color: white; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif;">067 068 0043</a>
+          </div>
+        </div>
+        <div class="footer-contact-item" style="display: flex; gap: 15px; margin-bottom: 20px;">
+          <ion-icon name="call-outline" style="color: #d4a02b; font-size: 20px; margin-top: 2px; flex-shrink: 0;"></ion-icon>
+          <div>
+            <p style="color: #94a3b8; font-size: 12px; font-weight: 400; margin: 0 0 2px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Phone</p>
+            <a href="tel:0670680043" style="color: white; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif;">067 068 0043</a>
+          </div>
+        </div>
+        <div class="footer-contact-item" style="display: flex; gap: 15px; margin-bottom: 20px;">
+          <ion-icon name="mail-outline" style="color: #d4a02b; font-size: 20px; margin-top: 2px; flex-shrink: 0;"></ion-icon>
+          <div>
+            <p style="color: #94a3b8; font-size: 12px; font-weight: 400; margin: 0 0 2px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Email</p>
+            <a href="mailto:manpzikode@gmail.com" style="color: white; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif;">manpzikode@gmail.com</a>
+          </div>
+        </div>
+        <div class="footer-contact-item" style="display: flex; gap: 15px; margin-bottom: 20px;">
+          <ion-icon name="location-outline" style="color: #d4a02b; font-size: 20px; margin-top: 2px; flex-shrink: 0;"></ion-icon>
+          <div>
+            <p style="color: #94a3b8; font-size: 12px; font-weight: 400; margin: 0 0 2px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Location</p>
+            <span style="color: white; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif;">Based in PMB</span>
+          </div>
+        </div>
+        <div class="footer-contact-item" style="display: flex; gap: 15px; margin-bottom: 20px;">
+          <ion-icon name="time-outline" style="color: #d4a02b; font-size: 20px; margin-top: 2px; flex-shrink: 0;"></ion-icon>
+          <div>
+            <p style="color: #94a3b8; font-size: 12px; font-weight: 400; margin: 0 0 2px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Working Hours</p>
+            <span style="color: white; text-decoration: none; font-size: 14px; transition: 0.3s; font-family: Verdana, Geneva, Tahoma, sans-serif;">Mon-Fri: 8AM-6PM | Sat: 9AM-4PM</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- ===== FOOTER WITH ZOOM BACKGROUND ===== -->
-    <footer class="footer">
-      <div class="footer-bg"></div>
-      
-      <div class="footer-content">
-        <div class="footer-brand">
-          <div class="footer-logo" (click)="navigateToHome()" style="cursor: pointer;">
-            <h3>SHESHA &amp; <span>JOBELA</span></h3>
-            <small>DIGITAL</small>
-          </div>
-          <p class="footer-tagline">Smart Solutions. Reliable Service.</p>
-          <p class="footer-description">
-            Your trusted partner for CCTV, vehicle sound, WiFi installation, 
-            event sound, and transportation services.
-          </p>
-          <div class="footer-social">
-            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
-            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
-            <a href="https://wa.me/27670680043" target="_blank"><ion-icon name="logo-whatsapp"></ion-icon></a>
-            <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
-          </div>
-        </div>
-
-        <div class="footer-links">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-            <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
-            <li><a routerLink="/estimator" routerLinkActive="active">Estimator</a></li>
-            <li><a routerLink="/booking" routerLinkActive="active">Book Now</a></li>
-            <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a (click)="navigateToCCTV()">CCTV Installation</a></li>
-            <li><a (click)="navigateToVehicleSound()">Vehicle Sound</a></li>
-            <li><a (click)="navigateToWiFi()">WiFi Installation</a></li>
-            <li><a (click)="navigateToEventSound()">Event Sound</a></li>
-            <li><a (click)="navigateToTransportation()">Transportation</a></li>
-            <li><a (click)="navigateToSystemHire()">System Hire</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-contact">
-          <h4>Contact Info</h4>
-          <div class="footer-contact-item">
-            <ion-icon name="logo-whatsapp"></ion-icon>
-            <div>
-              <p>WhatsApp</p>
-              <a href="https://wa.me/27670680043" target="_blank">067 068 0043</a>
-            </div>
-          </div>
-          <div class="footer-contact-item">
-            <ion-icon name="call-outline"></ion-icon>
-            <div>
-              <p>Phone</p>
-              <a href="tel:0670680043">067 068 0043</a>
-            </div>
-          </div>
-          <div class="footer-contact-item">
-            <ion-icon name="mail-outline"></ion-icon>
-            <div>
-              <p>Email</p>
-              <a href="mailto:manpzikode@gmail.com">manpzikode@gmail.com</a>
-            </div>
-          </div>
-          <div class="footer-contact-item">
-            <ion-icon name="location-outline"></ion-icon>
-            <div>
-              <p>Location</p>
-              <span>Based in PMB</span>
-            </div>
-          </div>
-          <div class="footer-contact-item">
-            <ion-icon name="time-outline"></ion-icon>
-            <div>
-              <p>Working Hours</p>
-              <span>Mon-Fri: 8AM-6PM | Sat: 9AM-4PM</span>
-            </div>
-          </div>
-        </div>
+    <div class="footer-bottom" style="padding: 20px 0; background: rgba(0, 0, 0, 0.3);">
+      <div class="footer-bottom-content" style="position: relative; z-index: 1; width: 92%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: #64748b; font-size: 13px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+        <p>&copy; 2026 SHESHA &amp; JOBELA DIGITAL. All Rights Reserved.</p>
+        <p>Built with <ion-icon name="heart-outline" style="color: #d4a02b;"></ion-icon> in PMB</p>
       </div>
-
-      <div class="footer-bottom">
-        <div class="footer-bottom-content">
-          <p>&copy; 2026 SHESHA &amp; JOBELA DIGITAL. All Rights Reserved.</p>
-          <p>Built with <ion-icon name="heart-outline"></ion-icon> in PMB</p>
-        </div>
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 </ion-content>
