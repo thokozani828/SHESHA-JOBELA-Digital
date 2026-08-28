@@ -1,4 +1,4 @@
-<!-- home.page.html - DEFINITIVE SCROLLING FIX -->
+<!-- home.page.html - DEFINITIVE SCROLLING FIX & PREMIUM BADGE REDESIGN -->
 <ion-header class="ion-no-border">
   <ion-toolbar class="custom-toolbar">
     <div class="nav-container">
@@ -48,10 +48,20 @@
       </div>
       <div class="hero-bg"></div>
       <div class="hero-content">
-        <div class="hero-badge animate-fade-in">
-          <ion-icon name="shield-checkmark-outline"></ion-icon>
-          SMART SOLUTIONS. RELIABLE SERVICE
+        
+        <!-- ===== NEW PREMIUM BADGE DESIGN ===== -->
+        <div class="premium-badge animate-fade-in">
+          <div class="badge-icon-wrapper">
+            <ion-icon name="shield-checkmark-outline"></ion-icon>
+          </div>
+          <div class="badge-text">
+            <span class="badge-title">TRUSTED TECH EXPERTS</span>
+            <span class="badge-subtitle">Smart Solutions for Your Home &amp; Business</span>
+          </div>
+          <div class="badge-dot"></div>
         </div>
+        <!-- ===== END NEW PREMIUM BADGE ===== -->
+
         <h1 class="animate-slide-up">
           SHESHA &amp; <span>JOBELA</span>
         </h1>
@@ -137,7 +147,7 @@
       <div class="about-container">
         <div class="about-image-wrapper scroll-animate-child" [style.transition-delay]="'0.1s'">
           <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800&q=80" alt="CCTV Camera Installation">
+            <img src="assets/images/ChatGPT Image Aug 28, 2026, 07_59_28 AM.png" alt="CCTV Camera Installation">
             <div class="about-image-overlay">
               <ion-icon name="shield-checkmark"></ion-icon>
               <span>Secure & Protected</span>

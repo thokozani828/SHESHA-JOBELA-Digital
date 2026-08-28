@@ -1,4 +1,4 @@
-// home.page.ts - FINAL CORRECTED STANDALONE IMPORTS
+// home.page.ts - FINAL & COMPLETELY CLEAN VERSION
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -6,14 +6,12 @@ import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 // Import ONLY the components actually used in home.page.html
-// IMPORTANT: Use the '/standalone' path for standalone components!
 import { 
   IonContent, 
   IonHeader, 
   IonToolbar, 
   IonIcon, 
-  IonButton, 
-  IonMenu
+  IonButton
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -30,8 +28,7 @@ import {
     IonHeader, 
     IonToolbar, 
     IonIcon, 
-    IonButton, 
-    IonMenu
+    IonButton
   ]
 })
 export class HomePage implements AfterViewInit, OnDestroy, OnInit {

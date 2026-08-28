@@ -355,6 +355,105 @@ section {
   padding: 40px 0;
 }
 
+/* ===== NEW PREMIUM BADGE STYLES ===== */
+.premium-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, rgba(212, 160, 43, 0.15), rgba(26, 26, 46, 0.5));
+  border: 1px solid rgba(212, 160, 43, 0.4);
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  max-width: 420px;
+}
+
+.premium-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 100%;
+  }
+}
+
+.badge-icon-wrapper {
+  background: linear-gradient(135deg, #d4a02b, #e8c34a);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(212, 160, 43, 0.6);
+  flex-shrink: 0;
+}
+
+.badge-icon-wrapper ion-icon {
+  font-size: 22px;
+  color: #1a1a2e;
+}
+
+.badge-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-title {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #d4a02b;
+  text-transform: uppercase;
+}
+
+.badge-subtitle {
+  font-size: 11px;
+  color: #ccc;
+  letter-spacing: 0.5px;
+}
+
+.badge-dot {
+  position: absolute;
+  right: 12px;
+  width: 6px;
+  height: 6px;
+  background: #2ecc71;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* ===== END NEW PREMIUM BADGE STYLES ===== */
+
+/* Keep old badge for compatibility (if used elsewhere) */
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -1385,5 +1484,19 @@ section {
     top: -25%;
     left: -25%;
     animation: heroZoom 18s ease-in-out infinite;
+  }
+
+  /* Responsive Badge */
+  .premium-badge {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    padding: 15px;
+    width: 90%;
+    max-width: 300px;
+  }
+  
+  .badge-dot {
+    display: none;
   }
 }
