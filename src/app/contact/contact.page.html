@@ -1,4 +1,4 @@
-<!-- contact.page.html - Complete Contact Page (Fast Loading) -->
+<!-- contact.page.html - Complete Contact Page (Fast Loading & Mobile Friendly) -->
 <ion-header class="ion-no-border">
   <ion-toolbar class="custom-toolbar">
     <div class="nav-container">
@@ -10,6 +10,7 @@
         </div>
       </div>
 
+      <!-- Desktop Nav -->
       <div class="nav-menu">
         <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <ion-icon name="home-outline"></ion-icon> Home
@@ -32,11 +33,34 @@
         <ion-icon name="call-outline"></ion-icon> 067 068 0043
       </a>
 
+      <!-- Mobile Menu Button -->
       <ion-button class="menu-btn" fill="clear" (click)="toggleMenu()">
         <ion-icon name="menu-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </div>
   </ion-toolbar>
+
+  <!-- Hidden Mobile Menu -->
+  <div class="mobile-menu" [class.active]="mobileMenuOpen">
+    <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="home-outline"></ion-icon> Home
+    </a>
+    <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="information-circle-outline"></ion-icon> About
+    </a>
+    <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="grid-outline"></ion-icon> Services
+    </a>
+    <a routerLink="/booking" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="calendar-outline"></ion-icon> Book Now
+    </a>
+    <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="call-outline"></ion-icon> Contact
+    </a>
+    <a href="tel:0670680043" class="mobile-whatsapp" (click)="closeMenu()">
+      <ion-icon name="call-outline"></ion-icon> Call Us Now
+    </a>
+  </div>
 </ion-header>
 
 <ion-content [fullscreen]="true">

@@ -1,4 +1,4 @@
-/* contact.page.ts - Optimized for Speed & Clean Imports */
+/* contact.page.ts - Optimized for Speed, Clean Imports & Mobile Menu */
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -21,6 +21,9 @@ import {
 })
 export class ContactPage implements OnInit {
   
+  // Mobile Menu State
+  mobileMenuOpen: boolean = false;
+
   // FAQ Data
   faqs = [
     { question: 'How do I get a quote?', answer: 'You can get a free quote by filling out our contact form, calling us directly, or sending us an email. We\'ll respond within 24 hours.', open: false },
@@ -57,6 +60,24 @@ export class ContactPage implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  // ============================================
+  // MOBILE MENU TOGGLE
+  // ============================================
+  
+  toggleMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+    if (this.mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  closeMenu() {
+    this.mobileMenuOpen = false;
+    document.body.style.overflow = '';
+  }
 
   // ============================================
   // FORM SUBMISSION
@@ -141,9 +162,5 @@ export class ContactPage implements OnInit {
 
   toggleFaq(index: number) {
     this.faqs[index].open = !this.faqs[index].open;
-  }
-
-  toggleMenu() {
-    console.log('Menu toggled');
   }
 }

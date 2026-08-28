@@ -52,7 +52,6 @@ ion-content.scrolling-content .scroll-content {
   position: relative;
 }
 
-/* Ensure content flows naturally */
 section {
   display: block;
   width: 100%;
@@ -115,7 +114,6 @@ section {
   font-weight: 400;
 }
 
-/* Desktop Navigation */
 .nav-menu {
   display: flex;
   gap: 25px;
@@ -208,7 +206,6 @@ section {
   color: white;
 }
 
-/* Hamburger Menu Button */
 .menu-btn {
   display: none;
   --color: white;
@@ -1373,4 +1370,13 @@ section {
     flex-direction: column;
     align-items: center;
   }
+}
+
+/* =====================================
+   GITHUB PAGES EMERGENCY FIX
+   (Forces all sections to be VISIBLE immediately)
+===================================== */
+.scroll-animate, .scroll-animate-child {
+  opacity: 1 !important;
+  transform: none !important;
 }

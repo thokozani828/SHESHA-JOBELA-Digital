@@ -1,4 +1,4 @@
-/* booking.page.scss - Complete Booking Page Styling with Redesigned WhatsApp Section - Verdana Font */
+/* booking.page.scss - Complete Booking Page Styling with Mobile Menu */
 
 :host {
   --primary: #1a1a2e;
@@ -29,6 +29,68 @@
 ion-content {
   --background: #ffffff;
   font-family: var(--font-primary);
+}
+
+/* =====================================
+   MOBILE MENU (Added for Mobile)
+===================================== */
+.mobile-menu {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  right: 0;
+  background: rgba(26, 26, 46, 0.98);
+  padding: 15px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid rgba(212, 160, 43, 0.2);
+  z-index: 200;
+  backdrop-filter: blur(10px);
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-menu a {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-family: var(--font-primary);
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active {
+  background: rgba(212, 160, 43, 0.1);
+  color: var(--accent);
+}
+
+.mobile-menu a ion-icon {
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.mobile-menu a.mobile-whatsapp {
+  background: #25D366;
+  color: white;
+  justify-content: center;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.mobile-menu a.mobile-whatsapp ion-icon {
+  color: white;
+}
+
+.mobile-menu a.mobile-whatsapp:hover {
+  background: #128C7E;
 }
 
 /* =====================================

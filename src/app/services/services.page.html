@@ -1,4 +1,4 @@
-<!-- services.page.html - With Service Details Modal (Fast Loading) -->
+<!-- services.page.html - With Service Details Modal (Fully Mobile Friendly) -->
 <ion-header class="ion-no-border">
   <ion-toolbar class="custom-toolbar">
     <div class="nav-container">
@@ -35,12 +35,34 @@
         <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp Us
       </a>
 
-      <!-- Mobile Menu -->
+      <!-- Mobile Menu Button -->
       <ion-button class="menu-btn" fill="clear" (click)="toggleMenu()">
         <ion-icon name="menu-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </div>
   </ion-toolbar>
+
+  <!-- Hidden Mobile Menu -->
+  <div class="mobile-menu" [class.active]="mobileMenuOpen">
+    <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="home-outline"></ion-icon> Home
+    </a>
+    <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="information-circle-outline"></ion-icon> About
+    </a>
+    <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="grid-outline"></ion-icon> Services
+    </a>
+    <a routerLink="/booking" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="calendar-outline"></ion-icon> Book Now
+    </a>
+    <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="call-outline"></ion-icon> Contact
+    </a>
+    <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="mobile-whatsapp" (click)="closeMenu()">
+      <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp Us
+    </a>
+  </div>
 </ion-header>
 
 <ion-content [fullscreen]="true">

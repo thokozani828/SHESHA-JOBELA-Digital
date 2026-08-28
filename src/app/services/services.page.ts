@@ -1,4 +1,4 @@
-// services.page.ts - Optimized for Speed & Clean Imports
+// services.page.ts - Optimized for Speed & Mobile Menu
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
@@ -20,6 +20,9 @@ import {
 })
 export class ServicesPage implements OnInit {
   
+  // Mobile Menu State
+  mobileMenuOpen: boolean = false;
+
   // Modal state
   showServiceModal: boolean = false;
   selectedService: any = null;
@@ -200,6 +203,24 @@ export class ServicesPage implements OnInit {
   ngOnInit() {}
 
   // ============================================
+  // MOBILE MENU TOGGLE
+  // ============================================
+  
+  toggleMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+    if (this.mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  closeMenu() {
+    this.mobileMenuOpen = false;
+    document.body.style.overflow = '';
+  }
+
+  // ============================================
   // SERVICE MODAL METHODS
   // ============================================
   
@@ -241,9 +262,5 @@ export class ServicesPage implements OnInit {
       'system-hire': '/system-hire'
     };
     this.router.navigate([routeMap[route] || '/']);
-  }
-
-  toggleMenu() {
-    console.log('Menu toggled');
   }
 }
