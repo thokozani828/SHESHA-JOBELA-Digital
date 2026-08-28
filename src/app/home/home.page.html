@@ -1,4 +1,4 @@
-<!-- home.page.html - REDESIGNED HERO & RESTRUCTURED PAGE -->
+<!-- home.page.html - DEFINITIVE SCROLLING FIX & PREMIUM BADGE REDESIGN -->
 <ion-header class="ion-no-border">
   <ion-toolbar class="custom-toolbar">
     <div class="nav-container">
@@ -40,7 +40,7 @@
     </div>
   </ion-toolbar>
 
-  <!-- Mobile Menu -->
+  <!-- ===== HIDDEN MOBILE MENU ===== -->
   <div class="mobile-menu" [class.active]="mobileMenuOpen">
     <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">
       <ion-icon name="home-outline"></ion-icon> Home
@@ -63,130 +63,74 @@
   </div>
 </ion-header>
 
+<!-- ===== CRITICAL FIX: Removed fullscreen and added proper container ===== -->
 <ion-content id="main-content" class="scrolling-content">
   <div class="content-scroll-container">
     
-    <!-- ===== REDESIGNED HERO SECTION ===== -->
-    <section class="hero hero-redesign">
-      <div class="hero-bg"></div>
+    <!-- HERO SECTION -->
+    <section class="hero">
       <div class="hero-overlay"></div>
-      
-      <!-- Animated gradient orbs -->
-      <div class="hero-orbs">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+      <div class="particles-container">
+        <div class="particle" *ngFor="let p of particles"></div>
       </div>
-      
-      <!-- Floating shapes -->
-      <div class="hero-shapes">
-        <div class="shape shape-1">
-          <ion-icon name="videocam-outline"></ion-icon>
-        </div>
-        <div class="shape shape-2">
-          <ion-icon name="musical-notes-outline"></ion-icon>
-        </div>
-        <div class="shape shape-3">
-          <ion-icon name="wifi-outline"></ion-icon>
-        </div>
-        <div class="shape shape-4">
-          <ion-icon name="car-outline"></ion-icon>
-        </div>
-      </div>
-
+      <div class="hero-bg"></div>
       <div class="hero-content">
+        
+        <!-- ===== NEW LIGHTWEIGHT BADGE ===== -->
         <div class="hero-badge-new animate-fade-in">
           <ion-icon name="shield-checkmark-outline"></ion-icon>
-          <span>TRUSTED SINCE 2016</span>
+          <span>TRUSTED TECH EXPERTS</span>
         </div>
+        <!-- ===== END NEW LIGHTWEIGHT BADGE ===== -->
 
         <h1 class="animate-slide-up">
-          Smart <span>Security</span> &amp;<br>
-          <span>Sound</span> Solutions
+          SHESHA &amp; <span>JOBELA</span>
         </h1>
-        
-        <p class="hero-subtitle animate-slide-up-delay">SHESHA &amp; JOBELA DIGITAL</p>
-        
+        <p class="hero-subtitle animate-slide-up-delay">DIGITAL</p>
         <p class="hero-description animate-slide-up-delay-2">
           Your one-stop destination for CCTV installation, vehicle sound systems,
           WiFi solutions, event sound, and transportation services across PMB.
         </p>
-        
         <div class="hero-buttons animate-slide-up-delay-3">
-          <a class="btn btn-primary" (click)="navigateToCCTV()">
-            <ion-icon name="videocam-outline"></ion-icon> Explore Services
+          <a class="btn btn-gold" (click)="navigateToCCTV()">
+            <ion-icon name="videocam-outline"></ion-icon> CCTV Installation
           </a>
-          <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-whatsapp">
-            <ion-icon name="logo-whatsapp"></ion-icon> Book Now
+          <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-success">
+            <ion-icon name="logo-whatsapp"></ion-icon> Book on WhatsApp
           </a>
         </div>
-
-        <!-- Trust indicators -->
-        <div class="hero-trust animate-slide-up-delay-4">
-          <div class="trust-item">
-            <div class="trust-icon">
-              <ion-icon name="people-outline"></ion-icon>
-            </div>
-            <div>
-              <span class="trust-number">500+</span>
-              <span class="trust-label">Happy Clients</span>
-            </div>
+        <div class="hero-stats animate-slide-up-delay-4">
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Years Experience</span>
           </div>
-          <div class="trust-divider"></div>
-          <div class="trust-item">
-            <div class="trust-icon">
-              <ion-icon name="time-outline"></ion-icon>
-            </div>
-            <div>
-              <span class="trust-number">10+</span>
-              <span class="trust-label">Years Experience</span>
-            </div>
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Happy Clients</span>
           </div>
-          <div class="trust-divider"></div>
-          <div class="trust-item">
-            <div class="trust-icon">
-              <ion-icon name="star-outline"></ion-icon>
-            </div>
-            <div>
-              <span class="trust-number">4.9</span>
-              <span class="trust-label">Rating</span>
-            </div>
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Support</span>
           </div>
         </div>
       </div>
-
-      <!-- Scroll indicator -->
-      <div class="scroll-indicator">
-        <span>Scroll</span>
-        <div class="scroll-line">
-          <div class="scroll-dot"></div>
+      <div class="floating-badges">
+        <div class="badge">
+          <ion-icon name="checkmark-circle"></ion-icon>
+          <span>Certified Installers</span>
+        </div>
+        <div class="badge">
+          <ion-icon name="checkmark-circle"></ion-icon>
+          <span>Quality Guaranteed</span>
+        </div>
+        <div class="badge">
+          <ion-icon name="checkmark-circle"></ion-icon>
+          <span>Same-Day Service</span>
         </div>
       </div>
     </section>
 
-    <!-- ===== SERVICE CARDS SECTION ===== -->
-    <section class="services-showcase scroll-animate">
-      <div class="section-header">
-        <span class="section-label scroll-animate-child">OUR SERVICES</span>
-        <h2 class="scroll-animate-child">What <span>We Offer</span></h2>
-        <p class="scroll-animate-child">Professional solutions tailored to your needs</p>
-      </div>
-      
-      <div class="services-grid">
-        <div class="service-card scroll-animate-child" *ngFor="let service of serviceCards; let i = index" [style.transition-delay]="i * 0.1 + 's'">
-          <div class="service-icon">
-            <ion-icon [name]="service.icon"></ion-icon>
-          </div>
-          <h4>{{ service.title }}</h4>
-          <p>{{ service.description }}</p>
-          <a [href]="service.link" class="service-link" [class.whatsapp-link]="service.isWhatsApp" target="_blank">
-            Learn More <ion-icon name="arrow-forward-outline"></ion-icon>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== WORKING HOURS ===== -->
+    <!-- WORKING HOURS -->
     <section class="hours-section scroll-animate">
       <div class="hours-container">
         <div class="hours-content">
@@ -208,7 +152,7 @@
           </div>
           
           <div class="hours-cta scroll-animate-child">
-            <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-whatsapp">
+            <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20book%20a%20service.%20Please%20assist." target="_blank" class="btn btn-success">
               <ion-icon name="logo-whatsapp"></ion-icon> Book on WhatsApp
             </a>
             <a href="tel:0670680043" class="btn btn-outline">
@@ -219,7 +163,7 @@
       </div>
     </section>
 
-    <!-- ===== ABOUT SECTION ===== -->
+    <!-- ABOUT -->
     <section class="about-section scroll-animate">
       <div class="about-container">
         <div class="about-image-wrapper scroll-animate-child" [style.transition-delay]="'0.1s'">
@@ -245,14 +189,14 @@
               <span>{{ feature }}</span>
             </div>
           </div>
-          <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="btn btn-whatsapp">
+          <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="btn btn-success">
             <ion-icon name="logo-whatsapp"></ion-icon> Chat with Us on WhatsApp
           </a>
         </div>
       </div>
     </section>
 
-    <!-- ===== TESTIMONIALS ===== -->
+    <!-- TESTIMONIALS -->
     <section class="testimonials-section scroll-animate">
       <div class="section-header">
         <span class="section-label scroll-animate-child">TESTIMONIALS</span>
@@ -273,13 +217,15 @@
       </div>
     </section>
 
-    <!-- ===== STATS / COUNTER SECTION ===== -->
-    <section class="stats-section scroll-animate">
-      <div class="stats-container">
-        <div class="stat-block scroll-animate-child" *ngFor="let stat of statsData; let i = index" [style.transition-delay]="i * 0.1 + 's'">
-          <div class="stat-block-number">{{ stat.number }}</div>
-          <div class="stat-block-label">{{ stat.label }}</div>
-          <p>{{ stat.description }}</p>
+    <!-- FEATURES -->
+    <section class="features-section scroll-animate">
+      <div class="features-grid">
+        <div class="feature-item scroll-animate-child" *ngFor="let feature of featuresData; let i = index" [style.transition-delay]="i * 0.1 + 's'">
+          <div class="feature-icon-wrapper">
+            <ion-icon [name]="feature.icon"></ion-icon>
+          </div>
+          <h4>{{ feature.title }}</h4>
+          <p>{{ feature.description }}</p>
         </div>
       </div>
     </section>

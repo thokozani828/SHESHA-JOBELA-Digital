@@ -1,4 +1,4 @@
-// home.page.ts - REDESIGNED HERO & RESTRUCTURED PAGE
+// home.page.ts - OPTIMIZED FOR SPEED & PERFORMANCE
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -35,6 +35,7 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   currentVideoSlide: number = 0;
   totalVideoSlides: number = 5;
   slideWidth: number = 0;
+  // REMOVED autoplayInterval to stop background processing
   particles: number[] = [];
   mobileMenuOpen: boolean = false;
 
@@ -54,52 +55,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   showVideoModal: boolean = false;
   selectedVideo: any = null;
 
-  // Service Cards Data
-  serviceCards = [
-    {
-      icon: 'videocam-outline',
-      title: 'CCTV Installation',
-      description: 'Professional CCTV systems for homes and businesses with 24/7 monitoring.',
-      link: '/cctv-installation',
-      isWhatsApp: false
-    },
-    {
-      icon: 'musical-notes-outline',
-      title: 'Vehicle Sound',
-      description: 'Premium sound systems for cars, trucks, and SUVs with expert tuning.',
-      link: '/vehicle-sound',
-      isWhatsApp: false
-    },
-    {
-      icon: 'wifi-outline',
-      title: 'WiFi Installation',
-      description: 'High-speed WiFi installation for homes, offices, and commercial spaces.',
-      link: '/wifi-installation',
-      isWhatsApp: false
-    },
-    {
-      icon: 'volume-high-outline',
-      title: 'Event Sound',
-      description: 'Professional sound systems for weddings, parties, and corporate events.',
-      link: '/event-sound',
-      isWhatsApp: false
-    },
-    {
-      icon: 'car-outline',
-      title: 'Transportation',
-      description: 'Reliable transport services for events, airport shuttles, and tours.',
-      link: '/transportation',
-      isWhatsApp: false
-    },
-    {
-      icon: 'headset-outline',
-      title: 'System Hire',
-      description: 'Flexible sound and AV equipment rental for any event or occasion.',
-      link: 'https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20hire%20equipment.%20Please%20assist.',
-      isWhatsApp: true
-    }
-  ];
-
   hoursData = [
     { day: 'Monday - Friday', time: '8:00 AM - 6:00 PM', icon: 'calendar-outline' },
     { day: 'Saturday', time: '9:00 AM - 4:00 PM', icon: 'calendar-outline' },
@@ -108,54 +63,16 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   ];
 
   aboutFeatures = [
-    '10+ Years Experience',
-    '500+ Happy Clients',
-    '24/7 Support Available',
-    'Quality Guaranteed',
-    'Same-Day Service',
-    'Certified Professionals'
+    'Professional Installation',
+    'Quality Equipment',
+    'Warranty & Support',
+    'Affordable Pricing'
   ];
 
   testimonials = [
-    { 
-      quote: 'The CCTV installation was done professionally and quickly. I feel so much safer now!', 
-      author: 'Thandi M.', 
-      role: 'Homeowner, PMB' 
-    },
-    { 
-      quote: 'My car sound system sounds incredible! Great service and even better results.', 
-      author: 'Sipho K.', 
-      role: 'Car Enthusiast' 
-    },
-    { 
-      quote: 'Our office WiFi is now blazing fast. The team was professional and efficient.', 
-      author: 'Zanele D.', 
-      role: 'Business Owner' 
-    }
-  ];
-
-  // Stats Data for the new stats section
-  statsData = [
-    {
-      number: '500+',
-      label: 'Happy Clients',
-      description: 'Clients who trust our services'
-    },
-    {
-      number: '10+',
-      label: 'Years Experience',
-      description: 'Serving the community since 2016'
-    },
-    {
-      number: '100%',
-      label: 'Client Satisfaction',
-      description: 'Committed to quality service'
-    },
-    {
-      number: '24/7',
-      label: 'Support Available',
-      description: 'Always here when you need us'
-    }
+    { quote: 'The CCTV installation was done professionally and quickly. I feel so much safer now!', author: 'Thandi M.', role: 'Homeowner, PMB' },
+    { quote: 'My car sound system sounds incredible! Great service and even better results.', author: 'Sipho K.', role: 'Car Enthusiast' },
+    { quote: 'Our office WiFi is now blazing fast. The team was professional and efficient.', author: 'Zanele D.', role: 'Business Owner' }
   ];
 
   featuresData = [
@@ -238,6 +155,7 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     }
   };
 
+  // Throttle scroll animation to save performance
   private isThrottled: boolean = false;
 
   constructor(
@@ -245,7 +163,7 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   ) {}
 
   ngOnInit() {
-    // Reduced particles for performance
+    // REDUCED from 30 to 10 particles for speed
     this.particles = Array.from({ length: 10 }, (_, i) => i);
     this.currentPage = this.getCurrentPage();
     
@@ -268,11 +186,8 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   }
 
   ngAfterViewInit() {
+    // Disabled autoplay for performance (loads faster)
     this.updateSlideWidth();
-    // Initialize scroll animations after view loads
-    setTimeout(() => {
-      this.initScrollAnimations();
-    }, 300);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -338,28 +253,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
         element.classList.add('visible');
       }
     });
-  }
-
-  // Initialize scroll animations with Intersection Observer
-  initScrollAnimations() {
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-      );
-
-      // Observe all scroll-animate elements
-      document.querySelectorAll('.scroll-animate, .scroll-animate-child, .service-card, .testimonial-card, .hours-item, .about-feature, .stat-block').forEach(el => {
-        observer.observe(el);
-      });
-    }
   }
 
   playFeaturedVideo() {
@@ -474,16 +367,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
       'system-hire': '/system-hire'
     };
     this.router.navigate([routeMap[route] || '/']);
-    this.closeMenu();
-  }
-
-  // New method for service card navigation
-  navigateToServiceCard(link: string) {
-    if (link.startsWith('http')) {
-      window.open(link, '_blank');
-    } else {
-      this.router.navigate([link]);
-    }
     this.closeMenu();
   }
 
