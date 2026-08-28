@@ -10,9 +10,13 @@
         </div>
       </div>
 
+      <!-- Desktop Navigation -->
       <div class="nav-menu">
         <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <ion-icon name="home-outline"></ion-icon> Home
+        </a>
+        <a routerLink="/about" routerLinkActive="active">
+          <ion-icon name="information-circle-outline"></ion-icon> About
         </a>
         <a routerLink="/services" routerLinkActive="active">
           <ion-icon name="grid-outline"></ion-icon> Services
@@ -29,11 +33,34 @@
         <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp Us
       </a>
 
+      <!-- Mobile Menu Button -->
       <ion-button class="menu-btn" fill="clear" (click)="toggleMenu()">
         <ion-icon name="menu-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </div>
   </ion-toolbar>
+
+  <!-- ===== HIDDEN MOBILE MENU ===== -->
+  <div class="mobile-menu" [class.active]="mobileMenuOpen">
+    <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="home-outline"></ion-icon> Home
+    </a>
+    <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="information-circle-outline"></ion-icon> About
+    </a>
+    <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="grid-outline"></ion-icon> Services
+    </a>
+    <a routerLink="/booking" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="calendar-outline"></ion-icon> Book Now
+    </a>
+    <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="call-outline"></ion-icon> Contact
+    </a>
+    <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="mobile-whatsapp" (click)="closeMenu()">
+      <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp Us
+    </a>
+  </div>
 </ion-header>
 
 <!-- ===== CRITICAL FIX: Removed fullscreen and added proper container ===== -->
@@ -49,18 +76,12 @@
       <div class="hero-bg"></div>
       <div class="hero-content">
         
-        <!-- ===== NEW PREMIUM BADGE DESIGN ===== -->
-        <div class="premium-badge animate-fade-in">
-          <div class="badge-icon-wrapper">
-            <ion-icon name="shield-checkmark-outline"></ion-icon>
-          </div>
-          <div class="badge-text">
-            <span class="badge-title">TRUSTED TECH EXPERTS</span>
-            <span class="badge-subtitle">Smart Solutions for Your Home &amp; Business</span>
-          </div>
-          <div class="badge-dot"></div>
+        <!-- ===== NEW LIGHTWEIGHT BADGE ===== -->
+        <div class="hero-badge-new animate-fade-in">
+          <ion-icon name="shield-checkmark-outline"></ion-icon>
+          <span>TRUSTED TECH EXPERTS</span>
         </div>
-        <!-- ===== END NEW PREMIUM BADGE ===== -->
+        <!-- ===== END NEW LIGHTWEIGHT BADGE ===== -->
 
         <h1 class="animate-slide-up">
           SHESHA &amp; <span>JOBELA</span>
@@ -244,6 +265,7 @@
           <h4>Quick Links</h4>
           <ul>
             <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+            <li><a routerLink="/about" routerLinkActive="active">About</a></li>
             <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
             <li><a routerLink="/estimator" routerLinkActive="active">Estimator</a></li>
             <li><a routerLink="/booking" routerLinkActive="active">Book Now</a></li>
