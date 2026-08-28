@@ -1,3 +1,11 @@
-github: thokozani828
-buy_me_a_coffee: YOUR_USERNAME
-custom: ["https://your-payment-link.com"]
+name: Funding Check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  funding:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate funding metadata
+        run: echo "Funding config is defined in .github/FUNDING.yml"
