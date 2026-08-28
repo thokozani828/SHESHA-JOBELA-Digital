@@ -1,4 +1,4 @@
-<!-- services.page.html - With Service Details Modal & Images -->
+<!-- services.page.html - With Service Details Modal (Fast Loading) -->
 <ion-header class="ion-no-border">
   <ion-toolbar class="custom-toolbar">
     <div class="nav-container">
@@ -15,6 +15,9 @@
       <div class="nav-menu">
         <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <ion-icon name="home-outline"></ion-icon> Home
+        </a>
+        <a routerLink="/about" routerLinkActive="active">
+          <ion-icon name="information-circle-outline"></ion-icon> About
         </a>
         <a routerLink="/services" routerLinkActive="active">
           <ion-icon name="grid-outline"></ion-icon> Services
@@ -40,15 +43,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)" scrollEvents="true">
+<ion-content [fullscreen]="true">
   
   <!-- ===== HERO SECTION ===== -->
   <section class="services-hero">
     <div class="services-hero-bg"></div>
     <div class="services-hero-overlay"></div>
-    <div class="particles-container">
-      <div class="particle" *ngFor="let p of particles"></div>
-    </div>
     <div class="services-hero-content">
       <span class="hero-badge animate-fade-in">
         <ion-icon name="grid-outline"></ion-icon>
@@ -63,22 +63,16 @@
   </section>
 
   <!-- ===== SERVICES GRID ===== -->
-  <section class="all-services-section scroll-animate">
+  <section class="all-services-section">
     <div class="section-header">
-      <span class="section-label scroll-animate-child">OUR EXPERTISE</span>
-      <h2 class="scroll-animate-child">Explore Our <span>Services</span></h2>
-      <p class="scroll-animate-child">Click any card to view full details</p>
+      <span class="section-label">OUR EXPERTISE</span>
+      <h2>Explore Our <span>Services</span></h2>
+      <p>Click any card to view full details</p>
     </div>
 
     <div class="services-container">
-      <div class="service-card scroll-animate-child" *ngFor="let service of servicesData; let i = index" 
-           [style.transition-delay]="i * 0.08 + 's'"
+      <div class="service-card" *ngFor="let service of servicesData; let i = index" 
            (click)="openServiceDetails(service)">
-        
-        <div class="service-click-hint">
-          <ion-icon name="hand-left-outline"></ion-icon>
-          <span>Click to explore</span>
-        </div>
         
         <div class="service-icon" [style.background]="service.gradient || 'var(--gradient-gold)'">
           <ion-icon [name]="service.icon"></ion-icon>
@@ -105,7 +99,7 @@
     </div>
 
     <!-- WhatsApp CTA -->
-    <div class="whatsapp-cta-container scroll-animate-child">
+    <div class="whatsapp-cta-container">
       <div class="whatsapp-cta-card">
         <div class="whatsapp-cta-content">
           <ion-icon name="logo-whatsapp" class="whatsapp-big-icon"></ion-icon>
@@ -126,14 +120,14 @@
   </section>
 
   <!-- ===== FEATURES ===== -->
-  <section class="features-section scroll-animate">
+  <section class="features-section">
     <div class="section-header">
-      <span class="section-label scroll-animate-child">WHY US</span>
-      <h2 class="scroll-animate-child">Built on <span>Trust</span> &amp; <span>Quality</span></h2>
-      <p class="scroll-animate-child">What makes us your first choice</p>
+      <span class="section-label">WHY US</span>
+      <h2>Built on <span>Trust</span> &amp; <span>Quality</span></h2>
+      <p>What makes us your first choice</p>
     </div>
     <div class="features-grid">
-      <div class="feature-item scroll-animate-child" *ngFor="let feature of featuresData; let i = index" [style.transition-delay]="i * 0.1 + 's'">
+      <div class="feature-item" *ngFor="let feature of featuresData; let i = index">
         <div class="feature-icon-wrapper">
           <ion-icon [name]="feature.icon"></ion-icon>
         </div>
@@ -252,6 +246,7 @@
         <h4>Quick Links</h4>
         <ul>
           <li><a routerLink="/home">Home</a></li>
+          <li><a routerLink="/about">About</a></li>
           <li><a routerLink="/services">Services</a></li>
           <li><a routerLink="/estimator">Estimator</a></li>
           <li><a routerLink="/booking">Book Now</a></li>

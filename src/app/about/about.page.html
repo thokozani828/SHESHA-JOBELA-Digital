@@ -1,0 +1,264 @@
+<!-- about.page.html - Fully Mobile Friendly & Optimized (Home Page Footer) -->
+<ion-header class="ion-no-border">
+  <ion-toolbar class="custom-toolbar">
+    <div class="nav-container">
+      <div class="logo" (click)="navigateToHome()" style="cursor: pointer;">
+        <div class="logo-symbol">SJ</div>
+        <div>
+          SHESHA &amp; JOBELA
+          <small>DIGITAL</small>
+        </div>
+      </div>
+
+      <!-- Desktop Nav -->
+      <div class="nav-menu">
+        <a routerLink="/home" routerLinkActive="active">
+          <ion-icon name="home-outline"></ion-icon> Home
+        </a>
+        <a routerLink="/about" routerLinkActive="active">
+          <ion-icon name="information-circle-outline"></ion-icon> About
+        </a>
+        <a routerLink="/services" routerLinkActive="active">
+          <ion-icon name="grid-outline"></ion-icon> Services
+        </a>
+        <a routerLink="/booking" routerLinkActive="active">
+          <ion-icon name="calendar-outline"></ion-icon> Book Now
+        </a>
+        <a routerLink="/contact" routerLinkActive="active">
+          <ion-icon name="call-outline"></ion-icon> Contact
+        </a>
+      </div>
+
+      <a class="call-btn whatsapp-btn" href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank">
+        <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp Us
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <ion-button class="menu-btn" fill="clear" (click)="toggleMenu()">
+        <ion-icon name="menu-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+
+  <!-- Hidden Mobile Menu -->
+  <div class="mobile-menu" [class.active]="mobileMenuOpen">
+    <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="home-outline"></ion-icon> Home
+    </a>
+    <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="information-circle-outline"></ion-icon> About
+    </a>
+    <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="grid-outline"></ion-icon> Services
+    </a>
+    <a routerLink="/booking" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="calendar-outline"></ion-icon> Book Now
+    </a>
+    <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="call-outline"></ion-icon> Contact
+    </a>
+    <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="mobile-whatsapp" (click)="closeMenu()">
+      <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp Us
+    </a>
+  </div>
+</ion-header>
+
+<ion-content class="about-content">
+  
+  <!-- HERO SECTION -->
+  <section class="about-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="section-label">ABOUT US</span>
+      <h1>We Are <span>SHESHA &amp; JOBELA</span></h1>
+      <p>Your trusted partner in security, sound, and digital solutions.</p>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-text">
+        <span class="section-label">OUR STORY</span>
+        <h2>Empowering Communities with <span>Smart Technology</span></h2>
+        <p>
+          Founded in Pietermaritzburg, SHESHA &amp; JOBELA DIGITAL was born from a 
+          passion to make homes and businesses safer, smarter, and more connected. 
+          We have spent over 10 years mastering the art of CCTV installation, 
+          vehicle sound systems, WiFi networks, and event sound solutions.
+        </p>
+        <p>
+          Our mission is simple: provide world-class technology solutions 
+          with a personal, local touch. We treat every project like it’s our own 
+          home, ensuring that our clients feel secure and confident in our work.
+        </p>
+      </div>
+      <div class="story-image">
+        <!-- Use your PC image here (put it in src/assets/images/) -->
+        <img src="assets/images/about-team.jpg" alt="SHESHA & JOBELA Team">
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item" *ngFor="let stat of stats">
+        <div class="stat-number">{{ stat.value }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE VALUES -->
+  <section class="values-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">WHAT WE STAND FOR</span>
+        <h2>Our Core <span>Values</span></h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card" *ngFor="let value of coreValues">
+          <div class="value-icon">
+            <ion-icon [name]="value.icon"></ion-icon>
+          </div>
+          <h3>{{ value.title }}</h3>
+          <p>{{ value.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="why-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">THE DIFFERENCE</span>
+        <h2>Why Choose <span>Us</span></h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card" *ngFor="let item of whyChooseUs">
+          <div class="why-icon">
+            <ion-icon [name]="item.icon"></ion-icon>
+          </div>
+          <div>
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Ready to Get Started?</h2>
+      <p>Contact us today for a free quote on your next project.</p>
+      <div class="cta-buttons">
+        <a class="btn btn-gold" (click)="navigateToServices()">
+          <ion-icon name="grid-outline"></ion-icon> View Services
+        </a>
+        <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="btn btn-success">
+          <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER (SAME DESIGN AS HOME PAGE) ===== -->
+  <footer class="footer">
+    <div class="footer-bg"></div>
+    
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo" (click)="navigateToHome()" style="cursor: pointer;">
+          <h3>SHESHA &amp; <span>JOBELA</span></h3>
+          <small>DIGITAL</small>
+        </div>
+        <p class="footer-tagline">Smart Solutions. Reliable Service.</p>
+        <p class="footer-description">
+          Your trusted partner for CCTV, vehicle sound, WiFi installation, 
+          event sound, and transportation services.
+        </p>
+        <div class="footer-social">
+          <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+          <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+          <a href="https://wa.me/27670680043" target="_blank"><ion-icon name="logo-whatsapp"></ion-icon></a>
+          <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+          <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+          <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
+          <li><a routerLink="/estimator" routerLinkActive="active">Estimator</a></li>
+          <li><a routerLink="/booking" routerLinkActive="active">Book Now</a></li>
+          <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Our Services</h4>
+        <ul>
+          <li><a (click)="navigateToCCTV()">CCTV Installation</a></li>
+          <li><a (click)="navigateToVehicleSound()">Vehicle Sound</a></li>
+          <li><a (click)="navigateToWiFi()">WiFi Installation</a></li>
+          <li><a (click)="navigateToEventSound()">Event Sound</a></li>
+          <li><a (click)="navigateToTransportation()">Transportation</a></li>
+          <li><a (click)="navigateToSystemHire()">System Hire</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <div class="footer-contact-item">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+          <div>
+            <p>WhatsApp</p>
+            <a href="https://wa.me/27670680043" target="_blank">067 068 0043</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="call-outline"></ion-icon>
+          <div>
+            <p>Phone</p>
+            <a href="tel:0670680043">067 068 0043</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="mail-outline"></ion-icon>
+          <div>
+            <p>Email</p>
+            <a href="mailto:manpzikode@gmail.com">manpzikode@gmail.com</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="location-outline"></ion-icon>
+          <div>
+            <p>Location</p>
+            <span>Based in PMB</span>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <ion-icon name="time-outline"></ion-icon>
+          <div>
+            <p>Working Hours</p>
+            <span>Mon-Fri: 8AM-6PM | Sat: 9AM-4PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p>&copy; 2026 SHESHA &amp; JOBELA DIGITAL. All Rights Reserved.</p>
+        <p>Built with <ion-icon name="heart-outline"></ion-icon> in Durban</p>
+      </div>
+    </div>
+  </footer>
+
+</ion-content>

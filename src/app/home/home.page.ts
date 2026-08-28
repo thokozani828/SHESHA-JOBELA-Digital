@@ -1,11 +1,10 @@
-// home.page.ts - FINAL & COMPLETELY CLEAN VERSION
-import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+// home.page.ts - OPTIMIZED FOR SPEED & PERFORMANCE
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
-// Import ONLY the components actually used in home.page.html
 import { 
   IonContent, 
   IonHeader, 
@@ -23,7 +22,6 @@ import {
     CommonModule,
     FormsModule,
     RouterModule,
-    // Only the components used in the template
     IonContent, 
     IonHeader, 
     IonToolbar, 
@@ -37,7 +35,7 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   currentVideoSlide: number = 0;
   totalVideoSlides: number = 5;
   slideWidth: number = 0;
-  autoplayInterval: any;
+  // REMOVED autoplayInterval to stop background processing
   particles: number[] = [];
   mobileMenuOpen: boolean = false;
 
@@ -157,14 +155,16 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     }
   };
 
-  private animationCheckTimeout: any;
+  // Throttle scroll animation to save performance
+  private isThrottled: boolean = false;
 
   constructor(
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.particles = Array.from({ length: 30 }, (_, i) => i);
+    // REDUCED from 30 to 10 particles for speed
+    this.particles = Array.from({ length: 10 }, (_, i) => i);
     this.currentPage = this.getCurrentPage();
     
     this.router.events.pipe(
@@ -186,42 +186,13 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   }
 
   ngAfterViewInit() {
+    // Disabled autoplay for performance (loads faster)
     this.updateSlideWidth();
-    this.startAutoplay();
-    window.addEventListener('resize', () => this.updateSlideWidth());
-    
-    setTimeout(() => {
-      this.checkScrollAnimations();
-    }, 300);
-
-    // Fix scrolling
-    this.fixScrolling();
   }
 
-  // ===== SCROLLING FIX =====
-  fixScrolling() {
-    // Force ion-content to scroll
-    setTimeout(() => {
-      const content = document.querySelector('ion-content');
-      if (content) {
-        (content as any).style.setProperty('--overflow', 'auto', 'important');
-        (content as any).style.setProperty('overflow-y', 'auto', 'important');
-        (content as any).style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
-        (content as any).style.setProperty('height', '100%', 'important');
-        (content as any).style.setProperty('display', 'block', 'important');
-      }
-
-      // Find and fix scroll content
-      const scrollContent = document.querySelector('.scroll-content');
-      if (scrollContent) {
-        (scrollContent as HTMLElement).style.setProperty('overflow-y', 'auto', 'important');
-        (scrollContent as HTMLElement).style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
-        (scrollContent as HTMLElement).style.setProperty('height', '100%', 'important');
-      }
-
-      // Force reflow
-      window.dispatchEvent(new Event('resize'));
-    }, 100);
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.updateSlideWidth();
   }
 
   toggleMenu() {
@@ -259,21 +230,15 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
     return 'home';
   }
 
+  // Throttled scroll handler for performance
   onScroll(event: any) {
-    const scrollTop = event.detail.scrollTop;
-    
-    const heroContent = document.querySelector('.hero-content') as HTMLElement;
-    if (heroContent) {
-      const offset = scrollTop * 0.3;
-      heroContent.style.transform = `translateY(${offset * 0.1}px)`;
-    }
+    if (this.isThrottled) return;
+    this.isThrottled = true;
 
-    if (!this.animationCheckTimeout) {
-      this.animationCheckTimeout = setTimeout(() => {
-        this.checkScrollAnimations();
-        this.animationCheckTimeout = null;
-      }, 50);
-    }
+    setTimeout(() => {
+      this.checkScrollAnimations();
+      this.isThrottled = false;
+    }, 100);
   }
 
   checkScrollAnimations() {
@@ -463,19 +428,16 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   scrollLeft() {
     this.currentVideoSlide = Math.max(0, this.currentVideoSlide - 1);
     this.updateSlidePosition();
-    this.resetAutoplay();
   }
 
   scrollRight() {
     this.currentVideoSlide = Math.min(this.totalVideoSlides - 1, this.currentVideoSlide + 1);
     this.updateSlidePosition();
-    this.resetAutoplay();
   }
 
   goToVideoSlide(index: number) {
     this.currentVideoSlide = index;
     this.updateSlidePosition();
-    this.resetAutoplay();
   }
 
   updateSlidePosition() {
@@ -483,22 +445,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
       const offset = -this.currentVideoSlide * this.slideWidth;
       this.videoTrack.nativeElement.style.transform = `translateX(${offset}px)`;
     }
-  }
-
-  startAutoplay() {
-    this.autoplayInterval = setInterval(() => {
-      if (this.currentVideoSlide < this.totalVideoSlides - 1) {
-        this.currentVideoSlide++;
-      } else {
-        this.currentVideoSlide = 0;
-      }
-      this.updateSlidePosition();
-    }, 5000);
-  }
-
-  resetAutoplay() {
-    clearInterval(this.autoplayInterval);
-    this.startAutoplay();
   }
 
   playVideo(index: number) {
@@ -514,11 +460,6 @@ export class HomePage implements AfterViewInit, OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    clearInterval(this.autoplayInterval);
-    window.removeEventListener('resize', () => this.updateSlideWidth());
-    if (this.animationCheckTimeout) {
-      clearTimeout(this.animationCheckTimeout);
-    }
     document.body.style.overflow = '';
   }
 }

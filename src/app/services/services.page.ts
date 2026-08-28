@@ -1,28 +1,11 @@
-// services.page.ts - FINAL FIXED WITH STANDALONE IMPORTS
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+// services.page.ts - Optimized for Speed & Clean Imports
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
-// Import ONLY from @ionic/angular/standalone
+// Import ONLY what is used in the HTML
 import { 
-  IonContent, 
-  IonHeader, 
-  IonTitle, 
-  IonToolbar, 
-  IonIcon, 
-  IonButton, 
-  IonCard, 
-  IonCardContent, 
-  IonCardHeader, 
-  IonCardTitle, 
-  IonModal, 
-  IonGrid, 
-  IonRow, 
-  IonCol, 
-  IonBadge, 
-  IonList, 
-  IonItem, 
-  IonLabel 
+  IonContent, IonHeader, IonToolbar, IonIcon, IonButton
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -31,39 +14,17 @@ import {
   styleUrls: ['./services.page.scss'],
   standalone: true,
   imports: [
-    CommonModule, 
-    RouterModule,
-    // All standalone components here
-    IonContent, 
-    IonHeader, 
-    IonTitle, 
-    IonToolbar, 
-    IonIcon, 
-    IonButton, 
-    IonCard, 
-    IonCardContent, 
-    IonCardHeader, 
-    IonCardTitle, 
-    IonModal, 
-    IonGrid, 
-    IonRow, 
-    IonCol, 
-    IonBadge, 
-    IonList, 
-    IonItem, 
-    IonLabel 
+    CommonModule, RouterModule,
+    IonContent, IonHeader, IonToolbar, IonIcon, IonButton
   ]
 })
-export class ServicesPage implements OnInit, AfterViewInit {
+export class ServicesPage implements OnInit {
   
   // Modal state
   showServiceModal: boolean = false;
   selectedService: any = null;
 
-  // Particles for background
-  particles: number[] = [];
-
-  // Service data with detailed info and images
+  // Service data with detailed info and images (ALL LOCAL PATHS)
   servicesData = [
     {
       icon: 'videocam-outline',
@@ -74,11 +35,11 @@ export class ServicesPage implements OnInit, AfterViewInit {
       route: 'cctv-installation',
       gradient: 'linear-gradient(135deg, #d4a02b, #e8c34a)',
       badge: 'Most Popular',
-      image: 'https://images.unsplash.com/photo-1558002038-1055907df827?w=600&q=80',
+      image: 'assets/images/service-cctv.jpg', // LOCAL IMAGE
       gallery: [
-        'https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80',
-        'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&q=80',
-        'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=400&q=80'
+        'assets/images/service-cctv-1.jpg', // LOCAL IMAGE
+        'assets/images/service-cctv-2.jpg', // LOCAL IMAGE
+        'assets/images/service-cctv-3.jpg'  // LOCAL IMAGE
       ],
       features: [
         'HD cameras with night vision',
@@ -98,11 +59,11 @@ export class ServicesPage implements OnInit, AfterViewInit {
       route: 'vehicle-sound',
       gradient: 'linear-gradient(135deg, #e74c3c, #f39c12)',
       badge: 'Premium',
-      image: 'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=600&q=80',
+      image: 'assets/images/service-vehicle-sound.jpg', // LOCAL IMAGE
       gallery: [
-        'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=400&q=80',
-        'https://images.unsplash.com/photo-1558618666-fcd25c85f2e3?w=400&q=80',
-        'https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80'
+        'assets/images/service-vehicle-sound-1.jpg', // LOCAL IMAGE
+        'assets/images/service-vehicle-sound-2.jpg', // LOCAL IMAGE
+        'assets/images/service-vehicle-sound-3.jpg'  // LOCAL IMAGE
       ],
       features: [
         'Premium subwoofer installation',
@@ -122,11 +83,11 @@ export class ServicesPage implements OnInit, AfterViewInit {
       route: 'wifi-installation',
       gradient: 'linear-gradient(135deg, #3498db, #2ecc71)',
       badge: 'Fast & Reliable',
-      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f2e3?w=600&q=80',
+      image: 'assets/images/service-wifi.jpg', // LOCAL IMAGE
       gallery: [
-        'https://images.unsplash.com/photo-1558618666-fcd25c85f2e3?w=400&q=80',
-        'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&q=80',
-        'https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80'
+        'assets/images/service-wifi-1.jpg', // LOCAL IMAGE
+        'assets/images/service-wifi-2.jpg', // LOCAL IMAGE
+        'assets/images/service-wifi-3.jpg'  // LOCAL IMAGE
       ],
       features: [
         'Mesh network installation',
@@ -146,11 +107,11 @@ export class ServicesPage implements OnInit, AfterViewInit {
       route: 'event-sound',
       gradient: 'linear-gradient(135deg, #9b59b6, #e74c3c)',
       badge: 'Event Ready',
-      image: 'https://images.unsplash.com/photo-1558002038-1055907df827?w=600&q=80',
+      image: 'assets/images/service-event-sound.jpg', // LOCAL IMAGE
       gallery: [
-        'https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80',
-        'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=400&q=80',
-        'https://images.unsplash.com/photo-1558618666-fcd25c85f2e3?w=400&q=80'
+        'assets/images/service-event-sound-1.jpg', // LOCAL IMAGE
+        'assets/images/service-event-sound-2.jpg', // LOCAL IMAGE
+        'assets/images/service-event-sound-3.jpg'  // LOCAL IMAGE
       ],
       features: [
         'Professional PA systems',
@@ -170,11 +131,11 @@ export class ServicesPage implements OnInit, AfterViewInit {
       route: 'transportation',
       gradient: 'linear-gradient(135deg, #2c3e50, #3498db)',
       badge: 'Reliable',
-      image: 'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=600&q=80',
+      image: 'assets/images/service-transport.jpg', // LOCAL IMAGE
       gallery: [
-        'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=400&q=80',
-        'https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80',
-        'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&q=80'
+        'assets/images/service-transport-1.jpg', // LOCAL IMAGE
+        'assets/images/service-transport-2.jpg', // LOCAL IMAGE
+        'assets/images/service-transport-3.jpg'  // LOCAL IMAGE
       ],
       features: [
         'Airport transfers',
@@ -194,11 +155,11 @@ export class ServicesPage implements OnInit, AfterViewInit {
       route: 'system-hire',
       gradient: 'linear-gradient(135deg, #16a085, #f1c40f)',
       badge: 'Flexible',
-      image: 'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=600&q=80',
+      image: 'assets/images/service-system-hire.jpg', // LOCAL IMAGE
       gallery: [
-        'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&q=80',
-        'https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80',
-        'https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=400&q=80'
+        'assets/images/service-system-hire-1.jpg', // LOCAL IMAGE
+        'assets/images/service-system-hire-2.jpg', // LOCAL IMAGE
+        'assets/images/service-system-hire-3.jpg'  // LOCAL IMAGE
       ],
       features: [
         'Sound system rental',
@@ -236,17 +197,7 @@ export class ServicesPage implements OnInit, AfterViewInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    // Generate particles
-    this.particles = Array.from({ length: 25 }, (_, i) => i);
-  }
-
-  ngAfterViewInit() {
-    // Trigger scroll animations after view is ready
-    setTimeout(() => {
-      this.checkScrollAnimations();
-    }, 300);
-  }
+  ngOnInit() {}
 
   // ============================================
   // SERVICE MODAL METHODS
@@ -265,76 +216,20 @@ export class ServicesPage implements OnInit, AfterViewInit {
   }
 
   // ============================================
-  // SCROLL HANDLER
-  // ============================================
-  
-  onScroll(event: any) {
-    this.checkScrollAnimations();
-  }
-
-  checkScrollAnimations() {
-    const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animate-child');
-    const windowHeight = window.innerHeight;
-    const scrollY = window.scrollY || 0;
-
-    scrollElements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      const scrollPosition = rect.top + scrollY;
-      const offset = 150;
-
-      if (scrollY + windowHeight - offset > scrollPosition) {
-        el.classList.add('visible');
-      }
-    });
-  }
-
-  // ============================================
   // NAVIGATION METHODS
   // ============================================
   
-  navigateToHome() {
-    this.router.navigate(['/home']);
-  }
-
-  navigateToServices() {
-    this.router.navigate(['/services']);
-  }
-
-  navigateToEstimator() {
-    this.router.navigate(['/estimator']);
-  }
-
-  navigateToBook() {
-    this.router.navigate(['/booking']);
-  }
-
-  navigateToContact() {
-    this.router.navigate(['/contact']);
-  }
-
-  navigateToCCTV() {
-    this.router.navigate(['/cctv-installation']);
-  }
-
-  navigateToVehicleSound() {
-    this.router.navigate(['/vehicle-sound']);
-  }
-
-  navigateToWiFi() {
-    this.router.navigate(['/wifi-installation']);
-  }
-
-  navigateToEventSound() {
-    this.router.navigate(['/event-sound']);
-  }
-
-  navigateToTransportation() {
-    this.router.navigate(['/transportation']);
-  }
-
-  navigateToSystemHire() {
-    this.router.navigate(['/system-hire']);
-  }
+  navigateToHome() { this.router.navigate(['/home']); }
+  navigateToServices() { this.router.navigate(['/services']); }
+  navigateToEstimator() { this.router.navigate(['/estimator']); }
+  navigateToBook() { this.router.navigate(['/booking']); }
+  navigateToContact() { this.router.navigate(['/contact']); }
+  navigateToCCTV() { this.router.navigate(['/cctv-installation']); }
+  navigateToVehicleSound() { this.router.navigate(['/vehicle-sound']); }
+  navigateToWiFi() { this.router.navigate(['/wifi-installation']); }
+  navigateToEventSound() { this.router.navigate(['/event-sound']); }
+  navigateToTransportation() { this.router.navigate(['/transportation']); }
+  navigateToSystemHire() { this.router.navigate(['/system-hire']); }
 
   navigateToService(route: string) {
     const routeMap: { [key: string]: string } = {

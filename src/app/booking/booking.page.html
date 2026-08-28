@@ -1,4 +1,4 @@
-<!-- booking.page.html - Fixed Icon Names -->
+<!-- booking.page.html - Optimized for Speed & Mobile -->
 <ion-header class="ion-no-border">
   <ion-toolbar class="custom-toolbar">
     <div class="nav-container">
@@ -15,6 +15,9 @@
       <div class="nav-menu">
         <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <ion-icon name="home-outline"></ion-icon> Home
+        </a>
+        <a routerLink="/about" routerLinkActive="active">
+          <ion-icon name="information-circle-outline"></ion-icon> About
         </a>
         <a routerLink="/services" routerLinkActive="active">
           <ion-icon name="grid-outline"></ion-icon> Services
@@ -38,10 +41,32 @@
       </ion-button>
     </div>
   </ion-toolbar>
+
+  <!-- Hidden Mobile Menu -->
+  <div class="mobile-menu" [class.active]="mobileMenuOpen">
+    <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="home-outline"></ion-icon> Home
+    </a>
+    <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="information-circle-outline"></ion-icon> About
+    </a>
+    <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="grid-outline"></ion-icon> Services
+    </a>
+    <a routerLink="/booking" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="calendar-outline"></ion-icon> Book Now
+    </a>
+    <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">
+      <ion-icon name="call-outline"></ion-icon> Contact
+    </a>
+    <a href="https://wa.me/27670680043?text=Hi%20SHESHA%20%26%20JOBELA%20DIGITAL%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="mobile-whatsapp" (click)="closeMenu()">
+      <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp Us
+    </a>
+  </div>
 </ion-header>
 
-<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)" scrollEvents="true">
-  <!-- ===== BOOKING HERO ===== -->
+<ion-content [fullscreen]="true">
+  <!-- ===== BOOKING HERO (KEPT AS IS) ===== -->
   <section class="booking-hero">
     <div class="booking-hero-overlay"></div>
     <div class="booking-hero-bg"></div>
@@ -59,9 +84,9 @@
   </section>
 
   <!-- ===== BOOKING FORM ===== -->
-  <section class="booking-form-section scroll-animate">
+  <section class="booking-form-section">
     <div class="booking-form-container">
-      <div class="form-card scroll-animate-child">
+      <div class="form-card">
         <div class="form-header">
           <h2>Request a <span>Quote</span></h2>
           <p>Fill in your details and we'll get back to you promptly</p>
@@ -283,7 +308,7 @@
       </div>
 
       <!-- Sidebar Info -->
-      <div class="booking-info-sidebar scroll-animate-child">
+      <div class="booking-info-sidebar">
         <!-- WhatsApp Card -->
         <div class="info-card whatsapp-card">
           <div class="whatsapp-card-header">
@@ -373,7 +398,7 @@
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- ===== FOOTER (KEPT AS IS) ===== -->
   <footer class="footer">
     <div class="footer-bg"></div>
     <div class="footer-content">

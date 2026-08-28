@@ -1,14 +1,12 @@
-// booking.page.ts - Complete with proper initialization and Standalone Imports
+// booking.page.ts - Optimized for Speed & Mobile
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
-// Import ONLY the standalone Ionic components used in the booking page
+// Import ONLY the components used in the HTML (Header, Footer, Icons, Buttons)
 import { 
-  IonContent, IonHeader, IonTitle, IonToolbar, IonButton, 
-  IonInput, IonSelect, IonSelectOption, IonTextarea, IonItem, 
-  IonLabel, IonList, IonIcon, IonGrid, IonRow, IonCol 
+  IonContent, IonHeader, IonToolbar, IonButton, IonIcon
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -20,13 +18,10 @@ import {
     CommonModule,
     FormsModule,
     RouterModule,
-    // Add all Ionic components here
-    IonContent, IonHeader, IonTitle, IonToolbar, IonButton, 
-    IonInput, IonSelect, IonSelectOption, IonTextarea, IonItem, 
-    IonLabel, IonList, IonIcon, IonGrid, IonRow, IonCol
+    IonContent, IonHeader, IonToolbar, IonButton, IonIcon
   ]
 })
-export class BookingPage implements OnInit, AfterViewInit {
+export class BookingPage implements OnInit {
   
   // Booking data model
   bookingData = {
@@ -71,11 +66,8 @@ export class BookingPage implements OnInit, AfterViewInit {
   // Submission state
   isSubmitting: boolean = false;
 
-  // Particles for background effect
-  particles: number[] = [];
-
-  // Loading state
-  isLoading: boolean = true;
+  // Mobile menu state
+  mobileMenuOpen: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -83,45 +75,24 @@ export class BookingPage implements OnInit, AfterViewInit {
     // Set min date to today
     const today = new Date();
     this.minDate = today.toISOString().split('T')[0];
-    
-    // Generate particles
-    this.particles = Array(20).fill(0);
-    
-    // Show loading for a moment then hide
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 300);
-  }
-
-  ngAfterViewInit() {
-    // Trigger scroll animations after view is ready
-    setTimeout(() => {
-      this.checkScrollAnimations();
-    }, 500);
   }
 
   // ============================================
-  // SCROLL HANDLER FOR ANIMATIONS
+  // MOBILE MENU TOGGLE
   // ============================================
   
-  onScroll(event: any) {
-    this.checkScrollAnimations();
+  toggleMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+    if (this.mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
 
-  checkScrollAnimations() {
-    const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animate-child');
-    const windowHeight = window.innerHeight;
-    const scrollY = window.scrollY || 0;
-
-    scrollElements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      const scrollPosition = rect.top + scrollY;
-      const offset = 150;
-
-      if (scrollY + windowHeight - offset > scrollPosition) {
-        el.classList.add('visible');
-      }
-    });
+  closeMenu() {
+    this.mobileMenuOpen = false;
+    document.body.style.overflow = '';
   }
 
   // ============================================
@@ -229,10 +200,5 @@ export class BookingPage implements OnInit, AfterViewInit {
 
   navigateToSystemHire() {
     this.router.navigate(['/system-hire']);
-  }
-
-  toggleMenu() {
-    console.log('Menu toggled');
-    // Implement mobile menu logic here
   }
 }
